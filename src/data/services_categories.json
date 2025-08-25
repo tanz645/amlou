@@ -1,0 +1,175 @@
+{
+  "categories": [
+    {
+      "id": "srv_cat_0001",
+      "id_key": "static_image_design",
+      "name": "Static Image Design",
+      "description": "Design static images for posts, blogs, websites and campaigns.",
+      "icon": "🖼️",
+      "color": "pink",
+      "action_items": ["act_001"]
+    },
+    {
+      "id": "srv_cat_0002",
+      "id_key": "animation",
+      "name": "Animation",
+      "description": "Provide animated visuals including short animation and Lottie.",
+      "icon": "🎞️",
+      "color": "pink",
+      "action_items": ["act_011"]
+    },
+    {
+      "id": "srv_cat_0003",
+      "id_key": "short_video",
+      "name": "Short Video",
+      "description": "Create and edit short videos for campaigns and social platforms.",
+      "icon": "🎬",
+      "color": "orange",
+      "action_items": ["act_011"]
+    },
+    {
+      "id": "srv_cat_0004",
+      "id_key": "long_video",
+      "name": "Long Video",
+      "description": "Produce explainer videos and longer video content.",
+      "icon": "📽️",
+      "color": "orange",
+      "action_items": ["act_011"]
+    },
+    {
+      "id": "srv_cat_0005",
+      "id_key": "ovc",
+      "name": "Online Video Commercials (OVC)",
+      "description": "Create impactful online video commercials for ads and promotions.",
+      "icon": "📺",
+      "color": "orange",
+      "action_items": ["act_011"]
+    },
+    {
+      "id": "srv_cat_0006",
+      "id_key": "ui_ux_design",
+      "name": "UI/UX Design",
+      "description": "User interface and user experience design for websites and apps.",
+      "icon": "🎨",
+      "color": "teal",
+      "action_items": ["act_010", "act_014"]
+    },
+    {
+      "id": "srv_cat_0007",
+      "id_key": "website_development",
+      "name": "Website Development",
+      "description": "Develop marketing and business websites with CMS integration.",
+      "icon": "💻",
+      "color": "blue",
+      "action_items": ["act_003", "act_007", "act_013"]
+    },
+    {
+      "id": "srv_cat_0008",
+      "id_key": "web_app_development",
+      "name": "Web App Development",
+      "description": "Custom web app solutions including API and database integration.",
+      "icon": "🧩",
+      "color": "blue",
+      "action_items": ["act_015", "act_016"]
+    },
+    {
+      "id": "srv_cat_0009",
+      "id_key": "web_content_writing",
+      "name": "Website Content Writing",
+      "description": "Writing for website pages including landing and service pages.",
+      "icon": "📝",
+      "color": "green",
+      "action_items": ["act_003"]
+    },
+    {
+      "id": "srv_cat_0010",
+      "id_key": "blog_writing",
+      "name": "Blog Writing",
+      "description": "Research-based SEO blogs for business and brand visibility.",
+      "icon": "📚",
+      "color": "green",
+      "action_items": ["act_002", "act_006"]
+    },
+    {
+      "id": "srv_cat_0011",
+      "id_key": "social_media_media_buying",
+      "name": "Social Media Media Buying",
+      "description": "Run and manage paid ads across social platforms.",
+      "icon": "📢",
+      "color": "purple",
+      "action_items": ["act_008"]
+    },
+    {
+      "id": "srv_cat_0012",
+      "id_key": "on_page_seo",
+      "name": "On-Page SEO",
+      "description": "Optimize website content and structure for search engines.",
+      "icon": "🔍",
+      "color": "red",
+      "action_items": ["act_007", "act_006"]
+    },
+    {
+      "id": "srv_cat_0013",
+      "id_key": "off_page_seo",
+      "name": "Off-Page SEO",
+      "description": "Increase domain authority through off-site SEO practices.",
+      "icon": "🔗",
+      "color": "red",
+      "action_items": ["act_006"]
+    },
+    {
+      "id": "srv_cat_0014",
+      "id_key": "technical_seo",
+      "name": "Technical SEO",
+      "description": "Improve indexing, crawling and site performance for SEO.",
+      "icon": "🛠️",
+      "color": "red",
+      "action_items": ["act_013", "act_007"]
+    },
+    {
+      "id": "srv_cat_0015",
+      "id_key": "ppc",
+      "name": "PPC (Pay-Per-Click)",
+      "description": "Google Ads campaign setup and bid optimization.",
+      "icon": "💰",
+      "color": "blue",
+      "action_items": ["act_008"]
+    },
+    {
+      "id": "srv_cat_0016",
+      "id_key": "email_writing",
+      "name": "Email Writing",
+      "description": "Write effective email copies for campaigns and automations.",
+      "icon": "✉️",
+      "color": "yellow",
+      "action_items": ["act_009"]
+    },
+    {
+      "id": "srv_cat_0017",
+      "id_key": "email_campaign",
+      "name": "Email Campaign Management",
+      "description": "Full-service management of email marketing campaigns.",
+      "icon": "📨",
+      "color": "yellow",
+      "action_items": ["act_009"]
+    },
+    {
+      "id": "srv_cat_0018",
+      "id_key": "social_media_optimization",
+      "name": "Social Media Page Optimization",
+      "description": "Audit and optimize social media pages for better engagement.",
+      "icon": "⚙️",
+      "color": "purple",
+      "action_items": ["act_012"]
+    },
+    {
+      "id": "srv_cat_0019",
+      "id_key": "social_media_management",
+      "name": "Social Media Management",
+      "description": "Manage posting, scheduling, monitoring and responding across platforms.",
+      "icon": "🧑‍💻",
+      "color": "purple",
+      "action_items": ["act_005", "act_012", "act_004"]
+    }
+  ]
+}

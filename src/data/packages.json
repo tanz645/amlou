@@ -1,0 +1,81 @@
+{
+  "packages": [
+    {
+      "id": "1",
+      "name": "Basic Package",
+      "description": "Essential services for small businesses",
+      "services": [
+        {
+          "service_id": "1",
+          "name": "Basic Accounting",
+          "price": 500
+        },
+        {
+          "service_id": "2",
+          "name": "Tax Filing",
+          "price": 300
+        }
+      ],
+      "features": [
+        "Monthly financial reports",
+        "Basic tax planning",
+        "Quarterly reviews"
+      ],
+      "total_price": 800,
+      "created_at": "2024-03-15"
+    },
+    {
+      "id": "2",
+      "name": "Professional Package",
+      "description": "Comprehensive services for growing businesses",
+      "services": [
+        {
+          "service_id": "1",
+          "name": "Basic Accounting",
+          "price": 500
+        },
+        {
+          "service_id": "2",
+          "name": "Tax Filing",
+          "price": 300
+        },
+        {
+          "service_id": "3",
+          "name": "Financial Planning",
+          "price": 700
+        }
+      ],
+      "features": [
+        "Monthly financial reports",
+        "Advanced tax planning",
+        "Monthly reviews",
+        "Business advisory",
+        "Cash flow management"
+      ],
+      "total_price": 1500,
+      "created_at": "2024-03-15"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise Package",
+      "description": "Full-service solutions for large organizations",
+      "services": ["web_design", "seo_basic", "social_media", "content_creation", "mobile_app", "backend_development"],
+      "billing_cycle": "yearly",
+      "pricing": {
+        "unit_price": 5000,
+        "max_discount": 25
+      },
+      "features": [
+        "Custom website design",
+        "Advanced SEO optimization",
+        "Complete social media management",
+        "Premium content creation",
+        "Mobile app development",
+        "Backend development",
+        "24/7 priority support",
+        "Weekly analytics report",
+        "Dedicated account manager"
+      ]
+    }
+  ]
+} 

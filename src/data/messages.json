@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "sender": "John Doe",
+    "message": "Hello, how are you?",
+    "timestamp": "2025-06-07T10:00:00Z",
+    "status": "unread",
+    "priority": "low",
+    "subject": "Greetings",
+    "type": "message",
+    "tags": ["personal", "greeting"]
+  },
+  {
+    "id": 2,
+    "sender": "Jane Smith",
+    "message": "Can we schedule a meeting for tomorrow?",
+    "timestamp": "2025-06-07T10:15:00Z",
+    "status": "read",
+    "priority": "high",
+    "subject": "Meeting Request",
+    "type": "proposal",
+    "tags": ["work", "meeting"]
+  },
+  {
+    "id": 3,
+    "sender": "Alice Johnson",
+    "message": "Please review the attached document.",
+    "timestamp": "2025-06-07T10:30:00Z",
+    "status": "unread",
+    "priority": "medium",
+    "subject": "Document Review",
+    "type": "undefined",
+    "tags": ["work", "review"]
+  },
+  {
+    "id": 4,
+    "sender": "Bob Brown",
+    "message": "The project deadline has been extended.",
+    "timestamp": "2025-06-07T10:45:00Z",
+    "status": "read",
+    "priority": "low",
+    "subject": "Project Update",
+    "type": "message",
+    "tags": ["work", "update"]
+  },
+  {
+    "id": 5,
+    "sender": "Charlie Davis",
+    "message": "Can you send me the latest report?",
+    "timestamp": "2025-06-07T11:00:00Z",
+    "status": "unread",
+    "priority": "high",
+    "subject": "Report Request",
+    "type": "invoice",
+    "tags": ["work", "report"]
+  },
+  {
+    "id": 6,
+    "sender": "Diana Evans",
+    "message": "Thank you for your help!",
+    "timestamp": "2025-06-07T11:15:00Z",
+    "status": "read",
+    "priority": "low",
+    "subject": "Appreciation",
+    "type": "undefined",
+    "tags": ["personal", "thanks"]
+  },
+  {
+    "id": 7,
+    "sender": "Ethan Foster",
+    "message": "Let me know if you need anything else.",
+    "timestamp": "2025-06-07T11:30:00Z",
+    "status": "unread",
+    "priority": "medium",
+    "subject": "Follow-up",
+    "type": "offers",
+    "tags": ["work", "follow-up"]
+  },
+  {
+    "id": 8,
+    "sender": "Fiona Green",
+    "message": "I will be out of the office next week.",
+    "timestamp": "2025-06-07T11:45:00Z",
+    "status": "read",
+    "priority": "low",
+    "subject": "Out of Office",
+    "type": "message",
+    "tags": ["work", "notice"]
+  },
+  {
+    "id": 9,
+    "sender": "George Harris",
+    "message": "Please confirm receipt of this email.",
+    "timestamp": "2025-06-07T12:00:00Z",
+    "status": "unread",
+    "priority": "medium",
+    "subject": "Confirmation Request",
+    "type": "undefined",
+    "tags": ["work", "confirmation"]
+  },
+  {
+    "id": 10,
+    "sender": "Hannah White",
+    "message": "Looking forward to our meeting.",
+    "timestamp": "2025-06-07T12:15:00Z",
+    "status": "read",
+    "priority": "high",
+    "subject": "Meeting Follow-up",
+    "type": "proposal",
+    "tags": ["work", "meeting"]
+  }
+]

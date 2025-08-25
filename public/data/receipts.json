@@ -1,0 +1,42 @@
+[
+  {
+    "receipt_id": "RCPT-20240701-001",
+    "invoice_id": "INV-20240701-001",
+    "client_id": "cli_001",
+    "project_id": "proj_001",
+    "amount_paid": 3500,
+    "payment_date": "2024-07-10",
+    "payment_method": "bank_transfer",
+    "status": "full"
+  },
+  {
+    "receipt_id": "RCPT-20240702-002",
+    "invoice_id": "INV-20240703-003",
+    "client_id": "cli_003",
+    "project_id": "proj_003",
+    "amount_paid": 1000,
+    "payment_date": "2024-07-12",
+    "payment_method": "paypal",
+    "status": "partial"
+  },
+  {
+    "receipt_id": "RCPT-20240703-003",
+    "invoice_id": "INV-20240703-003",
+    "client_id": "cli_003",
+    "project_id": "proj_003",
+    "amount_paid": 500,
+    "payment_date": "2024-07-17",
+    "payment_method": "paypal",
+    "status": "full"
+  },
+  {
+    "receipt_id": "RCPT-20240704-004",
+    "invoice_id": "INV-20240702-002",
+    "client_id": "cli_002",
+    "project_id": "proj_002",
+    "amount_paid": 2000,
+    "payment_date": "2024-07-16",
+    "payment_method": "auto",
+    "status": "full"
+  }
+]

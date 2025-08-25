@@ -1,0 +1,73 @@
+[
+  {
+    "invoice_id": "INV-20240701-001",
+    "client_id": "cli_001",
+    "project_id": "proj_001",
+    "items": [
+      {
+        "type": "service",
+        "id": "web_design",
+        "name": "Web Design",
+        "price": 1000,
+        "quantity": 1
+      },
+      {
+        "type": "package",
+        "id": "professional",
+        "name": "Professional Package",
+        "price": 2500,
+        "quantity": 1
+      }
+    ],
+    "total": 3500,
+    "status": "unpaid",
+    "issue_date": "2024-07-01",
+    "due_date": "2024-07-15",
+    "generated_by": "usr_001"
+  },
+  {
+    "invoice_id": "INV-20240702-002",
+    "client_id": "cli_002",
+    "project_id": "proj_002",
+    "items": [
+      {
+        "type": "service",
+        "id": "mobile_app",
+        "name": "Mobile App Development",
+        "price": 2000,
+        "quantity": 1
+      }
+    ],
+    "total": 2000,
+    "status": "paid",
+    "issue_date": "2024-07-02",
+    "due_date": "2024-07-16",
+    "generated_by": "auto"
+  },
+  {
+    "invoice_id": "INV-20240703-003",
+    "client_id": "cli_003",
+    "project_id": "proj_003",
+    "items": [
+      {
+        "type": "service",
+        "id": "seo_basic",
+        "name": "SEO Basic",
+        "price": 500,
+        "quantity": 1
+      },
+      {
+        "type": "package",
+        "id": "basic",
+        "name": "Basic Package",
+        "price": 1000,
+        "quantity": 1
+      }
+    ],
+    "total": 1500,
+    "status": "partial",
+    "issue_date": "2024-07-03",
+    "due_date": "2024-07-17",
+    "generated_by": "usr_002"
+  }
+]

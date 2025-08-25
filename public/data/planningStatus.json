@@ -1,0 +1,11 @@
+{
+  "statuses": [
+    "planning",
+    "designing",
+    "added to task",
+    "complete",
+    "pending",
+    "archived",
+    "deleted"
+  ]
+} 

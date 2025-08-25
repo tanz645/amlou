@@ -1,0 +1,119 @@
+{
+  "projects": [
+    {
+      "id": "proj-001",
+      "description": "Complete redesign of the e-commerce platform with modern UI/UX and improved functionality.",
+      "name": "E-commerce Website Redesign",
+      "client_id": "cli_001",
+      "project_master": "Sarah Johnson",
+      "project_type": "single",
+      "start_date": "2024-01-15",
+      "end_date": "2024-03-15",
+      "status": "completed",
+      "key_deliverables": [
+        "Website Design",
+        "Content Creation",
+        "E-commerce Integration",
+        "SEO Optimization"
+      ],
+      "services": [
+        {
+          "service_id": "ser_001",
+          "service_name": "Facebook Ads Campaign Management",
+          "description": "Facebook Ads Campaign Management",
+          "quantity": 1,
+          "unit_price": 1000.00,
+          "discount": 100.00,
+          "total": 900.00
+        }
+      ],
+      "payment_methods": [
+        "bank_transfer",
+        "cash",
+        "cheque"
+      ],
+      "payment_security": "advance payment",
+      "agreement_number": "AG-001"
+    },
+    {
+      "id": "proj-002",
+      "name": "Social Media Management",
+      "clientName": "John Smith",
+      "clientId": "cli_002",
+      "projectMaster": "Mike Chen",
+      "projectType": "recurring",
+      "startDate": "2024-02-01",
+      "endDate": "ongoing",
+      "status": "active",
+      "projectValue": 5000,
+      "dueInvoices": 2500,
+      "keyTasks": [
+        "Content Creation",
+        "Social Media Management",
+        "Analytics Reporting",
+        "Community Engagement"
+      ],
+      "description": "Monthly social media management and content creation for multiple platforms."
+    },
+    {
+      "id": "proj-003",
+      "name": "Brand Video Production",
+      "clientName": "Emily Watson",
+      "clientId": "cli_003",
+      "projectMaster": "Emma Davis",
+      "projectType": "single",
+      "startDate": "2024-03-01",
+      "endDate": "2024-04-15",
+      "status": "in_progress",
+      "projectValue": 15000,
+      "dueInvoices": 7500,
+      "keyTasks": [
+        "Video Production",
+        "Content Writing",
+        "Motion Graphics",
+        "Sound Design"
+      ],
+      "description": "Production of brand awareness video series for environmental organization."
+    },
+    {
+      "id": "proj-004",
+      "name": "SEO Optimization",
+      "clientName": "Rajesh Kumar",
+      "clientId": "cli_004",
+      "projectMaster": "Alex Wong",
+      "projectType": "recurring",
+      "startDate": "2024-01-01",
+      "endDate": "ongoing",
+      "status": "active",
+      "projectValue": 3000,
+      "dueInvoices": 0,
+      "keyTasks": [
+        "Keyword Research",
+        "On-page SEO",
+        "Content Optimization",
+        "Performance Tracking"
+      ],
+      "description": "Monthly SEO optimization and content strategy for local restaurant chain."
+    },
+    {
+      "id": "proj-005",
+      "name": "Mobile App Development",
+      "clientName": "Sophia Lee",
+      "clientId": "cli_005",
+      "projectMaster": "David Kim",
+      "projectType": "single",
+      "startDate": "2024-02-15",
+      "endDate": "2024-05-15",
+      "status": "in_progress",
+      "projectValue": 45000,
+      "dueInvoices": 15000,
+      "keyTasks": [
+        "UI/UX Design",
+        "App Development",
+        "Testing",
+        "App Store Optimization"
+      ],
+      "description": "Development of a fitness tracking mobile application with social features."
+    }
+  ]
+}

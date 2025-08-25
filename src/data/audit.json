@@ -1,0 +1,413 @@
+[
+  {
+    "report_id": "arult-2025-proj_001",
+    "report_title": "E-commerce Webfite Development DIGITAL MARKETING AUDIT 2025",
+    "report_date": "2025-06-12",
+    "prepared_by": "Vibely Digital Audit Team",
+    "projects": [
+      {
+        "project_id": "proj_001",
+        "project_name": "E-commerce Webfite Development",
+        "client_id": "cli_001",
+        "platforms": [
+          {
+            "name": "Facebook",
+            "organic": {
+              "metrics": [
+                { "metric": "Static Post Frequency", "my_matrix": "4/mo", "required_matrix": "6+/mo", "status": "Below" },
+                { "metric": "Video Post Frequency", "my_matrix": "3/mo", "required_matrix": "4+/mo", "status": "Below" },
+                { "metric": "Reels Post Frequency", "my_matrix": "2/mo", "required_matrix": "4+/mo", "status": "Below" },
+                { "metric": "Story Frequency", "my_matrix": "8/mo", "required_matrix": "12+/mo", "status": "Below" },
+                { "metric": "Long Video Frequency", "my_matrix": "1/mo", "required_matrix": "2+/mo", "status": "Below" },
+                { "metric": "Engagement Rate", "my_matrix": "2.3%", "required_matrix": "3.5%+", "status": "Below" },
+                { "metric": "Follower Growth Rate", "my_matrix": "4%", "required_matrix": "5%+", "status": "Below" },
+                { "metric": "Avg. Reach per Post", "my_matrix": "1,100", "required_matrix": "1,500+", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "4.5/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CPM", "my_matrix": "$4.50", "required_matrix": "<$5.00", "status": "OK" },
+                { "metric": "CPC", "my_matrix": "$0.70", "required_matrix": "<$0.50", "status": "High" },
+                { "metric": "CTR", "my_matrix": "0.85%", "required_matrix": ">1%", "status": "Low" },
+                { "metric": "Conversion Rate", "my_matrix": "2.1%", "required_matrix": ">3%", "status": "Low" },
+                { "metric": "ROAS", "my_matrix": "2.3x", "required_matrix": "3x+", "status": "Below" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "5.5/10" }
+            }
+          },
+          {
+            "name": "Instagram",
+            "organic": {
+              "metrics": [
+                { "metric": "Static Post Frequency", "my_matrix": "6/mo", "required_matrix": "8+/mo", "status": "Below" },
+                { "metric": "Reels Post Frequency", "my_matrix": "3/mo", "required_matrix": "5+/mo", "status": "Below" },
+                { "metric": "Story Frequency", "my_matrix": "10/mo", "required_matrix": "15+/mo", "status": "Below" },
+                { "metric": "Engagement Rate", "my_matrix": "3.2%", "required_matrix": "5%+", "status": "Below" },
+                { "metric": "Follower Growth", "my_matrix": "6%", "required_matrix": "5%+", "status": "OK" },
+                { "metric": "Reel Views Avg.", "my_matrix": "22,000", "required_matrix": "25,000+", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "5.5/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CPM", "my_matrix": "$6.20", "required_matrix": "<$6.00", "status": "High" },
+                { "metric": "CPC", "my_matrix": "$0.55", "required_matrix": "<$0.40", "status": "High" },
+                { "metric": "CTR", "my_matrix": "1.2%", "required_matrix": ">1.5%", "status": "Low" },
+                { "metric": "ROAS", "my_matrix": "2.8x", "required_matrix": ">3.5x", "status": "Below" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "6.0/10" }
+            }
+          },
+          {
+            "name": "LinkedIn",
+            "organic": {
+              "metrics": [
+                { "metric": "Static Post Frequency", "my_matrix": "4/mo", "required_matrix": "6+/mo", "status": "Below" },
+                { "metric": "Article Publishing Frequency", "my_matrix": "1/mo", "required_matrix": "2+/mo", "status": "Below" },
+                { "metric": "Engagement Rate", "my_matrix": "2.8%", "required_matrix": "4%+", "status": "Below" },
+                { "metric": "Follower Growth", "my_matrix": "2%", "required_matrix": "3%+", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "4.0/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CPC", "my_matrix": "$3.10", "required_matrix": "<$2.50", "status": "High" },
+                { "metric": "CTR", "my_matrix": "0.6%", "required_matrix": ">1%", "status": "Low" },
+                { "metric": "ROAS", "my_matrix": "1.5x", "required_matrix": ">2.5x", "status": "Below" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "3.5/10" }
+            }
+          },
+          {
+            "name": "YouTube",
+            "organic": {
+              "metrics": [
+                { "metric": "Upload Frequency", "my_matrix": "4/mo", "required_matrix": "4/mo", "status": "OK" },
+                { "metric": "Avg. View Duration", "my_matrix": "3:40 min", "required_matrix": "4:00+ min", "status": "Short" },
+                { "metric": "Engagement (Like/Cmt)", "my_matrix": "5.5%", "required_matrix": "6%+", "status": "Low" },
+                { "metric": "Subscriber Growth", "my_matrix": "1.8%", "required_matrix": "3%+", "status": "Slow" },
+                { "metric": "Ad ROAS", "my_matrix": "3.5x", "required_matrix": ">4x", "status": "Below" }
+              ],
+              "summary": { "category": "Total Score", "average_performance": "5.5/10" }
+            },
+            "paid": {
+              "metrics": [],
+              "summary": { "category": "Total Score", "average_performance": "5.5/10" }
+            }
+          },
+          {
+            "name": "TikTok",
+            "organic": {
+              "metrics": [
+                { "metric": "Reels Frequency", "my_matrix": "2/week", "required_matrix": "3+/week", "status": "Below" },
+                { "metric": "Avg. View Count", "my_matrix": "12,000", "required_matrix": "15,000+", "status": "Low" },
+                { "metric": "Follower Growth", "my_matrix": "5.2%", "required_matrix": "6%+", "status": "Below" },
+                { "metric": "Engagement Rate", "my_matrix": "6.8%", "required_matrix": ">8%", "status": "Below" },
+                { "metric": "Ad ROAS", "my_matrix": "3.1x", "required_matrix": "4x+", "status": "Below" }
+              ],
+              "summary": { "category": "Total Score", "average_performance": "5.0/10" }
+            },
+            "paid": {
+              "metrics": [],
+              "summary": { "category": "Total Score", "average_performance": "5.0/10" }
+            }
+          },
+          {
+            "name": "Website",
+            "organic": {
+              "metrics": [
+                { "metric": "Organic Traffic", "my_matrix": "5.2k/mo", "required_matrix": "8k+/mo", "status": "Low" },
+                { "metric": "Bounce Rate", "my_matrix": "62%", "required_matrix": "<50%", "status": "High" },
+                { "metric": "Avg. Time on Page", "my_matrix": "1:50 min", "required_matrix": ">2:30 min", "status": "Low" },
+                { "metric": "Domain Authority", "my_matrix": "21", "required_matrix": "30+", "status": "Low" }
+              ],
+              "summary": { "category": "SEO Score", "average_performance": "5.0/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CPC (Search)", "my_matrix": "$1.10", "required_matrix": "<$1.00", "status": "High" },
+                { "metric": "ROAS", "my_matrix": "2.4x", "required_matrix": ">3x", "status": "Below" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "4.5/10" }
+            }
+          }
+        ],
+        "cross_platform_summary": {
+          "platforms": [
+            { "platform": "Facebook", "organic_score": "4.5/10", "paid_media_score": "5.5/10", "total_score": "5.0" },
+            { "platform": "Instagram", "organic_score": "5.5/10", "paid_media_score": "6.0/10", "total_score": "5.8" },
+            { "platform": "LinkedIn", "organic_score": "4.0/10", "paid_media_score": "3.5/10", "total_score": "3.8" },
+            { "platform": "YouTube", "organic_score": "5.5/10", "paid_media_score": "5.5/10", "total_score": "5.5" },
+            { "platform": "TikTok", "organic_score": "5.0/10", "paid_media_score": "5.0/10", "total_score": "5.0" },
+            { "platform": "Website", "organic_score": "5.0/10", "paid_media_score": "4.5/10", "total_score": "4.8" }
+          ]
+        },
+        "recommendations": [
+          "Increase posting frequency, especially on LinkedIn and TikTok.",
+          "Optimize creatives for higher CTR (test hooks, thumbnails, captions).",
+          "Improve conversion paths and landing page UX.",
+          "Reallocate media budget toward better-performing platforms.",
+          "Enhance organic SEO through backlink building and content refresh.",
+          "Set specific ROAS goals for each paid campaign and optimize based on performance.",
+          "Consider A/B testing creatives for better performance insights."
+        ],
+        "avg_content_quality": "7.2/10",
+        "conversion_potential": "Medium-High",
+        "content_ratio": { "direct": 62, "other": 38 },
+        "traffic_sources": [
+          { "source": "Organic Social", "percent": 38 },
+          { "source": "Paid Social", "percent": 27 },
+          { "source": "Search", "percent": 21 },
+          { "source": "Referral", "percent": 8 },
+          { "source": "Direct", "percent": 6 }
+        ],
+        "cross_platform_content_relation": "Content themes are moderately consistent across platforms, but campaign messaging is not always unified. Instagram and Facebook share the most overlap, while LinkedIn and Website content is more siloed.",
+        "growth_factors": [
+          "Consistent use of video content on Instagram and TikTok.",
+          "Strong paid media performance on Facebook.",
+          "SEO improvements driving organic website traffic.",
+          "Engagement from influencer collaborations."
+        ]
+      }
+    ]
+  },
+  {
+    "report_id": "arult-2025-proj_002",
+    "report_title": "Mobile App Launch DIGITAL MARKETING AUDIT 2025",
+    "report_date": "2025-06-12",
+    "prepared_by": "Vibely Digital Audit Team",
+    "projects": [
+      {
+        "project_id": "proj_002",
+        "project_name": "Mobile App Launch",
+        "client_id": "cli_002",
+        "platforms": [
+          {
+            "name": "Facebook",
+            "organic": {
+              "metrics": [
+                { "metric": "Statis Post Frequency", "my_matrix": "5 /day", "required_matrix": "7+ /day", "status": "Below" },
+                { "metric": "Video Post Frequency", "my_matrix": "3 /rush", "required_matrix": "4+ /rush", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "5.0/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "1.3%", "required_matrix": "2.0%+", "status": "High" },
+                { "metric": "ROAS", "my_matrix": "1.8x", "required_matrix": "2.5x+", "status": "High" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "5.0/10" }
+            }
+          },
+          {
+            "name": "Instagram",
+            "organic": {
+              "metrics": [
+                { "metric": "Statis Post Frequency", "my_matrix": "1.2%", "required_matrix": "2.0%+", "status": "High" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "5.2/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "1.4%", "required_matrix": "2.0%+", "status": "Low" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "5.2/10" }
+            }
+          },
+          {
+            "name": "Website",
+            "organic": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "2.8%", "required_matrix": "3.5%+", "status": "Low" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "5.8/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "1.7%", "required_matrix": "2.5%+", "status": "Low" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "4.8/10" }
+            }
+          },
+          {
+            "name": "TikTok",
+            "organic": {
+              "metrics": [
+                { "metric": "Video Post Frequency", "my_matrix": "1.7%", "required_matrix": "2.5%+", "status": "Low" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "5.7/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "1.8%", "required_matrix": "2.0%+", "status": "Low" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "5.7/10" }
+            }
+          },
+          {
+            "name": "YouTube",
+            "organic": {
+              "metrics": [
+                { "metric": "Video Post Frequency", "my_matrix": "2 /wesh", "required_matrix": "3+ /wesh", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "4.0/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "2.2%", "required_matrix": "3.0%+", "status": "Low" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "5.1/10" }
+            }
+          },
+          {
+            "name": "Linkedin",
+            "organic": {
+              "metrics": [
+                { "metric": "Post Frequency", "my_matrix": "4.8%", "required_matrix": "6%+", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "4.8/10" }
+            },
+            "paid": {
+              "metrics": [],
+              "summary": { "category": "Paid Score", "average_performance": "4.8/10" }
+            }
+          }
+        ],
+        "cross_platform_summary": {
+          "platforms": [
+            { "platform": "Facebook", "organic_score": "5.0/10", "paid_media_score": "5.0/10", "total_score": "5.0" },
+            { "platform": "Instagram", "organic_score": "5.2/10", "paid_media_score": "5.2/10", "total_score": "5.2" },
+            { "platform": "Website", "organic_score": "5.8/10", "paid_media_score": "4.8/10", "total_score": "5.3" },
+            { "platform": "TikTok", "organic_score": "5.7/10", "paid_media_score": "5.7/10", "total_score": "5.7" },
+            { "platform": "YouTube", "organic_score": "4.0/10", "paid_media_score": "5.1/10", "total_score": "4.6" },
+            { "platform": "Linkedin", "organic_score": "4.8/10", "paid_media_score": "4.8/10", "total_score": "4.8" }
+          ]
+        },
+        "recommendations": [
+          "Increase engagement on Instagram and TikTok.",
+          "Optimize Facebook ad targeting.",
+          "Improve website content for better CTR."
+        ]
+      }
+    ]
+  },
+  {
+    "report_id": "arult-2025-proj_003",
+    "report_title": "Digital Marketing Campaign AUDIT 2025",
+    "report_date": "2025-06-12",
+    "prepared_by": "Vibely Digital Audit Team",
+    "projects": [
+      {
+        "project_id": "proj_003",
+        "project_name": "Digital Marketing Campaign",
+        "client_id": "cli_003",
+        "platforms": [
+          {
+            "name": "Facebook",
+            "organic": {
+              "metrics": [
+                { "metric": "Statis Post Frequency", "my_matrix": "6 /day", "required_matrix": "8+ /day", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "6.0/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "1.5%", "required_matrix": "2.0%+", "status": "High" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "6.0/10" }
+            }
+          },
+          {
+            "name": "Instagram",
+            "organic": {
+              "metrics": [
+                { "metric": "Statis Post Frequency", "my_matrix": "1.8%", "required_matrix": "2.0%+", "status": "High" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "6.2/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "1.7%", "required_matrix": "2.0%+", "status": "Low" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "6.2/10" }
+            }
+          },
+          {
+            "name": "Website",
+            "organic": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "3.0%", "required_matrix": "3.5%+", "status": "Low" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "6.8/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "2.0%", "required_matrix": "2.5%+", "status": "Low" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "5.8/10" }
+            }
+          },
+          {
+            "name": "TikTok",
+            "organic": {
+              "metrics": [
+                { "metric": "Video Post Frequency", "my_matrix": "2.0%", "required_matrix": "2.5%+", "status": "Low" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "6.7/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "2.0%", "required_matrix": "2.0%+", "status": "OK" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "6.7/10" }
+            }
+          },
+          {
+            "name": "YouTube",
+            "organic": {
+              "metrics": [
+                { "metric": "Video Post Frequency", "my_matrix": "3 /wesh", "required_matrix": "4+ /wesh", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "5.0/10" }
+            },
+            "paid": {
+              "metrics": [
+                { "metric": "CTR", "my_matrix": "2.5%", "required_matrix": "3.0%+", "status": "Low" }
+              ],
+              "summary": { "category": "Paid Score", "average_performance": "6.1/10" }
+            }
+          },
+          {
+            "name": "Linkedin",
+            "organic": {
+              "metrics": [
+                { "metric": "Post Frequency", "my_matrix": "5.0%", "required_matrix": "6%+", "status": "Below" }
+              ],
+              "summary": { "category": "Organic Score", "average_performance": "5.5/10" }
+            },
+            "paid": {
+              "metrics": [],
+              "summary": { "category": "Paid Score", "average_performance": "5.5/10" }
+            }
+          }
+        ],
+        "cross_platform_summary": {
+          "platforms": [
+            { "platform": "Facebook", "organic_score": "6.0/10", "paid_media_score": "6.0/10", "total_score": "6.0" },
+            { "platform": "Instagram", "organic_score": "6.2/10", "paid_media_score": "6.2/10", "total_score": "6.2" },
+            { "platform": "Website", "organic_score": "6.8/10", "paid_media_score": "5.8/10", "total_score": "6.3" },
+            { "platform": "TikTok", "organic_score": "6.7/10", "paid_media_score": "6.7/10", "total_score": "6.7" },
+            { "platform": "YouTube", "organic_score": "5.0/10", "paid_media_score": "6.1/10", "total_score": "5.6" },
+            { "platform": "Linkedin", "organic_score": "5.5/10", "paid_media_score": "5.5/10", "total_score": "5.5" }
+          ]
+        },
+        "recommendations": [
+          "Increase video content on YouTube and TikTok.",
+          "Boost organic reach on Facebook.",
+          "Enhance LinkedIn article frequency."
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "meetings": [
+    {
+      "id": "1",
+      "client_id": "1",
+      "date": "2024-03-20T10:00:00",
+      "duration": 60,
+      "type": "Project Kickoff",
+      "status": "Completed",
+      "members": [
+        {
+          "name": "John Smith",
+          "role": "Project Manager",
+          "email": "john@example.com"
+        },
+        {
+          "name": "Sarah Johnson",
+          "role": "Client Representative",
+          "email": "sarah@client.com"
+        }
+      ],
+      "topics": [
+        "Project scope discussion",
+        "Timeline review",
+        "Resource allocation"
+      ],
+      "notes": "Client approved the initial project plan. Next meeting scheduled for April 1st."
+    },
+    {
+      "id": "2",
+      "client_id": "1",
+      "date": "2024-04-01T14:30:00",
+      "duration": 90,
+      "type": "Progress Review",
+      "status": "Scheduled",
+      "members": [
+        {
+          "name": "John Smith",
+          "role": "Project Manager",
+          "email": "john@example.com"
+        },
+        {
+          "name": "Sarah Johnson",
+          "role": "Client Representative",
+          "email": "sarah@client.com"
+        },
+        {
+          "name": "Mike Wilson",
+          "role": "Technical Lead",
+          "email": "mike@example.com"
+        }
+      ],
+      "topics": [
+        "Progress update",
+        "Technical challenges",
+        "Budget review"
+      ],
+      "notes": "Meeting will be held virtually via Zoom"
+    },
+    {
+      "id": "3",
+      "client_id": "2",
+      "date": "2024-03-25T11:00:00",
+      "duration": 45,
+      "type": "Contract Review",
+      "status": "Scheduled",
+      "members": [
+        {
+          "name": "Emma Davis",
+          "role": "Account Manager",
+          "email": "emma@example.com"
+        },
+        {
+          "name": "Robert Brown",
+          "role": "Client Director",
+          "email": "robert@client.com"
+        }
+      ],
+      "topics": [
+        "Contract terms review",
+        "Service level agreements",
+        "Payment schedule"
+      ],
+      "notes": "In-person meeting at client's office"
+    }
+  ]
+} 

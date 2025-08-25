@@ -1,0 +1,754 @@
+[
+    {
+      "agreement_id": "AGR-20250613-001",
+      "agreement_referance": null,
+      "agreement_date": "2025-06-13",
+      "project_id": "proj_001",
+      "parties": [
+        {
+          "type": "service_provider",
+          "user_id": "usr_001",
+          "name": "John Smith",
+          "address": {
+            "street": "123 Main Street",
+            "city": "Dhaka",
+            "state_province": "N/A",
+            "zip_postal_code": "1000",
+            "country": "Bangladesh"
+          },
+          "phone": "+1 234-567-8901",
+          "email": "john.smith@alhisab.com"
+        },
+        {
+          "type": "client",
+          "client_id": "cli_001",
+          "name": "Asadullah Galib",
+          "address": "123, Main Street, Dhaka, Bangladesh",
+          "project_id": "proj_001",
+          "phone": "+8801712345678",
+          "email": "contact@ultimawater.com"
+          }
+        ],
+        "scope_of_work": {
+          "project_title": "E-commerce Website Development",
+          "description": "Complete e-commerce solution with payment integration",
+          "deliverables": [
+            {
+              "deliverable_id": "DEL-UIUX-001",
+              "type": "service",
+              "service_id": "ser_001",
+              "quantity": 3,
+              "timeline": {
+                "start_date": "2025-06-20",
+                "end_date": "2025-06-27"
+              }
+            },
+            {
+              "deliverable_id": "DEL-MAINT-004",
+              "type": "package",
+              "package_id": "basic",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-08-01",
+                "end_date": "2025-12-31"
+              }
+            }
+          ],
+          "start_date": "2025-06-20",
+          "end_date": "2025-07-30"
+        },
+        "payment_terms": {
+          "pricing_structure": "flat_fee",
+          "total_cost": 2500.00,
+          "deposit_amount": 1250.00,
+          "payment_methods": ["bank_transfer", "paypal"]
+        },
+        "intellectual_property": {
+          "ownership_upon_payment": true,
+          "freelancer_portfolio_rights": true,
+          "pre_existing_ip_details": "Any existing design assets or code provided by Jane Doe for initial concepts remain Jane Doe's intellectual property and are licensed for use in this project only."
+        },
+        "confidentiality": {
+          "is_confidential": true,
+          "confidential_information_definition": "Includes all non-public information shared by the client, including business plans, customer data, and proprietary technologies.",
+          "duration": "Indefinite",
+          "nda_attached": false
+        },
+        "termination": {
+          "notice_period_days": 15,
+          "conditions": [
+            "Material breach of contract by either party",
+            "Client non-payment of invoice within 30 days",
+            "Unforeseen circumstances making project completion impossible (force majeure)"
+          ],
+          "payment_upon_termination": "Pro-rata payment for all completed work up to the termination date, based on milestones achieved or hourly rate, less any deposits paid.",
+          "kill_fee": null
+        },
+        "liability": {
+          "limitation_of_liability": "Service provider's total liability under this agreement shall not exceed the total fees paid by the client for the services.",
+          "indemnification": "Client agrees to indemnify and hold harmless the service provider from any claims, damages, or expenses arising from the client's use or misuse of the delivered work."
+        },
+        "dispute_resolution": {
+          "method": "mediation",
+          "governing_law_state_province": "California",
+          "governing_law_country": "USA"
+        },
+        "additional_terms": [
+          "Any requests for work outside the defined scope will require a separate change order and agreement on additional fees and timelines.",
+          "Client will provide all necessary content (text, images, branding guidelines) in a timely manner to avoid project delays."
+        ],
+        "signatures_required": true
+      },
+      {
+        "agreement_id": "AGR-20250614-002",
+        "agreement_referance": null,
+        "agreement_date": "2025-06-14",
+        "project_id": "proj_002",
+        "parties": [
+          {
+            "type": "service_provider",
+            "user_id": "usr_002",
+            "name": "Sarah Johnson",
+            "address": {
+              "street": "456 Tech Street",
+              "city": "Innovate City",
+              "state_province": "TX",
+              "zip_postal_code": "78701",
+              "country": "USA"
+            },
+            "phone": "+1 234-567-8902",
+            "email": "sarah.j@alhisab.com"
+          },
+          {
+            "type": "client",
+            "client_id": "cli_002",
+            "name": "John Smith",
+            "address": "456, Business Blvd, New York, USA",
+            "project_id": "proj_002",
+            "phone": "+1 5551234567",
+            "email": "info@aquatech.com"
+          }
+        ],
+        "scope_of_work": {
+          "project_title": "Mobile App Development",
+          "description": "Cross-platform mobile application for food delivery",
+          "deliverables": [
+            {
+              "deliverable_id": "DEL-API-001",
+              "type": "service",
+              "service_id": "ser_002",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-06-25",
+                "end_date": "2025-07-10"
+              }
+            },
+            {
+              "deliverable_id": "DEL-DB-002",
+              "type": "service",
+              "service_id": "ser_003",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-06-25",
+                "end_date": "2025-08-15"
+              }
+            }
+          ],
+          "start_date": "2025-06-25",
+          "end_date": "2025-08-15"
+        },
+        "payment_terms": {
+          "pricing_structure": "milestone_based",
+          "total_cost": 4000.00,
+          "deposit_amount": 1000.00,
+          "payment_methods": ["bank_transfer"]
+        },
+        "intellectual_property": {
+          "ownership_upon_payment": true,
+          "freelancer_portfolio_rights": true,
+          "pre_existing_ip_details": "No pre-existing IP from service provider."
+        },
+        "confidentiality": {
+          "is_confidential": true,
+          "confidential_information_definition": "Includes all client proprietary software architecture and business strategies.",
+          "duration": "5 years from agreement date.",
+          "nda_attached": true
+        },
+        "termination": {
+          "notice_period_days": 30,
+          "conditions": [
+            "Material breach of contract by either party",
+            "Client non-payment of invoice within 30 days",
+            "Mutual agreement"
+          ],
+          "payment_upon_termination": "Pro-rata payment for completed work up to termination date.",
+          "kill_fee": 500.00
+        },
+        "liability": {
+          "limitation_of_liability": "Service provider's total liability under this agreement shall not exceed the total fees paid by the client for the services.",
+          "indemnification": "Client agrees to indemnify and hold harmless the service provider from any claims arising from the mobile app's use."
+        },
+        "dispute_resolution": {
+          "method": "arbitration",
+          "governing_law_state_province": "Texas",
+          "governing_law_country": "USA"
+        },
+        "additional_terms": [
+          "Client will provide access to necessary development environments and third-party APIs."
+        ],
+        "signatures_required": true
+      },
+      {
+        "agreement_id": "AGR-20250615-003",
+        "agreement_referance": null,
+        "agreement_date": "2025-06-15",
+        "project_id": "proj_003",
+        "parties": [
+          {
+            "type": "service_provider",
+            "user_id": "usr_003",
+            "name": "Michael Chen",
+            "address": {
+              "street": "100 Story Ave",
+              "city": "London",
+              "state_province": "N/A",
+              "zip_postal_code": "2000",
+              "country": "UK"
+            },
+            "phone": "+44 2071234567",
+            "email": "michael.c@alhisab.com"
+          },
+          {
+            "type": "client",
+            "client_id": "cli_003",
+            "name": "Emily Watson",
+            "address": "123, Main Street, Dhaka, Bangladesh",
+            "project_id": "proj_003",
+            "phone": "+44 2071234567",
+            "email": "info@greentech.com"
+          }
+        ],
+        "scope_of_work": {
+          "project_title": "Digital Marketing Campaign",
+          "description": "Comprehensive digital marketing strategy and execution",
+          "deliverables": [
+            {
+              "deliverable_id": "DEL-BP-001",
+              "type": "service",
+              "service_id": "ser_004",
+              "quantity": 5,
+              "timeline": {
+                "start_date": "2025-06-20",
+                "end_date": "2025-07-20"
+              }
+            }
+          ],
+          "start_date": "2025-06-20",
+          "end_date": "2025-07-20"
+        },
+        "payment_terms": {
+          "pricing_structure": "flat_fee",
+          "total_cost": 1250.00,
+          "deposit_amount": 625.00,
+          "payment_methods": ["paypal"]
+        },
+        "intellectual_property": {
+          "ownership_upon_payment": true,
+          "freelancer_portfolio_rights": true,
+          "pre_existing_ip_details": "N/A"
+        },
+        "confidentiality": {
+          "is_confidential": false,
+          "confidential_information_definition": null,
+          "duration": null,
+          "nda_attached": false
+        },
+        "termination": {
+          "notice_period_days": 7,
+          "conditions": [
+            "Failure to meet deadlines consistently",
+            "Non-compliance with content guidelines"
+          ],
+          "payment_upon_termination": "Payment for completed and accepted blog posts.",
+          "kill_fee": 100.00
+        },
+        "liability": {
+          "limitation_of_liability": "Service provider's total liability under this agreement shall not exceed the total fees paid for services.",
+          "indemnification": "Client agrees to indemnify service provider against claims from third-party content."
+        },
+        "dispute_resolution": {
+          "method": "negotiation",
+          "governing_law_state_province": "New York",
+          "governing_law_country": "USA"
+        },
+        "additional_terms": [
+          "Client to provide clear topic outlines and keywords for each blog post."
+        ],
+        "signatures_required": true
+      },
+      {
+        "agreement_id": "AGR-20250701-004",
+        "agreement_referance": "AGR-20250613-001",
+        "agreement_date": "2025-07-01",
+        "project_id": "proj_001",
+        "parties": [
+          {
+            "type": "service_provider",
+            "user_id": "usr_001",
+            "name": "John Smith",
+            "address": {
+              "street": "123 Main Street",
+              "city": "Dhaka",
+              "state_province": "N/A",
+              "zip_postal_code": "1000",
+              "country": "Bangladesh"
+            },
+            "phone": "+1 234-567-8901",
+            "email": "john.smith@alhisab.com"
+          },
+          {
+            "type": "client",
+            "client_id": "cli_001",
+            "name": "Asadullah Galib",
+            "address": "123, Main Street, Dhaka, Bangladesh",
+            "project_id": "proj_001",
+            "phone": "+8801712345678",
+            "email": "contact@ultimawater.com"
+          }
+        ],
+        "scope_of_work": {
+          "project_title": "E-commerce Website Development",
+          "description": "Additional maintenance and support for the e-commerce website.",
+          "deliverables": [
+            {
+              "deliverable_id": "DEL-MAINT-005",
+              "type": "package",
+              "package_id": "professional",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-07-05",
+                "end_date": "2025-12-31"
+              }
+            }
+          ],
+          "start_date": "2025-07-05",
+          "end_date": "2025-12-31"
+        },
+        "payment_terms": {
+          "pricing_structure": "flat_fee",
+          "total_cost": 1500.00,
+          "deposit_amount": 750.00,
+          "payment_methods": ["bank_transfer"]
+        },
+        "intellectual_property": {
+          "ownership_upon_payment": true,
+          "freelancer_portfolio_rights": true,
+          "pre_existing_ip_details": "N/A"
+        },
+        "confidentiality": {
+          "is_confidential": true,
+          "confidential_information_definition": "Includes all sensitive business and financial information.",
+          "duration": "Indefinite.",
+          "nda_attached": false
+        },
+        "termination": {
+          "notice_period_days": 15,
+          "conditions": [
+            "Material breach of contract by either party",
+            "Client non-payment of invoice within 30 days",
+            "Unforeseen circumstances"
+          ],
+          "payment_upon_termination": "Pro-rata payment for completed work up to termination date.",
+          "kill_fee": 500.00
+        },
+        "liability": {
+          "limitation_of_liability": "Service provider's total liability capped at project fees.",
+          "indemnification": "Client indemnifies service provider against issues with provided content."
+        },
+        "dispute_resolution": {
+          "method": "negotiation",
+          "governing_law_state_province": "New York",
+          "governing_law_country": "USA"
+        },
+        "additional_terms": [
+          "Client to provide all necessary internal data and access to relevant personnel for interviews."
+        ],
+        "signatures_required": true
+      },
+      {
+        "agreement_id": "AGR-20250702-005",
+        "agreement_referance": "AGR-20250614-002",
+        "agreement_date": "2025-07-02",
+        "project_id": "proj_002",
+        "parties": [
+          {
+            "type": "service_provider",
+            "user_id": "usr_002",
+            "name": "Sarah Johnson",
+            "address": {
+              "street": "456 Tech Street",
+              "city": "Innovate City",
+              "state_province": "TX",
+              "zip_postal_code": "78701",
+              "country": "USA"
+            },
+            "phone": "+1 234-567-8902",
+            "email": "sarah.j@alhisab.com"
+          },
+          {
+            "type": "client",
+            "client_id": "cli_002",
+            "name": "John Smith",
+            "address": "456, Business Blvd, New York, USA",
+            "project_id": "proj_002",
+            "phone": "+1 5551234567",
+            "email": "info@aquatech.com"
+          }
+        ],
+        "scope_of_work": {
+          "project_title": "Mobile App Development",
+          "description": "Ongoing support and feature updates for the mobile app.",
+          "deliverables": [
+            {
+              "deliverable_id": "DEL-SUPPORT-001",
+              "type": "service",
+              "service_id": "ser_003",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-07-10",
+                "end_date": "2025-12-31"
+              }
+            }
+          ],
+          "start_date": "2025-07-10",
+          "end_date": "2025-12-31"
+        },
+        "payment_terms": {
+          "pricing_structure": "flat_fee",
+          "total_cost": 2000.00,
+          "deposit_amount": 1000.00,
+          "payment_methods": ["paypal"]
+        },
+        "intellectual_property": {
+          "ownership_upon_payment": true,
+          "freelancer_portfolio_rights": true,
+          "pre_existing_ip_details": "N/A"
+        },
+        "confidentiality": {
+          "is_confidential": true,
+          "confidential_information_definition": "Includes all sensitive business and financial information.",
+          "duration": "Indefinite.",
+          "nda_attached": false
+        },
+        "termination": {
+          "notice_period_days": 15,
+          "conditions": [
+            "Material breach of contract by either party",
+            "Client non-payment of invoice within 30 days",
+            "Unforeseen circumstances"
+          ],
+          "payment_upon_termination": "Pro-rata payment for completed work up to termination date.",
+          "kill_fee": 500.00
+        },
+        "liability": {
+          "limitation_of_liability": "Service provider's total liability capped at project fees.",
+          "indemnification": "Client indemnifies service provider against issues with provided content."
+        },
+        "dispute_resolution": {
+          "method": "negotiation",
+          "governing_law_state_province": "New York",
+          "governing_law_country": "USA"
+        },
+        "additional_terms": [
+          "Client to provide all necessary internal data and access to relevant personnel for interviews."
+        ],
+        "signatures_required": true
+      },
+      {
+        "agreement_id": "AGR-20250616-004",
+        "agreement_date": "2025-06-16",
+        "project_id": "proj_004",
+        "parties": [
+          {
+            "type": "service_provider",
+            "user_id": "usr_004",
+            "name": "Grace Designer",
+            "address": {
+              "street": "300 Art Street",
+              "city": "Creativity City",
+              "state_province": "WA",
+              "zip_postal_code": "98101",
+              "country": "USA"
+            },
+            "phone": "+1 (555) 777-8888",
+            "email": "grace.d@example.com"
+          },
+          {
+            "type": "client",
+            "client_id": "cli_004",
+            "name": "Non-Profit Organization",
+            "address": {
+              "street": "400 Charity Way",
+              "city": "Goodville",
+              "state_province": "WA",
+              "zip_postal_code": "98102",
+              "country": "USA"
+            },
+            "phone": "+1 (555) 999-0000",
+            "email": "contact@nonprofit.org"
+          }
+        ],
+        "scope_of_work": {
+          "project_title": "Annual Report Design",
+          "description": "Design of a 20-page annual report for the Non-Profit Organization, including layout, infographic design, and image integration.",
+          "deliverables": [
+            {
+              "deliverable_id": "DEL-ARD-001",
+              "type": "service",
+              "service_id": "ser_005",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-07-01",
+                "end_date": "2025-07-31"
+              }
+            }
+          ],
+          "start_date": "2025-07-01",
+          "end_date": "2025-07-31"
+        },
+        "payment_terms": {
+          "pricing_structure": "flat_fee",
+          "total_cost": 1800.00,
+          "deposit_amount": 900.00,
+          "payment_methods": ["bank_transfer"]
+        },
+        "intellectual_property": {
+          "ownership_upon_payment": true,
+          "freelancer_portfolio_rights": true,
+          "pre_existing_ip_details": "N/A"
+        },
+        "confidentiality": {
+          "is_confidential": true,
+          "confidential_information_definition": "Includes sensitive financial data and donor information.",
+          "duration": "Indefinite.",
+          "nda_attached": false
+        },
+        "termination": {
+          "notice_period_days": 10,
+          "conditions": [
+            "Unforeseen circumstances",
+            "Failure to provide content in a timely manner by client"
+          ],
+          "payment_upon_termination": "Payment for work completed up to termination date.",
+          "kill_fee": 200.00
+        },
+        "liability": {
+          "limitation_of_liability": "Service provider's total liability capped at project fees.",
+          "indemnification": "Client indemnifies service provider against issues with provided content."
+        },
+        "dispute_resolution": {
+          "method": "negotiation",
+          "governing_law_state_province": "Washington",
+          "governing_law_country": "USA"
+        },
+        "additional_terms": [
+          "Client to provide all textual content and images for the report."
+        ],
+        "signatures_required": true
+      },
+      {
+        "agreement_id": "AGR-20250617-005",
+        "agreement_date": "2025-06-17",
+        "project_id": "proj_005",
+        "parties": [
+          {
+            "type": "service_provider",
+            "user_id": "usr_005",
+            "name": "Sam Consultant",
+            "address": {
+              "street": "500 Visionary Lane",
+              "city": "Growth City",
+              "state_province": "IL",
+              "zip_postal_code": "60601",
+              "country": "USA"
+            },
+            "phone": "+1 (555) 111-2222",
+            "email": "sam.c@example.com"
+          },
+          {
+            "type": "client",
+            "client_id": "cli_005",
+            "name": "Small Business Inc.",
+            "address": {
+              "street": "600 Innovation Blvd",
+              "city": "Startup Town",
+              "state_province": "IL",
+              "zip_postal_code": "60602",
+              "country": "USA"
+            },
+            "phone": "+1 (555) 888-9999",
+            "email": "contact@smallbiz.com"
+          }
+        ],
+        "scope_of_work": {
+          "project_title": "Business Strategy Consultation",
+          "description": "Provide strategic consulting services for business growth, including market analysis, competitive assessment, and actionable recommendations.",
+          "deliverables": [
+            {
+              "deliverable_id": "DEL-MR-001",
+              "type": "service",
+              "service_id": "ser_006",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-06-25",
+                "end_date": "2025-07-15"
+              }
+            },
+            {
+              "deliverable_id": "DEL-REC-002",
+              "type": "service",
+              "service_id": "ser_007",
+              "quantity": 1,
+              "timeline": {
+                "start_date": "2025-07-16",
+                "end_date": "2025-07-30"
+              }
+            }
+          ],
+          "start_date": "2025-06-25",
+          "end_date": "2025-07-30"
+        },
+        "payment_terms": {
+          "pricing_structure": "flat_fee",
+          "total_cost": 5000.00,
+          "deposit_amount": 2500.00,
+          "payment_methods": ["bank_transfer"]
+        },
+        "intellectual_property": {
+          "ownership_upon_payment": true,
+          "freelancer_portfolio_rights": false,
+          "pre_existing_ip_details": "Proprietary consulting frameworks of Strategy Solutions remain their intellectual property."
+        },
+        "confidentiality": {
+          "is_confidential": true,
+          "confidential_information_definition": "Includes all client financial data, customer lists, and business plans.",
+          "duration": "10 years from agreement date.",
+          "nda_attached": true
+        },
+        "termination": {
+          "notice_period_days": 20,
+          "conditions": [
+            "Failure to adhere to agreed project scope",
+            "Client non-cooperation affecting project progress"
+          ],
+          "payment_upon_termination": "Pro-rata payment for completed phases or hourly work if applicable.",
+          "kill_fee": 1000.00
+        },
+        "liability": {
+          "limitation_of_liability": "Service provider's total liability is limited to the fees paid for the services.",
+          "indemnification": "Client agrees to indemnify service provider against any claims arising from the use of recommendations."
+        },
+        "dispute_resolution": {
+          "method": "mediation",
+          "governing_law_state_province": "Illinois",
+          "governing_law_country": "USA"
+        },
+        "additional_terms": [
+          "Client to provide all necessary internal data and access to relevant personnel for interviews."
+        ],
+        "signatures_required": true
+      },
+      {
+        "agreement_id": "AGR-20250618-006",
+        "agreement_date": "2025-06-18",
+        "project_id": "proj_006",
+        "parties": [
+          {
+            "type": "service_provider",
+            "user_id": "usr_006",
+            "name": "Liam Audio",
+            "address": {
+              "street": "700 Echo Lane",
+              "city": "Harmony City",
+              "state_province": "CA",
+              "zip_postal_code": "90001",
+              "country": "USA"
+            },
+            "phone": "+1 (555) 555-6666",
+            "email": "liam.a@example.com"
+          },
+          {
+            "type": "client",
+            "client_id": "cli_006",
+            "name": "Podcast Team",
+            "address": {
+              "street": "800 Broadcast Rd",
+              "city": "Media Town",
+              "state_province": "CA",
+              "zip_postal_code": "90002",
+              "country": "USA"
+            },
+            "phone": "+1 (555) 121-3434",
+              "email": "contact@podcastteam.com"
+            }
+          ],
+          "scope_of_work": {
+            "project_title": "Podcast Audio Editing & Mixing",
+            "description": "Provide professional audio editing, mixing, and mastering for 4 podcast episodes, including noise reduction, level balancing, and intro/outro integration.",
+            "deliverables": [
+              {
+                "deliverable_id": "DEL-PAE-001",
+                "type": "service",
+                "service_id": "ser_008",
+                "quantity": 4,
+                "timeline": {
+                  "start_date": "2025-07-01",
+                  "end_date": "2025-07-25"
+                }
+              }
+            ],
+            "start_date": "2025-07-01",
+            "end_date": "2025-07-25"
+          },
+          "payment_terms": {
+            "pricing_structure": "flat_fee",
+            "total_cost": 800.00,
+            "deposit_amount": 400.00,
+            "payment_methods": ["paypal", "stripe"]
+          },
+          "intellectual_property": {
+            "ownership_upon_payment": true,
+            "freelancer_portfolio_rights": true,
+            "pre_existing_ip_details": "N/A"
+          },
+          "confidentiality": {
+            "is_confidential": true,
+            "confidential_information_definition": "Includes unreleased episode content and guest details.",
+            "duration": "Until episode public release.",
+            "nda_attached": false
+          },
+          "termination": {
+            "notice_period_days": 7,
+            "conditions": [
+              "Poor audio quality of raw files provided by client",
+              "Failure to adhere to project timeline by service provider"
+            ],
+            "payment_upon_termination": "Payment for completed episodes.",
+            "kill_fee": 50.00
+          },
+          "liability": {
+            "limitation_of_liability": "Service provider's liability limited to the fees paid for the audio services.",
+            "indemnification": "Client indemnifies service provider against any copyright claims on provided audio content."
+          },
+          "dispute_resolution": {
+            "method": "negotiation",
+            "governing_law_state_province": "California",
+            "governing_law_country": "USA"
+          },
+          "additional_terms": [
+            "Client to provide raw audio files in WAV or high-quality MP3 format."
+          ],
+          "signatures_required": true
+        }
+]
+  

@@ -1,0 +1,688 @@
+{
+  "services": [
+    {
+      "id": "ser_001",
+      "name": "Static Image Design",
+      "serviceShortName": "SID",
+      "serviceCategory": "static_image_design",
+      "category_id": "static_image_design",
+      "serviceTasks": [
+        "Social media post design",
+        "Blog header and featured images",
+        "Website banner and hero images",
+        "Campaign graphics and posters",
+        "Brand identity elements",
+        "Infographic design",
+        "Product mockups and presentations"
+      ],
+      "action_items": ["act_001"],
+      "shortDescription": "Professional static image design for all digital platforms",
+      "serviceMaster": "Alex Rodriguez",
+      "description": "We create stunning static images that capture attention and convey your message effectively. From social media posts to website graphics, our designs are optimized for engagement and brand consistency.",
+      "image": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Social Media Graphics",
+        "Website Images",
+        "Campaign Materials",
+        "Brand Elements",
+        "Infographics",
+        "Product Mockups"
+      ],
+      "pricing": {
+        "unit_price": 299,
+        "max_discount": 50
+      },
+      "minimum_time_required": 3,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_002",
+      "name": "Animation Services",
+      "serviceShortName": "ANIM",
+      "serviceCategory": "animation",
+      "category_id": "animation",
+      "serviceTasks": [
+        "Short animated graphics",
+        "Lottie animations",
+        "GIF creation and optimization",
+        "Motion graphics design",
+        "Animated logos and icons",
+        "Social media animations",
+        "Explainer animations"
+      ],
+      "action_items": ["act_011"],
+      "shortDescription": "Engaging animations and motion graphics for digital content",
+      "serviceMaster": "Chris Thompson",
+      "description": "We bring your content to life with professional animations and motion graphics. From simple GIFs to complex Lottie animations, we create engaging visual content that captures attention and drives engagement.",
+      "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Lottie Animations",
+        "GIF Creation",
+        "Motion Graphics",
+        "Animated Logos",
+        "Social Media Animations",
+        "Explainer Videos"
+      ],
+      "pricing": {
+        "unit_price": 599,
+        "max_discount": 100
+      },
+      "minimum_time_required": 7,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_003",
+      "name": "Short Video Production",
+      "serviceShortName": "SVP",
+      "serviceCategory": "short_video",
+      "category_id": "short_video",
+      "serviceTasks": [
+        "Video concept development",
+        "Script writing and storyboarding",
+        "Video shooting and recording",
+        "Post-production editing",
+        "Audio mixing and sound design",
+        "Platform optimization",
+        "Distribution strategy"
+      ],
+      "action_items": ["act_011"],
+      "shortDescription": "Professional short videos for social media and campaigns",
+      "serviceMaster": "David Wilson",
+      "description": "We create compelling short videos that are perfect for social media platforms and digital campaigns. Our videos are optimized for engagement and designed to drive action from your audience.",
+      "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Social Media Videos",
+        "Campaign Videos",
+        "Product Demos",
+        "Testimonial Videos",
+        "Brand Stories",
+        "Platform Optimization"
+      ],
+      "pricing": {
+        "unit_price": 899,
+        "max_discount": 150
+      },
+      "minimum_time_required": 14,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_004",
+      "name": "Long Video Production",
+      "serviceShortName": "LVP",
+      "serviceCategory": "long_video",
+      "category_id": "long_video",
+      "serviceTasks": [
+        "Video concept and script development",
+        "Pre-production planning",
+        "Professional video shooting",
+        "Advanced post-production editing",
+        "Audio mixing and sound design",
+        "Color grading and effects",
+        "Final delivery and optimization"
+      ],
+      "action_items": ["act_011"],
+      "shortDescription": "High-quality long-form video content and explainer videos",
+      "serviceMaster": "Sarah Johnson",
+      "description": "We produce professional long-form videos including explainer videos, product demonstrations, and educational content. Our videos are designed to inform, engage, and convert your audience.",
+      "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Explainer Videos",
+        "Product Demos",
+        "Educational Content",
+        "Corporate Videos",
+        "Training Videos",
+        "Documentary Style"
+      ],
+      "pricing": {
+        "unit_price": 1999,
+        "max_discount": 300
+      },
+      "minimum_time_required": 21,
+      "minimum_order_unit": 1,
+      "service_type": "non-repeatable"
+    },
+    {
+      "id": "ser_005",
+      "name": "Online Video Commercials",
+      "serviceShortName": "OVC",
+      "serviceCategory": "ovc",
+      "category_id": "ovc",
+      "serviceTasks": [
+        "Commercial concept development",
+        "Script writing and storyboarding",
+        "Professional video production",
+        "High-end post-production",
+        "Audio mixing and sound design",
+        "Color grading and effects",
+        "Multi-platform optimization"
+      ],
+      "action_items": ["act_011"],
+      "shortDescription": "Impactful video commercials for online advertising",
+      "serviceMaster": "Michael Brown",
+      "description": "We create compelling online video commercials that drive conversions and build brand awareness. Our commercials are optimized for digital platforms and designed to capture attention in the first few seconds.",
+      "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Digital Commercials",
+        "Platform Optimization",
+        "Conversion Focused",
+        "Brand Storytelling",
+        "Professional Production",
+        "Multi-Format Delivery"
+      ],
+      "pricing": {
+        "unit_price": 2999,
+        "max_discount": 400
+      },
+      "minimum_time_required": 28,
+      "minimum_order_unit": 1,
+      "service_type": "non-repeatable"
+    },
+    {
+      "id": "ser_006",
+      "name": "UI/UX Design",
+      "serviceShortName": "UXD",
+      "serviceCategory": "ui_ux_design",
+      "category_id": "ui_ux_design",
+      "serviceTasks": [
+        "User research and persona development",
+        "Wireframing and prototyping",
+        "User interface design",
+        "User experience optimization",
+        "Usability testing and feedback",
+        "Design system creation",
+        "Interactive prototype development"
+      ],
+      "action_items": ["act_010", "act_014"],
+      "shortDescription": "User-centered design for better digital experiences",
+      "serviceMaster": "Lisa Wang",
+      "description": "We create intuitive and engaging user experiences through research-driven design. Our UI/UX services focus on understanding user needs and creating interfaces that are both beautiful and functional.",
+      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "User Research",
+        "Wireframing",
+        "Prototyping",
+        "UI Design",
+        "Usability Testing",
+        "Design Systems"
+      ],
+      "pricing": {
+        "unit_price": 1799,
+        "max_discount": 200
+      },
+      "minimum_time_required": 28,
+      "minimum_order_unit": 1,
+      "service_type": "non-repeatable"
+    },
+    {
+      "id": "ser_007",
+      "name": "Website Development",
+      "serviceShortName": "WD",
+      "serviceCategory": "website_development",
+      "category_id": "website_development",
+      "serviceTasks": [
+        "Website design and development",
+        "CMS integration and setup",
+        "Responsive design implementation",
+        "SEO optimization",
+        "Performance optimization",
+        "Security implementation",
+        "Maintenance and updates"
+      ],
+      "action_items": ["act_003", "act_007", "act_013"],
+      "shortDescription": "Professional websites with CMS integration",
+      "serviceMaster": "Robert Chen",
+      "description": "We build professional websites that are fast, secure, and easy to manage. Our websites come with CMS integration, SEO optimization, and responsive design to ensure maximum performance across all devices.",
+      "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Custom Design",
+        "CMS Integration",
+        "Responsive Design",
+        "SEO Optimized",
+        "Performance Focused",
+        "Security Hardened"
+      ],
+      "pricing": {
+        "unit_price": 2499,
+        "max_discount": 300
+      },
+      "minimum_time_required": 35,
+      "minimum_order_unit": 1,
+      "service_type": "non-repeatable"
+    },
+    {
+      "id": "ser_008",
+      "name": "Web App Development",
+      "serviceShortName": "WAD",
+      "serviceCategory": "web_app_development",
+      "category_id": "web_app_development",
+      "serviceTasks": [
+        "Custom web application development",
+        "API development and integration",
+        "Database design and implementation",
+        "Frontend and backend development",
+        "Testing and quality assurance",
+        "Deployment and hosting setup",
+        "Ongoing maintenance and support"
+      ],
+      "action_items": ["act_015", "act_016"],
+      "shortDescription": "Custom web applications with API and database integration",
+      "serviceMaster": "Emily Davis",
+      "description": "We develop custom web applications that solve specific business problems. Our applications include API development, database integration, and modern frontend frameworks for optimal performance.",
+      "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Custom Development",
+        "API Integration",
+        "Database Design",
+        "Modern Frameworks",
+        "Scalable Architecture",
+        "Ongoing Support"
+      ],
+      "pricing": {
+        "unit_price": 3999,
+        "max_discount": 500
+      },
+      "minimum_time_required": 56,
+      "minimum_order_unit": 1,
+      "service_type": "non-repeatable"
+    },
+    {
+      "id": "ser_009",
+      "name": "Website Content Writing",
+      "serviceShortName": "WCW",
+      "serviceCategory": "web_content_writing",
+      "category_id": "web_content_writing",
+      "serviceTasks": [
+        "Landing page content creation",
+        "Service page writing",
+        "About us and company pages",
+        "Product description writing",
+        "SEO-optimized content",
+        "Content editing and proofreading",
+        "Content strategy development"
+      ],
+      "action_items": ["act_003"],
+      "shortDescription": "Compelling website content that converts visitors",
+      "serviceMaster": "James Wilson",
+      "description": "We write compelling website content that engages visitors and drives conversions. Our content is SEO-optimized, conversion-focused, and tailored to your target audience.",
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Landing Pages",
+        "Service Pages",
+        "SEO Optimized",
+        "Conversion Focused",
+        "Brand Voice",
+        "Content Strategy"
+      ],
+      "pricing": {
+        "unit_price": 499,
+        "max_discount": 75
+      },
+      "minimum_time_required": 7,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_010",
+      "name": "Blog Writing",
+      "serviceShortName": "BW",
+      "serviceCategory": "blog_writing",
+      "category_id": "blog_writing",
+      "serviceTasks": [
+        "Topic research and keyword analysis",
+        "SEO-optimized blog writing",
+        "Content research and fact-checking",
+        "Blog post editing and proofreading",
+        "Meta description writing",
+        "Content calendar planning",
+        "Performance tracking and optimization"
+      ],
+      "action_items": ["act_002", "act_006"],
+      "shortDescription": "Research-based SEO blogs for business visibility",
+      "serviceMaster": "Maria Garcia",
+      "description": "We create research-based, SEO-optimized blog content that improves your search rankings and establishes your authority in your industry. Our blogs are designed to attract and engage your target audience.",
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "SEO Optimized",
+        "Research Based",
+        "Keyword Focused",
+        "Engaging Content",
+        "Regular Publishing",
+        "Performance Tracking"
+      ],
+      "pricing": {
+        "unit_price": 399,
+        "max_discount": 60
+      },
+      "minimum_time_required": 5,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_011",
+      "name": "Social Media Media Buying",
+      "serviceShortName": "SMMB",
+      "serviceCategory": "social_media_media_buying",
+      "category_id": "social_media_media_buying",
+      "serviceTasks": [
+        "Campaign strategy development",
+        "Audience targeting and segmentation",
+        "Ad creative optimization",
+        "Budget management and optimization",
+        "Performance monitoring and reporting",
+        "A/B testing and optimization",
+        "ROI tracking and analysis"
+      ],
+      "action_items": ["act_008"],
+      "shortDescription": "Strategic social media advertising campaigns",
+      "serviceMaster": "Alex Rodriguez",
+      "description": "We manage and optimize your social media advertising campaigns across all major platforms. Our data-driven approach ensures maximum ROI and effective audience targeting.",
+      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Multi-Platform",
+        "Audience Targeting",
+        "Creative Optimization",
+        "Budget Management",
+        "Performance Tracking",
+        "ROI Optimization"
+      ],
+      "pricing": {
+        "unit_price": 799,
+        "max_discount": 100
+      },
+      "minimum_time_required": 14,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_012",
+      "name": "On-Page SEO",
+      "serviceShortName": "OPS",
+      "serviceCategory": "on_page_seo",
+      "category_id": "on_page_seo",
+      "serviceTasks": [
+        "Keyword research and analysis",
+        "Content optimization",
+        "Meta tag optimization",
+        "Image optimization",
+        "Internal linking structure",
+        "Page speed optimization",
+        "Mobile optimization"
+      ],
+      "action_items": ["act_007", "act_006"],
+      "shortDescription": "Optimize website content and structure for search engines",
+      "serviceMaster": "John Smith",
+      "description": "We optimize your website's on-page elements to improve search engine rankings. Our comprehensive approach includes content optimization, technical improvements, and user experience enhancements.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Keyword Optimization",
+        "Content Enhancement",
+        "Technical SEO",
+        "Meta Tag Optimization",
+        "Image Optimization",
+        "Performance Focus"
+      ],
+      "pricing": {
+        "unit_price": 699,
+        "max_discount": 100
+      },
+      "minimum_time_required": 14,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_013",
+      "name": "Off-Page SEO",
+      "serviceShortName": "OFS",
+      "serviceCategory": "off_page_seo",
+      "category_id": "off_page_seo",
+      "serviceTasks": [
+        "Link building strategy",
+        "Guest posting and outreach",
+        "Social media signals",
+        "Brand mention monitoring",
+        "Influencer collaboration",
+        "Local citation building",
+        "Reputation management"
+      ],
+      "action_items": ["act_006"],
+      "shortDescription": "Increase domain authority through off-site SEO practices",
+      "serviceMaster": "Sarah Johnson",
+      "description": "We build your website's authority through strategic off-page SEO practices. Our link building and brand building efforts improve your search rankings and online reputation.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Link Building",
+        "Guest Posting",
+        "Brand Building",
+        "Social Signals",
+        "Local SEO",
+        "Reputation Management"
+      ],
+      "pricing": {
+        "unit_price": 899,
+        "max_discount": 120
+      },
+      "minimum_time_required": 21,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_014",
+      "name": "Technical SEO",
+      "serviceShortName": "TSE",
+      "serviceCategory": "technical_seo",
+      "category_id": "technical_seo",
+      "serviceTasks": [
+        "Technical SEO audit",
+        "Site structure optimization",
+        "Schema markup implementation",
+        "XML sitemap creation",
+        "Robots.txt optimization",
+        "Core Web Vitals optimization",
+        "Mobile-first indexing"
+      ],
+      "action_items": ["act_013", "act_007"],
+      "shortDescription": "Improve indexing, crawling and site performance for SEO",
+      "serviceMaster": "Michael Brown",
+      "description": "We optimize your website's technical foundation for better search engine crawling and indexing. Our technical SEO services improve site performance and user experience.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Technical Audit",
+        "Site Structure",
+        "Schema Markup",
+        "Performance Optimization",
+        "Mobile Optimization",
+        "Core Web Vitals"
+      ],
+      "pricing": {
+        "unit_price": 999,
+        "max_discount": 150
+      },
+      "minimum_time_required": 21,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_015",
+      "name": "PPC Campaign Management",
+      "serviceShortName": "PCM",
+      "serviceCategory": "ppc",
+      "category_id": "ppc",
+      "serviceTasks": [
+        "Google Ads campaign setup",
+        "Keyword research and selection",
+        "Ad copy creation and optimization",
+        "Budget management and optimization",
+        "Bid strategy implementation",
+        "Performance tracking and reporting",
+        "Conversion optimization"
+      ],
+      "action_items": ["act_008"],
+      "shortDescription": "Google Ads campaign setup and bid optimization",
+      "serviceMaster": "David Wilson",
+      "description": "We manage your Google Ads campaigns to maximize ROI and drive qualified traffic. Our PPC services include strategic keyword targeting, ad optimization, and continuous performance monitoring.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Google Ads Management",
+        "Keyword Strategy",
+        "Ad Optimization",
+        "Budget Management",
+        "Performance Tracking",
+        "Conversion Focus"
+      ],
+      "pricing": {
+        "unit_price": 799,
+        "max_discount": 100
+      },
+      "minimum_time_required": 14,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_016",
+      "name": "Email Writing",
+      "serviceShortName": "EW",
+      "serviceCategory": "email_writing",
+      "category_id": "email_writing",
+      "serviceTasks": [
+        "Email copywriting",
+        "Subject line optimization",
+        "Call-to-action writing",
+        "Email sequence creation",
+        "A/B testing copy",
+        "Brand voice consistency",
+        "Conversion optimization"
+      ],
+      "action_items": ["act_009"],
+      "shortDescription": "Compelling email copy that drives engagement and conversions",
+      "serviceMaster": "Emily Davis",
+      "description": "We write compelling email copy that engages your audience and drives conversions. Our email writing services focus on creating persuasive content that motivates action.",
+      "image": "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Email Copywriting",
+        "Subject Lines",
+        "Call-to-Actions",
+        "Email Sequences",
+        "A/B Testing",
+        "Conversion Focus"
+      ],
+      "pricing": {
+        "unit_price": 299,
+        "max_discount": 50
+      },
+      "minimum_time_required": 3,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_017",
+      "name": "Email Campaign Management",
+      "serviceShortName": "ECM",
+      "serviceCategory": "email_campaign",
+      "category_id": "email_campaign",
+      "serviceTasks": [
+        "Email campaign strategy",
+        "List building and segmentation",
+        "Automation workflow setup",
+        "Campaign design and creation",
+        "Performance tracking and analytics",
+        "A/B testing and optimization",
+        "Deliverability optimization"
+      ],
+      "action_items": ["act_009"],
+      "shortDescription": "Complete email marketing campaign management",
+      "serviceMaster": "Lisa Wang",
+      "description": "We manage your entire email marketing strategy from list building to campaign optimization. Our comprehensive approach ensures maximum deliverability and engagement.",
+      "image": "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Campaign Strategy",
+        "List Management",
+        "Automation",
+        "Design & Creation",
+        "Performance Analytics",
+        "Deliverability"
+      ],
+      "pricing": {
+        "unit_price": 599,
+        "max_discount": 75
+      },
+      "minimum_time_required": 14,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_018",
+      "name": "Social Media Page Optimization",
+      "serviceShortName": "SMPO",
+      "serviceCategory": "social_media_optimization",
+      "category_id": "social_media_optimization",
+      "serviceTasks": [
+        "Social media audit",
+        "Profile optimization",
+        "Content strategy development",
+        "Engagement optimization",
+        "Platform-specific optimization",
+        "Performance tracking",
+        "Competitor analysis"
+      ],
+      "action_items": ["act_012"],
+      "shortDescription": "Optimize social media pages for better engagement",
+      "serviceMaster": "Chris Thompson",
+      "description": "We optimize your social media profiles and content strategy to maximize engagement and reach. Our optimization services improve your social media presence across all platforms.",
+      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Profile Optimization",
+        "Content Strategy",
+        "Engagement Focus",
+        "Platform Optimization",
+        "Performance Tracking",
+        "Competitor Analysis"
+      ],
+      "pricing": {
+        "unit_price": 499,
+        "max_discount": 75
+      },
+      "minimum_time_required": 10,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    },
+    {
+      "id": "ser_019",
+      "name": "Social Media Management",
+      "serviceShortName": "SMM",
+      "serviceCategory": "social_media_management",
+      "category_id": "social_media_management",
+      "serviceTasks": [
+        "Content creation and curation",
+        "Posting and scheduling",
+        "Community management",
+        "Engagement monitoring",
+        "Performance reporting",
+        "Crisis management",
+        "Strategy development"
+      ],
+      "action_items": ["act_005", "act_012", "act_004"],
+      "shortDescription": "Complete social media management and community engagement",
+      "serviceMaster": "Maria Garcia",
+      "description": "We manage your complete social media presence including content creation, posting, community engagement, and performance monitoring. Our comprehensive approach builds authentic relationships with your audience.",
+      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=60",
+      "features": [
+        "Content Creation",
+        "Posting & Scheduling",
+        "Community Management",
+        "Engagement Monitoring",
+        "Performance Reporting",
+        "Strategy Development"
+      ],
+      "pricing": {
+        "unit_price": 899,
+        "max_discount": 120
+      },
+      "minimum_time_required": 28,
+      "minimum_order_unit": 1,
+      "service_type": "repeatable"
+    }
+  ]
+}

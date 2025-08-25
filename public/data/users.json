@@ -1,0 +1,166 @@
+{
+  "users": [
+    {
+      "id": "usr_001",
+      "name": "John Smith",
+      "email": "john.smith@alhisab.com",
+      "role": "team_leader",
+      "avatar": "https://ui-avatars.com/api/?name=John+Smith&background=0D8ABC&color=fff",
+      "phone": "+1 234-567-8901",
+      "status": "active",
+      "join_date": "2023-01-15",
+      "projects": ["proj_001", "proj_002"],
+      "skills": ["Project Management", "Team Leadership", "Strategic Planning"],
+      "bio": "Experienced team leader with 8+ years in digital marketing and project management.",
+      "performance": {
+        "rating": 4.8,
+        "completed_projects": 15,
+        "on_time_delivery": 95
+      }
+    },
+    {
+      "id": "usr_002",
+      "name": "Sarah Johnson",
+      "email": "sarah.j@alhisab.com",
+      "role": "designer",
+      "avatar": "https://ui-avatars.com/api/?name=Sarah+Johnson&background=7C3AED&color=fff",
+      "phone": "+1 234-567-8902",
+      "status": "active",
+      "join_date": "2023-02-20",
+      "projects": ["proj_001", "proj_003"],
+      "skills": ["UI/UX Design", "Adobe Creative Suite", "Brand Design"],
+      "bio": "Creative designer specializing in UI/UX and brand identity design.",
+      "performance": {
+        "rating": 4.9,
+        "completed_projects": 12,
+        "on_time_delivery": 98
+      }
+    },
+    {
+      "id": "usr_003",
+      "name": "Michael Chen",
+      "email": "michael.c@alhisab.com",
+      "role": "content_writer",
+      "avatar": "https://ui-avatars.com/api/?name=Michael+Chen&background=059669&color=fff",
+      "phone": "+1 234-567-8903",
+      "status": "active",
+      "join_date": "2023-03-10",
+      "projects": ["proj_002"],
+      "skills": ["Content Strategy", "SEO Writing", "Copywriting"],
+      "bio": "Versatile content writer with expertise in SEO and marketing copy.",
+      "performance": {
+        "rating": 4.7,
+        "completed_projects": 8,
+        "on_time_delivery": 92
+      }
+    },
+    {
+      "id": "usr_004",
+      "name": "Emma Wilson",
+      "email": "emma.w@alhisab.com",
+      "role": "video_maker",
+      "avatar": "https://ui-avatars.com/api/?name=Emma+Wilson&background=DC2626&color=fff",
+      "phone": "+1 234-567-8904",
+      "status": "active",
+      "join_date": "2023-04-05",
+      "projects": ["proj_003"],
+      "skills": ["Video Production", "Motion Graphics", "Video Editing"],
+      "bio": "Professional video maker with experience in commercial and social media content.",
+      "performance": {
+        "rating": 4.6,
+        "completed_projects": 6,
+        "on_time_delivery": 90
+      }
+    },
+    {
+      "id": "usr_005",
+      "name": "David Kim",
+      "email": "david.k@alhisab.com",
+      "role": "animator",
+      "avatar": "https://ui-avatars.com/api/?name=David+Kim&background=9333EA&color=fff",
+      "phone": "+1 234-567-8905",
+      "status": "active",
+      "join_date": "2023-05-15",
+      "projects": ["proj_001"],
+      "skills": ["2D Animation", "3D Animation", "Motion Design"],
+      "bio": "Creative animator specializing in both 2D and 3D animation.",
+      "performance": {
+        "rating": 4.8,
+        "completed_projects": 5,
+        "on_time_delivery": 94
+      }
+    },
+    {
+      "id": "usr_006",
+      "name": "Lisa Patel",
+      "email": "lisa.p@alhisab.com",
+      "role": "seo_specialist",
+      "avatar": "https://ui-avatars.com/api/?name=Lisa+Patel&background=2563EB&color=fff",
+      "phone": "+1 234-567-8906",
+      "status": "active",
+      "join_date": "2023-06-20",
+      "projects": ["proj_002", "proj_003"],
+      "skills": ["SEO Strategy", "Technical SEO", "Analytics"],
+      "bio": "SEO specialist with a track record of improving search rankings.",
+      "performance": {
+        "rating": 4.7,
+        "completed_projects": 7,
+        "on_time_delivery": 93
+      }
+    },
+    {
+      "id": "usr_007",
+      "name": "Alex Rodriguez",
+      "email": "alex.r@alhisab.com",
+      "role": "social_media_specialist",
+      "avatar": "https://ui-avatars.com/api/?name=Alex+Rodriguez&background=EA580C&color=fff",
+      "phone": "+1 234-567-8907",
+      "status": "active",
+      "join_date": "2023-07-10",
+      "projects": ["proj_001", "proj_003"],
+      "skills": ["Social Media Strategy", "Content Creation", "Community Management"],
+      "bio": "Social media expert with experience in growing brand presence.",
+      "performance": {
+        "rating": 4.9,
+        "completed_projects": 9,
+        "on_time_delivery": 96
+      }
+    },
+    {
+      "id": "usr_008",
+      "name": "Sophie Anderson",
+      "email": "sophie.a@alhisab.com",
+      "role": "media_buying_specialist",
+      "avatar": "https://ui-avatars.com/api/?name=Sophie+Anderson&background=16A34A&color=fff",
+      "phone": "+1 234-567-8908",
+      "status": "active",
+      "join_date": "2023-08-15",
+      "projects": ["proj_002"],
+      "skills": ["Media Planning", "Campaign Optimization", "ROI Analysis"],
+      "bio": "Media buying specialist focused on maximizing campaign performance.",
+      "performance": {
+        "rating": 4.8,
+        "completed_projects": 6,
+        "on_time_delivery": 95
+      }
+    },
+    {
+      "id": "usr_009",
+      "name": "James Wilson",
+      "email": "james.w@alhisab.com",
+      "role": "others",
+      "avatar": "https://ui-avatars.com/api/?name=James+Wilson&background=4B5563&color=fff",
+      "phone": "+1 234-567-8909",
+      "status": "active",
+      "join_date": "2023-09-20",
+      "projects": ["proj_001"],
+      "skills": ["Quality Assurance", "Project Support", "Documentation"],
+      "bio": "Support specialist providing quality assurance and project documentation.",
+      "performance": {
+        "rating": 4.5,
+        "completed_projects": 4,
+        "on_time_delivery": 91
+      }
+    }
+  ]
+} 

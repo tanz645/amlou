@@ -1,0 +1,276 @@
+[
+  {
+    "id": "cli_001",
+    "client_name": "Asadullah Galib",
+    "company_names": ["Ultima Water Purifiers"],
+    "status": "active",
+    "email": "contact@ultimawater.com",
+    "address": "123, Main Street, Dhaka, Bangladesh",
+    "phone": {
+      "country_code": "+880",
+      "number": "1712345678",
+      "whatsapp": true
+    },
+    "preferred_contact_method": "WhatsApp",
+    "alternate_contacts": [
+      {
+        "name": "Asadullah Galib",
+        "relation": "Marketing Assistant",
+        "email": "asad@ultima.com",
+        "phone": {
+          "country_code": "+880",
+          "number": "1612345678",
+          "whatsapp": false
+        }
+      },
+      {
+        "name": "Nusrat Jahan",
+        "relation": "CEO Assistant",
+        "email": "nusrat@ultima.com",
+        "phone": {
+          "country_code": "+880",
+          "number": "1912345678",
+          "whatsapp": true
+        }
+      }
+    ],
+    "social_media": {
+      "facebook": "https://facebook.com/ultima",
+      "instagram": "https://instagram.com/ultima",
+      "linkedin": "https://linkedin.com/company/ultima",
+      "tiktok": "https://tiktok.com/@ultima",
+      "youtube": "https://youtube.com/@ultima",
+      "twitter": null
+    },
+    "country": {
+      "name": "Bangladesh",
+      "iso_code": "BD",
+      "currency": "BDT",
+      "timezone": "Asia/Dhaka",
+      "language": "Bengali",
+      "continent": "Asia",
+      "phone_code": "+880",
+      "flag": "https://flagcdn.com/w320/bd.png"
+    },
+    "projects": [
+      { "id": "proj-001", "name": "E-commerce Website Redesign" },
+      { "id": "proj-002", "name": "Social Media Management" },
+      { "id": "proj-005", "name": "Mobile App Development" }
+    ],
+    "notes": "Interested in influencer partnerships Q4 2025.",
+    "last_payment": "2025-06-01",
+    "dues": 5000,
+    "created": "2023-01-15",
+    "avatar": "/public/avatars/cli_001.png"
+  },
+  {
+    "id": "cli_002",
+    "client_name": "John Smith",
+    "company_names": ["AquaTech Solutions"],
+    "status": "paused",
+    "email": "info@aquatech.com",
+    "phone": {
+      "country_code": "+1",
+      "number": "5551234567",
+      "whatsapp": false
+    },
+    "preferred_contact_method": "Email",
+    "alternate_contacts": [
+      {
+        "name": "John Smith",
+        "relation": "Technical Lead",
+        "email": "john.smith@aquatech.com",
+        "phone": {
+          "country_code": "+1",
+          "number": "5559876543",
+          "whatsapp": true
+        }
+      }
+    ],
+    "social_media": {
+      "facebook": "https://facebook.com/aquatech",
+      "instagram": null,
+      "linkedin": "https://linkedin.com/company/aquatech",
+      "tiktok": null,
+      "youtube": null,
+      "twitter": "https://twitter.com/aquatech"
+    },
+    "country": {
+      "name": "United States",
+      "iso_code": "US",
+      "currency": "USD",
+      "timezone": "America/New_York",
+      "language": "English",
+      "continent": "North America",
+      "phone_code": "+1",
+      "flag": "https://flagcdn.com/w320/us.png"
+    },
+    "projects": [
+      { "id": "proj-003", "name": "AI Chatbot Integration" },
+      { "id": "proj-004", "name": "Cloud Infrastructure Setup" }
+    ],
+    "notes": "Pending approval for Q1 2026 budget.",
+    "last_payment": "2025-05-15",
+    "dues": 3000,
+    "created": "2023-02-20",
+    "avatar": "/public/avatars/cli_002.png"
+  },
+  {
+    "id": "cli_003",
+    "client_name": "Emily Watson",
+    "company_names": ["GreenTech Innovations"],
+    "status": "active",
+    "email": "info@greentech.com",
+    "address": "123, Main Street, Dhaka, Bangladesh",
+    "phone": {
+      "country_code": "+44",
+      "number": "2071234567",
+      "whatsapp": true
+    },
+    "preferred_contact_method": "Email",
+    "alternate_contacts": [
+      {
+        "name": "Emily Watson",
+        "relation": "Operations Manager",
+        "email": "emily.watson@greentech.com",
+        "phone": {
+          "country_code": "+44",
+          "number": "2079876543",
+          "whatsapp": false
+        }
+      }
+    ],
+    "social_media": {
+      "facebook": "https://facebook.com/greentech",
+      "instagram": "https://instagram.com/greentech",
+      "linkedin": "https://linkedin.com/company/greentech",
+      "tiktok": null,
+      "youtube": null,
+      "twitter": "https://twitter.com/greentech"
+    },
+    "country": {
+      "name": "United Kingdom",
+      "iso_code": "GB",
+      "currency": "GBP",
+      "timezone": "Europe/London",
+      "language": "English",
+      "continent": "Europe",
+      "phone_code": "+44",
+      "flag": "https://flagcdn.com/w320/gb.png"
+    },
+    "projects": [
+      { "id": "proj-006", "name": "Website Accessibility Audit" },
+      { "id": "proj-007", "name": "SEO Optimization" }
+    ],
+    "notes": "Exploring renewable energy solutions.",
+    "last_payment": "2025-07-10",
+    "dues": 0,
+    "created": "2023-03-05",
+    "avatar": "/public/avatars/cli_003.png"
+  },
+  {
+    "id": "cli_004",
+    "client_name": "Rajesh Kumar",
+    "company_names": ["Solaris Energy"],
+    "status": "prospect",
+    "email": "contact@solarisenergy.com",
+    "address": "123, Main Street, Dhaka, Bangladesh",
+    "phone": {
+      "country_code": "+91",
+      "number": "9812345678",
+      "whatsapp": true
+    },
+    "preferred_contact_method": "WhatsApp",
+    "alternate_contacts": [
+      {
+        "name": "Rajesh Kumar",
+        "relation": "Sales Head",
+        "email": "rajesh.kumar@solarisenergy.com",
+        "phone": {
+          "country_code": "+91",
+          "number": "9818765432",
+          "whatsapp": true
+        }
+      }
+    ],
+    "social_media": {
+      "facebook": "https://facebook.com/solarisenergy",
+      "instagram": "https://instagram.com/solarisenergy",
+      "linkedin": "https://linkedin.com/company/solarisenergy",
+      "tiktok": null,
+      "youtube": "https://youtube.com/solarisenergy",
+      "twitter": null
+    },
+    "country": {
+      "name": "India",
+      "iso_code": "IN",
+      "currency": "INR",
+      "timezone": "Asia/Kolkata",
+      "language": "Hindi",
+      "continent": "Asia",
+      "phone_code": "+91",
+      "flag": "https://flagcdn.com/w320/in.png"
+    },
+    "projects": [
+      { "id": "proj-008", "name": "Solar Panel Installation" },
+      { "id": "proj-009", "name": "Battery Storage Solutions" }
+    ],
+    "notes": "Potential client for solar panel installations.",
+    "last_payment": null,
+    "dues": 10000,
+    "created": "2023-04-10",
+    "avatar": "/public/avatars/cli_004.png"
+  },
+  {
+    "id": "cli_005",
+    "client_name": "Sophia Lee",
+    "company_names": ["EcoBuild Corp"],
+    "status": "inactive",
+    "email": "support@ecobuild.com",
+    "address": "123, Main Street, Dhaka, Bangladesh",
+    "phone": {
+      "country_code": "+61",
+      "number": "291234567",
+      "whatsapp": false
+    },
+    "preferred_contact_method": "Phone",
+    "alternate_contacts": [
+      {
+        "name": "Sophia Lee",
+        "relation": "Customer Support",
+        "email": "sophia.lee@ecobuild.com",
+        "phone": {
+          "country_code": "+61",
+          "number": "291876543",
+          "whatsapp": false
+        }
+      }
+    ],
+    "social_media": {
+      "facebook": null,
+      "instagram": null,
+      "linkedin": "https://linkedin.com/company/ecobuild",
+      "tiktok": null,
+      "youtube": null,
+      "twitter": "https://twitter.com/ecobuild"
+    },
+    "country": {
+      "name": "Australia",
+      "iso_code": "AU",
+      "currency": "AUD",
+      "timezone": "Australia/Sydney",
+      "language": "English",
+      "continent": "Oceania",
+      "phone_code": "+61",
+      "flag": "https://flagcdn.com/w320/au.png"
+    },
+    "projects": [
+      { "id": "proj-010", "name": "Green Building Certification" }
+    ],
+    "notes": "Dormant client, follow up in Q3 2025.",
+    "last_payment": "2024-12-20",
+    "dues": 2000,
+    "created": "2023-05-15",
+    "avatar": "/public/avatars/cli_005.png"
+  }
+]

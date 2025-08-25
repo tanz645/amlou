@@ -1,0 +1,32 @@
+{
+  "planning": [
+    {
+      "id": "1",
+      "title": "Website Redesign",
+      "description": "Redesign the company website for better UX.",
+      "operation_master": "u1",
+      "planners": ["u2", "u3", "c1"],
+      "tasks": ["t1", "t2"],
+      "status": "planning",
+      "type": "monthly",
+      "start_date": "2024-07-01",
+      "end_date": "2024-07-15",
+      "cost": 5000,
+      "project_id": "proj_001"
+    },
+    {
+      "id": "2",
+      "title": "Mobile App Launch",
+      "description": "Plan and launch the new mobile app.",
+      "operation_master": "u2",
+      "planners": ["u1", "c2"],
+      "tasks": ["t3", "t4"],
+      "status": "designing",
+      "type": "audit",
+      "start_date": "2024-07-10",
+      "end_date": "2024-07-30",
+      "cost": 12000,
+      "project_id": "proj_002"
+    }
+  ]
+} 

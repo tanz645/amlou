@@ -1,0 +1,327 @@
+{
+  "projects": [
+    {
+      "id": "proj_001",
+      "name": "E-commerce Website Development",
+      "description": "Complete e-commerce solution with payment integration",
+      "client_id": "cli_001",
+      "project_master": "John Smith",
+      "project_type": "web_development",
+      "start_date": "2024-01-15",
+      "end_date": "2024-06-15",
+      "status": "in_progress",
+      "key_deliverables": [
+        "Responsive website design",
+        "Payment gateway integration",
+        "Inventory management system",
+        "Order tracking system"
+      ],
+      "services": [
+        {
+          "id": "ser_006",
+          "discount": 15
+        },
+        {
+          "id": "ser_001",
+          "discount": 10
+        }
+      ],
+      "packages": [
+        {
+          "id": "professional",
+          "discount": 20
+        },
+        {
+          "id": "enterprise",
+          "discount": 25
+        }
+      ],
+      "payment_methods": ["bank_transfer", "credit_card"],
+      "payment_security": "escrow",
+      "agreement_number": "AG-2024-001",
+      "project_value": 25000,
+      "milestones": [
+        {
+          "name": "Design Approval",
+          "release_amount": 5000
+        },
+        {
+          "name": "Development Completion",
+          "release_amount": 10000
+        },
+        {
+          "name": "Testing & QA",
+          "release_amount": 5000
+        },
+        {
+          "name": "Final Delivery",
+          "release_amount": 5000
+        }
+      ]
+    },
+    {
+      "id": "proj_002",
+      "name": "Mobile App Development",
+      "description": "Cross-platform mobile application for food delivery",
+      "client_id": "cli_002",
+      "project_master": "Sarah Johnson",
+      "project_type": "mobile_development",
+      "start_date": "2024-02-01",
+      "end_date": "2024-08-01",
+      "status": "active",
+      "key_deliverables": [
+        "iOS and Android apps",
+        "Real-time order tracking",
+        "Push notifications",
+        "Payment integration"
+      ],
+      "services": [
+        {
+          "id": "ser_006",
+          "discount": 20
+        },
+        {
+          "id": "ser_003",
+          "discount": 15
+        }
+      ],
+      "packages": [
+        {
+          "id": "enterprise",
+          "discount": 25
+        },
+        {
+          "id": "professional",
+          "discount": 20
+        }
+      ],
+      "payment_methods": ["bank_transfer", "paypal"],
+      "payment_security": "escrow",
+      "agreement_number": "AG-2024-002",
+      "project_value": 50000,
+      "milestones": [
+        {
+          "name": "UI/UX Design",
+          "release_amount": 10000
+        },
+        {
+          "name": "Core Development",
+          "release_amount": 20000
+        },
+        {
+          "name": "Testing & Deployment",
+          "release_amount": 10000
+        },
+        {
+          "name": "Final Delivery",
+          "release_amount": 10000
+        }
+      ]
+    },
+    {
+      "id": "proj_003",
+      "name": "Digital Marketing Campaign",
+      "description": "Comprehensive digital marketing strategy and execution",
+      "client_id": "cli_003",
+      "project_master": "Michael Brown",
+      "project_type": "marketing",
+      "start_date": "2024-03-01",
+      "end_date": "2024-09-01",
+      "status": "active",
+      "key_deliverables": [
+        "SEO optimization",
+        "Social media management",
+        "Content creation",
+        "PPC campaigns"
+      ],
+      "services": [
+        {
+          "id": "ser_001",
+          "discount": 10
+        },
+        {
+          "id": "ser_003",
+          "discount": 15
+        },
+        {
+          "id": "ser_004",
+          "discount": 10
+        },
+        {
+          "id": "ser_002",
+          "discount": 12
+        }
+      ],
+      "packages": [
+        {
+          "id": "professional",
+          "discount": 20
+        },
+        {
+          "id": "basic",
+          "discount": 15
+        }
+      ],
+      "payment_methods": ["bank_transfer"],
+      "payment_security": "escrow",
+      "agreement_number": "AG-2024-003",
+      "project_value": 30000,
+      "milestones": [
+        {
+          "name": "Strategy Development",
+          "release_amount": 6000
+        },
+        {
+          "name": "Initial Campaign",
+          "release_amount": 12000
+        },
+        {
+          "name": "Campaign Optimization",
+          "release_amount": 6000
+        },
+        {
+          "name": "Final Report",
+          "release_amount": 6000
+        }
+      ]
+    },
+    {
+      "id": "proj_004",
+      "name": "Ultima - Complete Digital Marketing",
+      "description": "Comprehensive digital marketing solution covering all aspects of online presence and growth",
+      "client_id": "cli_004",
+      "project_master": "Emily Davis",
+      "project_type": "comprehensive_marketing",
+      "start_date": "2024-04-01",
+      "end_date": "2024-12-31",
+      "status": "active",
+      "key_deliverables": [
+        "Complete brand identity and website",
+        "SEO and SEM campaigns",
+        "Social media presence across all platforms",
+        "Content marketing strategy and execution",
+        "Email marketing automation",
+        "Data analytics and reporting dashboard",
+        "Business process optimization",
+        "Ongoing digital strategy consultation"
+      ],
+      "services": [
+        {
+          "id": "ser_001",
+          "discount": 20,
+          "category": "web_marketing"
+        },
+        {
+          "id": "ser_002",
+          "discount": 20,
+          "category": "web_marketing"
+        },
+        {
+          "id": "ser_003",
+          "discount": 20,
+          "category": "social_media"
+        },
+        {
+          "id": "ser_004",
+          "discount": 20,
+          "category": "content_creation"
+        },
+        {
+          "id": "ser_005",
+          "discount": 20,
+          "category": "web_marketing"
+        },
+        {
+          "id": "ser_006",
+          "discount": 20,
+          "category": "web_apps"
+        },
+        {
+          "id": "ser_007",
+          "discount": 20,
+          "category": "strategy_planning"
+        },
+        {
+          "id": "ser_008",
+          "discount": 20,
+          "category": "design_creative"
+        },
+        {
+          "id": "ser_009",
+          "discount": 20,
+          "category": "design_creative"
+        },
+        {
+          "id": "ser_010",
+          "discount": 20,
+          "category": "data_analytics"
+        },
+        {
+          "id": "ser_011",
+          "discount": 20,
+          "category": "consulting"
+        },
+        {
+          "id": "ser_012",
+          "discount": 20,
+          "category": "content_creation"
+        }
+      ],
+      "packages": [
+        {
+          "id": "enterprise",
+          "discount": 25
+        },
+        {
+          "id": "professional",
+          "discount": 20
+        }
+      ],
+      "payment_methods": ["bank_transfer", "credit_card", "paypal"],
+      "payment_security": "escrow",
+      "agreement_number": "AG-2024-004",
+      "project_value": 150000,
+      "milestones": [
+        {
+          "name": "Strategy & Brand Development",
+          "release_amount": 30000,
+          "services": ["ser_007", "ser_009"]
+        },
+        {
+          "name": "Website & Design Implementation",
+          "release_amount": 40000,
+          "services": ["ser_006", "ser_008"]
+        },
+        {
+          "name": "Marketing Campaign Launch",
+          "release_amount": 40000,
+          "services": ["ser_001", "ser_002", "ser_003", "ser_004", "ser_005"]
+        },
+        {
+          "name": "Analytics & Optimization",
+          "release_amount": 20000,
+          "services": ["ser_010", "ser_011"]
+        },
+        {
+          "name": "Content Production & Final Delivery",
+          "release_amount": 20000,
+          "services": ["ser_012"]
+        }
+      ],
+      "project_highlights": [
+        "Complete digital transformation",
+        "All-in-one marketing solution",
+        "Cross-platform presence",
+        "Data-driven optimization",
+        "Ongoing support and maintenance"
+      ],
+      "expected_outcomes": [
+        "Increased online visibility by 300%",
+        "Lead generation improvement by 250%",
+        "Brand recognition enhancement",
+        "Streamlined business processes",
+        "Comprehensive analytics dashboard"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "types": [
+    { "id": "audit", "name": "Audit Based" },
+    { "id": "random", "name": "Random" },
+    { "id": "monthly", "name": "Monthly" },
+    { "id": "weekly", "name": "Weekly" },
+    { "id": "bimonthly", "name": "Bi-Monthly" },
+    { "id": "yearly", "name": "Yearly" },
+    { "id": "others", "name": "Others" }
+  ]
+} 

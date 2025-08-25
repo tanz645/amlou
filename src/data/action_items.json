@@ -1,0 +1,412 @@
+{
+  "action_items": [
+    {
+      "id": "act_001",
+      "name": "Static Image Creation",
+      "description": "Create static visual content for various platforms",
+      "category": "design_creative",
+      "type": "deliverable",
+      "estimated_time_hours": 4,
+      "complexity": "medium",
+      "required_skills": [
+        "graphic_design",
+        "visual_creation"
+      ],
+      "platforms": [
+        "blog",
+        "facebook",
+        "linkedin",
+        "instagram",
+        "twitter",
+        "website"
+      ],
+      "formats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "dimensions": {
+        "blog": "1200x630px",
+        "facebook": "1200x630px",
+        "linkedin": "1200x627px",
+        "instagram": "1080x1080px",
+        "twitter": "1200x675px",
+        "website": "1920x1080px"
+      },
+      "reusable_in_services": [
+        "ser_003",
+        "ser_004",
+        "ser_009",
+        "ser_012"
+      ]
+    },
+    {
+      "id": "act_002",
+      "name": "Blog Post Writing",
+      "description": "Create engaging blog content for websites",
+      "category": "content_creation",
+      "type": "deliverable",
+      "estimated_time_hours": 6,
+      "complexity": "medium",
+      "required_skills": [
+        "content_writing",
+        "seo_writing"
+      ],
+      "word_count_range": "800-2000",
+      "includes": [
+        "research",
+        "writing",
+        "seo_optimization",
+        "meta_description"
+      ],
+      "reusable_in_services": [
+        "ser_001",
+        "ser_004",
+        "ser_003"
+      ]
+    },
+    {
+      "id": "act_003",
+      "name": "Website Content Writing",
+      "description": "Create engaging website content",
+      "category": "content_creation",
+      "type": "deliverable",
+      "estimated_time_hours": 6,
+      "complexity": "medium",
+      "required_skills": [
+        "content_writing",
+        "seo_writing"
+      ],
+      "word_count_range": "800-2000",
+      "includes": [
+        "research",
+        "writing",
+        "seo_optimization",
+        "meta_description"
+      ],
+      "reusable_in_services": [
+        "ser_001",
+        "ser_004",
+        "ser_003"
+      ]
+    },
+    {
+      "id": "act_004",
+      "name": "Social Media Post Writing",
+      "description": "Create platform-specific social media content",
+      "category": "social_media",
+      "type": "deliverable",
+      "estimated_time_hours": 2,
+      "complexity": "low",
+      "required_skills": [
+        "social_media",
+        "content_creation"
+      ],
+      "platforms": [
+        "facebook",
+        "instagram",
+        "linkedin",
+        "twitter",
+        "tiktok"
+      ],
+      "content_types": [
+        "text",
+        "image",
+        "video",
+        "carousel"
+      ],
+      "reusable_in_services": [
+        "ser_003",
+        "ser_004"
+      ]
+    },
+    {
+      "id": "act_005",
+      "name": "Social Media Post Management",
+      "description": "Manage platform-specific social media post",
+      "category": "social_media",
+      "type": "deliverable",
+      "estimated_time_hours": 2,
+      "complexity": "low",
+      "required_skills": [
+        "social_media",
+        "content_creation"
+      ],
+      "platforms": [
+        "facebook",
+        "instagram",
+        "linkedin",
+        "twitter",
+        "tiktok"
+      ],
+      "content_types": [
+        "text",
+        "image",
+        "video",
+        "carousel"
+      ],
+      "reusable_in_services": [
+        "ser_003",
+        "ser_004"
+      ]
+    },
+    {
+      "id": "act_006",
+      "name": "Keyword Research",
+      "description": "Research and analyze relevant keywords for SEO",
+      "category": "web_marketing",
+      "type": "task",
+      "estimated_time_hours": 8,
+      "complexity": "high",
+      "required_skills": [
+        "seo",
+        "keyword_research",
+        "analytics"
+      ],
+      "deliverables": [
+        "keyword_list",
+        "search_volume_data",
+        "competition_analysis",
+        "keyword_strategy"
+      ],
+      "reusable_in_services": [
+        "ser_001",
+        "ser_002",
+        "ser_004"
+      ]
+    },
+    {
+      "id": "act_007",
+      "name": "On-page SEO Optimization",
+      "description": "Optimize website pages for search engines",
+      "category": "web_marketing",
+      "type": "task",
+      "estimated_time_hours": 4,
+      "complexity": "medium",
+      "required_skills": [
+        "seo",
+        "technical_seo"
+      ],
+      "includes": [
+        "meta_tags",
+        "header_optimization",
+        "content_optimization",
+        "internal_linking"
+      ],
+      "reusable_in_services": [
+        "ser_001",
+        "ser_006"
+      ]
+    },
+    {
+      "id": "act_008",
+      "name": "Google Ads Campaign Setup",
+      "description": "Create and configure Google Ads campaigns",
+      "category": "web_marketing",
+      "type": "task",
+      "estimated_time_hours": 6,
+      "complexity": "high",
+      "required_skills": [
+        "ppc",
+        "google_ads",
+        "campaign_management"
+      ],
+      "includes": [
+        "campaign_structure",
+        "ad_groups",
+        "keywords",
+        "ad_copy",
+        "bidding_strategy"
+      ],
+      "reusable_in_services": [
+        "ser_002"
+      ]
+    },
+    {
+      "id": "act_009",
+      "name": "Email Campaign Design",
+      "description": "Design and create email marketing campaigns",
+      "category": "web_marketing",
+      "type": "deliverable",
+      "estimated_time_hours": 5,
+      "complexity": "medium",
+      "required_skills": [
+        "email_marketing",
+        "design",
+        "copywriting"
+      ],
+      "includes": [
+        "email_template",
+        "subject_line",
+        "content",
+        "cta_buttons"
+      ],
+      "reusable_in_services": [
+        "ser_005",
+        "ser_004"
+      ]
+    },
+    {
+      "id": "act_010",
+      "name": "Website Design Mockup",
+      "description": "Create visual design mockups for websites",
+      "category": "design_creative",
+      "type": "deliverable",
+      "estimated_time_hours": 12,
+      "complexity": "high",
+      "required_skills": [
+        "ui_design",
+        "ux_design",
+        "wireframing"
+      ],
+      "includes": [
+        "wireframes",
+        "mockups",
+        "prototypes",
+        "design_specifications"
+      ],
+      "reusable_in_services": [
+        "ser_008",
+        "ser_006"
+      ]
+    },
+    {
+      "id": "act_011",
+      "name": "Video Editing",
+      "description": "Edit and post-process video content",
+      "category": "content_creation",
+      "type": "task",
+      "estimated_time_hours": 8,
+      "complexity": "high",
+      "required_skills": [
+        "video_editing",
+        "post_production"
+      ],
+      "includes": [
+        "cutting",
+        "transitions",
+        "effects",
+        "color_grading",
+        "audio_mixing"
+      ],
+      "reusable_in_services": [
+        "ser_012",
+        "ser_003"
+      ]
+    },
+    {
+      "id": "act_012",
+      "name": "Social Media Audit",
+      "description": "Analyze and evaluate social media presence",
+      "category": "social_media",
+      "type": "deliverable",
+      "estimated_time_hours": 6,
+      "complexity": "medium",
+      "required_skills": [
+        "social_media_analysis",
+        "auditing"
+      ],
+      "includes": [
+        "profile_analysis",
+        "content_audit",
+        "competitor_analysis",
+        "recommendations"
+      ],
+      "reusable_in_services": [
+        "ser_003"
+      ]
+    },
+    {
+      "id": "act_013",
+      "name": "Technical SEO Audit",
+      "description": "Comprehensive technical SEO analysis",
+      "category": "web_marketing",
+      "type": "deliverable",
+      "estimated_time_hours": 8,
+      "complexity": "high",
+      "required_skills": [
+        "technical_seo",
+        "website_analysis"
+      ],
+      "includes": [
+        "site_speed_analysis",
+        "mobile_friendliness",
+        "indexing_issues",
+        "technical_recommendations"
+      ],
+      "reusable_in_services": [
+        "ser_001",
+        "ser_006"
+      ]
+    },
+    {
+      "id": "act_014",
+      "name": "Brand Guidelines Document",
+      "description": "Create comprehensive brand identity guidelines",
+      "category": "design_creative",
+      "type": "deliverable",
+      "estimated_time_hours": 12,
+      "complexity": "high",
+      "required_skills": [
+        "brand_design",
+        "documentation"
+      ],
+      "includes": [
+        "logo_usage",
+        "color_palette",
+        "typography",
+        "brand_voice",
+        "application_examples"
+      ],
+      "reusable_in_services": [
+        "ser_009"
+      ]
+    },
+    {
+      "id": "act_015",
+      "name": "Database Design",
+      "description": "Design and structure database architecture",
+      "category": "web_apps",
+      "type": "task",
+      "estimated_time_hours": 16,
+      "complexity": "high",
+      "required_skills": [
+        "database_design",
+        "sql",
+        "data_modeling"
+      ],
+      "includes": [
+        "schema_design",
+        "relationships",
+        "indexing",
+        "optimization"
+      ],
+      "reusable_in_services": [
+        "ser_006"
+      ]
+    },
+    {
+      "id": "act_016",
+      "name": "API Development",
+      "description": "Create and document RESTful APIs",
+      "category": "web_apps",
+      "type": "task",
+      "estimated_time_hours": 20,
+      "complexity": "high",
+      "required_skills": [
+        "api_development",
+        "programming",
+        "documentation"
+      ],
+      "includes": [
+        "endpoint_design",
+        "authentication",
+        "documentation",
+        "testing"
+      ],
+      "reusable_in_services": [
+        "ser_006"
+      ]
+    }
+  ]
+}

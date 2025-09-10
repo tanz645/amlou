@@ -10,6 +10,7 @@ import {
   UserGroupIcon,
   MapPinIcon,
   ClockIcon,
+  DocumentTextIcon,
 } from "@heroicons/react/24/outline";
 
 interface QuickAction {
@@ -77,6 +78,9 @@ export default function QuickActions({ type, onAction }: QuickActionsProps) {
         break;
       case 'addProject':
         setShowAddProjectModal(true);
+        break;
+      case 'proposal':
+        onAction?.('proposal');
         break;
     }
   };
@@ -149,6 +153,16 @@ export default function QuickActions({ type, onAction }: QuickActionsProps) {
         icon: PlusIcon,
         action: () => handleQuickAction('addProject'),
         color: 'bg-orange-600 hover:bg-orange-700'
+      });
+    }
+
+    if (type === 'lead') {
+      baseActions.push({
+        id: 'proposal',
+        label: 'Create Proposal',
+        icon: DocumentTextIcon,
+        action: () => handleQuickAction('proposal'),
+        color: 'bg-emerald-600 hover:bg-emerald-700'
       });
     }
 

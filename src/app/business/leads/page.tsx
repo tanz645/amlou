@@ -10,6 +10,8 @@ import {
   PencilIcon,
   TrashIcon,
   ChartBarIcon,
+  DocumentTextIcon,
+  CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 
 // Mock data for leads
@@ -27,6 +29,8 @@ const leadsData = [
     date: "2024-01-15",
     lastContact: "2024-01-15",
     notes: "Interested in SEO and PPC services for their new SaaS platform.",
+    proposalStatus: null, // null, "sent", "accepted", "rejected"
+    agreementStatus: null, // null, "created", "signed"
   },
   {
     id: 2,
@@ -41,6 +45,8 @@ const leadsData = [
     date: "2024-01-14",
     lastContact: "2024-01-16",
     notes: "Looking for comprehensive digital marketing strategy.",
+    proposalStatus: "sent",
+    agreementStatus: null,
   },
   {
     id: 3,
@@ -139,6 +145,18 @@ export default function LeadsPage() {
 
   const handleLeadClick = (lead: typeof leadsData[0]) => {
     router.push(`/business/leads/${lead.id}`);
+  };
+
+  const handleConvertToProposal = (lead: typeof leadsData[0], e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Navigate to create proposal with lead data
+    router.push(`/business/proposals/new?leadId=${lead.id}&leadName=${encodeURIComponent(lead.name)}&leadCompany=${encodeURIComponent(lead.company)}&leadEmail=${encodeURIComponent(lead.email)}`);
+  };
+
+  const handleConvertToAgreement = (lead: typeof leadsData[0], e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Navigate to create agreement with lead data
+    router.push(`/business/agreements/new?leadId=${lead.id}&leadName=${encodeURIComponent(lead.name)}&leadCompany=${encodeURIComponent(lead.company)}&leadEmail=${encodeURIComponent(lead.email)}`);
   };
 
 
@@ -296,6 +314,9 @@ export default function LeadsPage() {
                   Last Contact
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Workflow Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -332,6 +353,32 @@ export default function LeadsPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {new Date(lead.lastContact).toLocaleDateString()}
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div className="flex flex-col space-y-1">
+                      {lead.proposalStatus ? (
+                        <span className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full ${
+                          lead.proposalStatus === 'sent' ? 'bg-blue-100 text-blue-800' :
+                          lead.proposalStatus === 'accepted' ? 'bg-green-100 text-green-800' :
+                          lead.proposalStatus === 'rejected' ? 'bg-red-100 text-red-800' :
+                          'bg-gray-100 text-gray-800'
+                        }`}>
+                          Proposal: {lead.proposalStatus}
+                        </span>
+                      ) : (
+                        <span className="text-xs text-gray-400">No Proposal</span>
+                      )}
+                      
+                      {lead.agreementStatus && (
+                        <span className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full ${
+                          lead.agreementStatus === 'created' ? 'bg-purple-100 text-purple-800' :
+                          lead.agreementStatus === 'signed' ? 'bg-green-100 text-green-800' :
+                          'bg-gray-100 text-gray-800'
+                        }`}>
+                          Agreement: {lead.agreementStatus}
+                        </span>
+                      )}
+                    </div>
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex items-center space-x-2">
                       <button
@@ -340,15 +387,40 @@ export default function LeadsPage() {
                           handleLeadClick(lead);
                         }}
                         className="text-blue-600 hover:text-blue-900"
+                        title="View Details"
                       >
                         <EyeIcon className="w-4 h-4" />
                       </button>
+                      
+                      {/* Convert to Proposal Button */}
+                      {!lead.proposalStatus && (
+                        <button
+                          onClick={(e) => handleConvertToProposal(lead, e)}
+                          className="text-green-600 hover:text-green-900"
+                          title="Create Proposal"
+                        >
+                          <DocumentTextIcon className="w-4 h-4" />
+                        </button>
+                      )}
+                      
+                      {/* Convert to Agreement Button */}
+                      {lead.proposalStatus === 'accepted' && !lead.agreementStatus && (
+                        <button
+                          onClick={(e) => handleConvertToAgreement(lead, e)}
+                          className="text-purple-600 hover:text-purple-900"
+                          title="Create Agreement"
+                        >
+                          <CheckCircleIcon className="w-4 h-4" />
+                        </button>
+                      )}
+                      
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           // Handle edit
                         }}
                         className="text-gray-600 hover:text-gray-900"
+                        title="Edit Lead"
                       >
                         <PencilIcon className="w-4 h-4" />
                       </button>
@@ -358,6 +430,7 @@ export default function LeadsPage() {
                           // Handle delete
                         }}
                         className="text-red-600 hover:text-red-900"
+                        title="Delete Lead"
                       >
                         <TrashIcon className="w-4 h-4" />
                       </button>

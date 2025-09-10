@@ -14,8 +14,6 @@ import {
   ChevronRightIcon,
   BanknotesIcon,
   WrenchScrewdriverIcon,
-  ArrowLeftOnRectangleIcon,
-  ArrowRightOnRectangleIcon,
   ChatBubbleLeftRightIcon,
   ReceiptRefundIcon,
   CalculatorIcon,

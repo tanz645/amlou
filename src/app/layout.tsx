@@ -19,7 +19,7 @@ export default function RootLayout({
       <head>
         <FontProvider />
       </head>
-      <body suppressHydrationWarning>
+      <body>
         <Topbar />
         <div className="pt-12">
         {children}

@@ -39,25 +39,6 @@ const menuGroups = [
     ]
   },
   {
-    name: 'Lead Management',
-    icon: UserGroupIcon,
-    items: [
-      { name: 'Leads', href: '/business/leads', icon: UserGroupIcon },
-      { name: 'Lead Sources', href: '/business/lead-sources', icon: MagnifyingGlassIcon },
-      { name: 'Lead Scoring', href: '/business/lead-scoring', icon: ChartBarIcon },
-      { name: 'Add New Lead', href: '/business/leads/new', icon: PlusIcon, isAction: true },
-    ]
-  },
-  {
-    name: 'Client Management',
-    icon: UserIcon,
-    items: [
-      { name: 'Clients', href: '/business/clients', icon: UserIcon },
-      { name: 'Client Communication', href: '/business/client-communication', icon: ChatBubbleLeftRightIcon },
-      { name: 'Add New Client', href: '/business/clients/new', icon: PlusIcon, isAction: true },
-    ]
-  },
-  {
     name: 'Services & Packages',
     icon: BriefcaseIcon,
     items: [
@@ -68,13 +49,32 @@ const menuGroups = [
     ]
   },
   {
-    name: 'Agreements & Contracts',
+    name: 'Lead Management',
+    icon: UserGroupIcon,
+    items: [
+      { name: 'Leads', href: '/business/leads', icon: UserGroupIcon },
+      { name: 'Lead Sources', href: '/business/lead-sources', icon: MagnifyingGlassIcon },
+      { name: 'Lead Scoring', href: '/business/lead-scoring', icon: ChartBarIcon },
+      { name: 'Add New Lead', href: '/business/leads/new', icon: PlusIcon, isAction: true },
+    ]
+  },
+  {
+    name: 'Proposals & Agreements',
     icon: DocumentTextIcon,
     items: [
-      { name: 'Agreements', href: '/business/agreements', icon: DocumentTextIcon },
-      { name: 'Contract Templates', href: '/business/contract-templates', icon: DocumentDuplicateIcon },
-      { name: 'Contract Status', href: '/business/contract-status', icon: CheckBadgeIcon },
+      { name: 'Proposals', href: '/business/proposals', icon: DocumentTextIcon },
+      { name: 'Agreements', href: '/business/agreements', icon: DocumentDuplicateIcon },
+      { name: 'Create Proposal', href: '/business/proposals/new', icon: PlusIcon, isAction: true },
       { name: 'Create Agreement', href: '/business/agreements/new', icon: PlusIcon, isAction: true },
+    ]
+  },
+  {
+    name: 'Client Management',
+    icon: UserIcon,
+    items: [
+      { name: 'Clients', href: '/business/clients', icon: UserIcon },
+      { name: 'Client Communication', href: '/business/client-communication', icon: ChatBubbleLeftRightIcon },
+      { name: 'Add New Client', href: '/business/clients/new', icon: PlusIcon, isAction: true },
     ]
   },
   {

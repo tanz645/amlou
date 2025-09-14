@@ -42,10 +42,10 @@ const menuGroups = [
     name: 'Services & Packages',
     icon: BriefcaseIcon,
     items: [
-      { name: 'Services', href: '/business/services', icon: BriefcaseIcon },
-      { name: 'Service Packages', href: '/business/packages', icon: ClipboardDocumentListIcon },
+      { name: 'All Services', href: '/business/services', icon: BriefcaseIcon },
+      { name: 'Create Service', href: '/business/services/new', icon: PlusIcon, isAction: true },
+      { name: 'Create Bundle', href: '/business/services/bundles/new', icon: ClipboardDocumentListIcon, isAction: true },
       { name: 'Pricing', href: '/business/pricing', icon: CurrencyDollarIcon },
-      { name: 'Add New Service', href: '/business/services/new', icon: PlusIcon, isAction: true },
     ]
   },
   {

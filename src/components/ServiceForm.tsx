@@ -1,579 +1,530 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import { useState } from 'react';
 import {
+  PlusIcon, 
+  XMarkIcon,
   TagIcon,
+  ClockIcon,
   CurrencyDollarIcon,
-  CheckCircleIcon,
-  BriefcaseIcon,
-} from "@heroicons/react/24/outline";
-import ImageUploader from "./elements/ImageUploader";
-
-interface ServiceFormData {
-  name: string;
-  serviceShortName: string;
-  serviceCategory: string;
-  shortDescription: string;
-  description: string;
-  serviceMaster: string;
-  image: File | string | undefined;
-  features: string[];
-  serviceTasks: string[];
-  pricing: {
-    unit_price: number;
-    max_discount: number;
-  };
-  minimum_time_required: number;
-  minimum_order_unit: number;
-  service_type: 'repeatable' | 'one-time';
-  status: 'active' | 'inactive' | 'draft';
-}
+  TrashIcon
+} from '@heroicons/react/24/outline';
+import { ServiceFormData, DeliveryType, ServiceDeliverable } from '../types/services';
+import ImageUploader from './elements/ImageUploader';
 
 interface ServiceFormProps {
-  initialData?: Partial<ServiceFormData>;
-  onSubmit: (data: ServiceFormData) => void;
+  onSubmit: (serviceData: ServiceFormData) => void;
   onCancel: () => void;
+  initialData?: Partial<ServiceFormData>;
   submitButtonText?: string;
   title?: string;
 }
 
-const categories = [
-  "Development",
-  "Marketing", 
-  "Design",
-  "Consulting",
-  "Support",
-  "Training",
-  "Analytics",
-  "Other"
+const serviceCategories = [
+  { id: 'design', name: 'Design', color: 'bg-purple-100 text-purple-800' },
+  { id: 'development', name: 'Development', color: 'bg-blue-100 text-blue-800' },
+  { id: 'marketing', name: 'Marketing', color: 'bg-green-100 text-green-800' },
+  { id: 'content', name: 'Content', color: 'bg-yellow-100 text-yellow-800' },
+  { id: 'maintenance', name: 'Maintenance', color: 'bg-gray-100 text-gray-800' },
+  { id: 'consulting', name: 'Consulting', color: 'bg-indigo-100 text-indigo-800' }
 ];
 
-const serviceTypes = [
-  { value: 'repeatable', label: 'Repeatable' },
-  { value: 'one-time', label: 'One-time' }
+const deliveryUnits = [
+  { value: 'days', label: 'Days' },
+  { value: 'weeks', label: 'Weeks' },
+  { value: 'months', label: 'Months' }
 ];
 
 export default function ServiceForm({ 
-  initialData, 
   onSubmit, 
   onCancel, 
-  submitButtonText = "Create Service"
+  initialData,
+  submitButtonText = "Create Service",
+  title = "Create New Service"
 }: ServiceFormProps) {
-  const [form, setForm] = useState<ServiceFormData>({
-    name: initialData?.name || '',
-    serviceShortName: initialData?.serviceShortName || '',
-    serviceCategory: initialData?.serviceCategory || '',
-    shortDescription: initialData?.shortDescription || '',
-    description: initialData?.description || '',
-    serviceMaster: initialData?.serviceMaster || '',
-    image: initialData?.image || undefined,
-    features: initialData?.features?.length ? [...initialData.features] : [''],
-    serviceTasks: initialData?.serviceTasks?.length ? [...initialData.serviceTasks] : [''],
-    pricing: {
-      unit_price: initialData?.pricing?.unit_price || 0,
-      max_discount: initialData?.pricing?.max_discount || 0
-    },
-    minimum_time_required: initialData?.minimum_time_required || 1,
-    minimum_order_unit: initialData?.minimum_order_unit || 1,
-    service_type: initialData?.service_type || 'repeatable',
-    status: initialData?.status || 'draft'
+  const [formData, setFormData] = useState<ServiceFormData>({
+    name: '',
+    description: '',
+    image: undefined,
+    price: 0,
+    deliverables: [],
+    delivery_type: 'single',
+    delivery_duration: undefined,
+    delivery_unit: 'days',
+    category: 'design',
+    tags: [],
+    is_active: true,
+    ...initialData
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [newTag, setNewTag] = useState('');
+  const [newDeliverable, setNewDeliverable] = useState({
+    name: '',
+    estimated_time: 1,
+    price: 0,
+    quantity: 1
+  });
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
+  const handleInputChange = (field: keyof ServiceFormData, value: any) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
 
-    if (!form.name.trim()) {
-      newErrors.name = 'Service name is required';
+  const handleImageChange = (file: File | null) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(prev => ({
+          ...prev,
+          image: reader.result as string
+        }));
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        image: undefined
+      }));
     }
+  };
 
-    if (!form.serviceShortName.trim()) {
-      newErrors.serviceShortName = 'Service short name is required';
+  const handleAddDeliverable = () => {
+    if (newDeliverable.name.trim() && newDeliverable.price > 0) {
+      const deliverable: ServiceDeliverable = {
+        id: `deliverable_${Date.now()}`,
+        name: newDeliverable.name.trim(),
+        estimated_time: newDeliverable.estimated_time,
+        price: newDeliverable.price,
+        quantity: newDeliverable.quantity,
+        subtotal: newDeliverable.price * newDeliverable.quantity
+      };
+      
+      setFormData(prev => ({
+        ...prev,
+        deliverables: [...prev.deliverables, deliverable]
+      }));
+      
+      setNewDeliverable({
+        name: '',
+        estimated_time: 1,
+        price: 0,
+        quantity: 1
+      });
     }
+  };
 
-    if (!form.shortDescription.trim()) {
-      newErrors.shortDescription = 'Short description is required';
+  const handleRemoveDeliverable = (deliverableId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      deliverables: prev.deliverables.filter(deliverable => deliverable.id !== deliverableId)
+    }));
+  };
+
+  const calculateTotalPrice = () => {
+    return formData.deliverables.reduce((total, deliverable) => total + deliverable.subtotal, 0);
+  };
+
+  const calculateTotalTime = () => {
+    return formData.deliverables.reduce((total, deliverable) => total + (deliverable.estimated_time * deliverable.quantity), 0);
+  };
+
+  const handleAddTag = () => {
+    if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
+      setFormData(prev => ({
+        ...prev,
+        tags: [...prev.tags, newTag.trim()]
+      }));
+      setNewTag('');
     }
+  };
 
-    if (!form.description.trim()) {
-      newErrors.description = 'Description is required';
-    }
-
-    if (!form.serviceCategory) {
-      newErrors.serviceCategory = 'Category is required';
-    }
-
-    if (!form.serviceMaster.trim()) {
-      newErrors.serviceMaster = 'Service master is required';
-    }
-
-    if (form.pricing.unit_price <= 0) {
-      newErrors.unit_price = 'Price must be greater than 0';
-    }
-
-    if (form.minimum_time_required <= 0) {
-      newErrors.minimum_time_required = 'Minimum time must be greater than 0';
-    }
-
-    if (form.minimum_order_unit <= 0) {
-      newErrors.minimum_order_unit = 'Minimum order unit must be greater than 0';
-    }
-
-    if (form.features.length === 0 || (form.features.length === 1 && !form.features[0].trim())) {
-      newErrors.features = 'At least one feature is required';
-    }
-
-    if (form.serviceTasks.length === 0 || (form.serviceTasks.length === 1 && !form.serviceTasks[0].trim())) {
-      newErrors.serviceTasks = 'At least one service task is required';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleRemoveTag = (tagToRemove: string) => {
+    setFormData(prev => ({
+      ...prev,
+      tags: prev.tags.filter(tag => tag !== tagToRemove)
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      onSubmit(form);
-    }
+    onSubmit(formData);
   };
 
-  const handleFeatureChange = (index: number, value: string) => {
-    const newFeatures = [...form.features];
-    newFeatures[index] = value;
-    setForm({ ...form, features: newFeatures });
-  };
-
-  const addFeature = () => {
-    setForm({ ...form, features: [...form.features, ''] });
-  };
-
-  const removeFeature = (index: number) => {
-    if (form.features.length > 1) {
-      const newFeatures = form.features.filter((_, i) => i !== index);
-      setForm({ ...form, features: newFeatures });
-    }
-  };
-
-  const handleServiceTaskChange = (index: number, value: string) => {
-    const newServiceTasks = [...form.serviceTasks];
-    newServiceTasks[index] = value;
-    setForm({ ...form, serviceTasks: newServiceTasks });
-  };
-
-  const addServiceTask = () => {
-    setForm({ ...form, serviceTasks: [...form.serviceTasks, ''] });
-  };
-
-  const removeServiceTask = (index: number) => {
-    if (form.serviceTasks.length > 1) {
-      const newServiceTasks = form.serviceTasks.filter((_, i) => i !== index);
-      setForm({ ...form, serviceTasks: newServiceTasks });
-    }
-  };
-
-  const handleInputChange = (field: string, value: string | number | File | undefined) => {
-    if (field.includes('.')) {
-      const [parent, child] = field.split('.');
-      setForm({
-        ...form,
-        [parent]: {
-          ...(form[parent as keyof ServiceFormData] as Record<string, unknown>),
-          [child]: value
-        }
-      } as ServiceFormData);
-    } else {
-      setForm({ ...form, [field]: value });
-    }
-    
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors({ ...errors, [field]: '' });
-    }
-  };
+  const isFormValid = formData.name.trim() && 
+                     formData.description.trim() && 
+                     (formData.price > 0 || formData.deliverables.length > 0);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-      <form onSubmit={handleSubmit} className="p-8">
-        <div className="space-y-8">
+    <div className="space-y-6">
           {/* Basic Information */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <TagIcon className="w-5 h-5" />
-              Basic Information
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-4">
+        <h3 className="text-lg font-medium text-gray-900">Basic Information</h3>
+        
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Name *
-                </label>
+          <label className="block text-sm font-medium text-gray-700">Service Name</label>
                 <input
                   type="text"
-                  value={form.name}
+            value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.name ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder="e.g., Website Development"
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                )}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="e.g., Social Media Copy Writing"
+            required
+          />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Short Name *
-                </label>
-                <input
-                  type="text"
-                  value={form.serviceShortName}
-                  onChange={(e) => handleInputChange('serviceShortName', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.serviceShortName ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder="e.g., WebDev"
-                />
-                {errors.serviceShortName && (
-                  <p className="text-red-500 text-sm mt-1">{errors.serviceShortName}</p>
-                )}
+          <label className="block text-sm font-medium text-gray-700">Description</label>
+          <textarea
+            value={formData.description}
+            onChange={(e) => handleInputChange('description', e.target.value)}
+            rows={4}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Describe what this service includes..."
+            required
+          />
+              </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Service Image (Optional)</label>
+          <ImageUploader
+            name="service-image"
+            value={formData.image}
+            onChange={handleImageChange}
+            label=""
+            className="flex justify-start"
+            previewClassName="w-32 h-32"
+          />
+          <p className="text-sm text-gray-500 mt-2">Upload an image to represent this service</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+            <label className="block text-sm font-medium text-gray-700">Base Price ($)</label>
+            <input
+              type="number"
+              value={formData.price}
+              onChange={(e) => handleInputChange('price', parseFloat(e.target.value) || 0)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              min="0"
+              step="0.01"
+              placeholder="Base service price (optional if using deliverables)"
+            />
+            <p className="text-sm text-gray-500 mt-1">Leave empty if pricing is based on deliverables below</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Category *
-                </label>
+            <label className="block text-sm font-medium text-gray-700">Category</label>
                 <select
-                  value={form.serviceCategory}
-                  onChange={(e) => handleInputChange('serviceCategory', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.serviceCategory ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                >
-                  <option value="">Select a category</option>
-                  {categories.map(category => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
-                {errors.serviceCategory && (
-                  <p className="text-red-500 text-sm mt-1">{errors.serviceCategory}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Type *
-                </label>
-                <select
-                  value={form.service_type}
-                  onChange={(e) => handleInputChange('service_type', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  {serviceTypes.map(type => (
-                    <option key={type.value} value={type.value}>{type.label}</option>
+              value={formData.category}
+              onChange={(e) => handleInputChange('category', e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              {serviceCategories.map(category => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
                   ))}
                 </select>
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Master *
-                </label>
-                <input
-                  type="text"
-                  value={form.serviceMaster}
-                  onChange={(e) => handleInputChange('serviceMaster', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.serviceMaster ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder="e.g., John Doe"
-                />
-                {errors.serviceMaster && (
-                  <p className="text-red-500 text-sm mt-1">{errors.serviceMaster}</p>
-                )}
-              </div>
-
-              <div>
-                <ImageUploader
-                  name="serviceImage"
-                  value={form.image}
-                  onChange={(file) => handleInputChange('image', file || undefined)}
-                  label="Service Image"
-                  className="w-full"
-                  previewClassName="w-32 h-32"
-                />
               </div>
             </div>
 
-            <div className="mt-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Short Description *
-              </label>
+      {/* Delivery Type */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-medium text-gray-900">Delivery Type</h3>
+        
+        <div className="space-y-3">
+          <div className="flex items-center">
               <input
-                type="text"
-                value={form.shortDescription}
-                onChange={(e) => handleInputChange('shortDescription', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.shortDescription ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder="Brief description of the service..."
-              />
-              {errors.shortDescription && (
-                <p className="text-red-500 text-sm mt-1">{errors.shortDescription}</p>
-              )}
-            </div>
-
-            <div className="mt-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Full Description *
-              </label>
-              <textarea
-                value={form.description}
-                onChange={(e) => handleInputChange('description', e.target.value)}
-                rows={4}
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.description ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder="Detailed description of the service..."
-              />
-              {errors.description && (
-                <p className="text-red-500 text-sm mt-1">{errors.description}</p>
-              )}
-            </div>
+              id="single-delivery"
+              type="radio"
+              value="single"
+              checked={formData.delivery_type === 'single'}
+              onChange={(e) => handleInputChange('delivery_type', e.target.value as DeliveryType)}
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+            />
+            <label htmlFor="single-delivery" className="ml-3 block text-sm font-medium text-gray-700">
+              Single Time Delivery
+              <span className="text-gray-500 text-xs block">One-time service delivery (e.g., logo design, website development)</span>
+                </label>
           </div>
 
-          {/* Pricing Information */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <CurrencyDollarIcon className="w-5 h-5" />
-              Pricing Information (USD)
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Unit Price (USD) *
-                </label>
+          <div className="flex items-center">
                 <input
-                  type="number"
-                  value={form.pricing.unit_price}
-                  onChange={(e) => handleInputChange('pricing.unit_price', parseFloat(e.target.value) || 0)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.unit_price ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder="0.00"
-                  min="0"
-                  step="0.01"
-                />
-                {errors.unit_price && (
-                  <p className="text-red-500 text-sm mt-1">{errors.unit_price}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Maximum Discount (USD)
+              id="timebound-delivery"
+              type="radio"
+              value="timebound"
+              checked={formData.delivery_type === 'timebound'}
+              onChange={(e) => handleInputChange('delivery_type', e.target.value as DeliveryType)}
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+            />
+            <label htmlFor="timebound-delivery" className="ml-3 block text-sm font-medium text-gray-700">
+              Time Bound Delivery
+              <span className="text-gray-500 text-xs block">Ongoing service for a specific duration (e.g., website maintenance, social media management)</span>
                 </label>
-                <input
-                  type="number"
-                  value={form.pricing.max_discount}
-                  onChange={(e) => handleInputChange('pricing.max_discount', parseFloat(e.target.value) || 0)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="0.00"
-                  min="0"
-                  step="0.01"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Minimum Order Unit *
-                </label>
-                <input
-                  type="number"
-                  value={form.minimum_order_unit}
-                  onChange={(e) => handleInputChange('minimum_order_unit', parseInt(e.target.value) || 1)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.minimum_order_unit ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder="1"
-                  min="1"
-                />
-                {errors.minimum_order_unit && (
-                  <p className="text-red-500 text-sm mt-1">{errors.minimum_order_unit}</p>
-                )}
               </div>
             </div>
 
-            <div className="mt-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Minimum Time Required (Days) *
-              </label>
+        {formData.delivery_type === 'timebound' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Duration (Optional)</label>
               <input
                 type="number"
-                value={form.minimum_time_required}
-                onChange={(e) => handleInputChange('minimum_time_required', parseInt(e.target.value) || 1)}
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.minimum_time_required ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder="1"
+                value={formData.delivery_duration || ''}
+                onChange={(e) => handleInputChange('delivery_duration', parseInt(e.target.value) || undefined)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                min="1"
+                placeholder="e.g., 2 (optional)"
+              />
+            </div>
+          <div>
+              <label className="block text-sm font-medium text-gray-700">Unit (Optional)</label>
+              <select
+                value={formData.delivery_unit || 'days'}
+                onChange={(e) => handleInputChange('delivery_unit', e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                {deliveryUnits.map(unit => (
+                  <option key={unit.value} value={unit.value}>
+                    {unit.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Deliverables */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-medium text-gray-900">Service Deliverables</h3>
+        <p className="text-sm text-gray-600">Break down your service into specific deliverables with individual pricing</p>
+        
+        {/* Add New Deliverable */}
+        <div className="bg-gray-50 rounded-lg p-4">
+          <h4 className="text-md font-medium text-gray-900 mb-3">Add New Deliverable</h4>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Deliverable Name</label>
+              <input
+                type="text"
+                value={newDeliverable.name}
+                onChange={(e) => setNewDeliverable(prev => ({ ...prev, name: e.target.value }))}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="e.g., Logo Design, Website Mockup"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Estimated Time (hours)</label>
+              <input
+                type="number"
+                value={newDeliverable.estimated_time}
+                onChange={(e) => setNewDeliverable(prev => ({ ...prev, estimated_time: parseInt(e.target.value) || 1 }))}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 min="1"
               />
-              {errors.minimum_time_required && (
-                <p className="text-red-500 text-sm mt-1">{errors.minimum_time_required}</p>
-              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Price ($)</label>
+              <input
+                type="number"
+                value={newDeliverable.price}
+                onChange={(e) => setNewDeliverable(prev => ({ ...prev, price: parseFloat(e.target.value) || 0 }))}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                min="0"
+                step="0.01"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Quantity</label>
+              <input
+                type="number"
+                value={newDeliverable.quantity}
+                onChange={(e) => setNewDeliverable(prev => ({ ...prev, quantity: parseInt(e.target.value) || 1 }))}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                min="1"
+              />
             </div>
           </div>
-
-          {/* Features */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <CheckCircleIcon className="w-5 h-5" />
-              Features & Benefits
-            </h2>
-            
-            <div className="space-y-4">
-              {form.features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <input
-                    type="text"
-                    value={feature}
-                    onChange={(e) => handleFeatureChange(index, e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder={`Feature ${index + 1}`}
-                  />
-                  {form.features.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeFeature(index)}
-                      className="p-2 text-red-400 hover:text-red-600 hover:bg-red-100 rounded-lg transition-colors"
-                    >
-                      Remove
-                    </button>
-                  )}
-                </div>
-              ))}
-              
-              <button
-                type="button"
-                onClick={addFeature}
-                className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
-              >
-                <CheckCircleIcon className="w-4 h-4" />
-                Add Feature
-              </button>
-              
-              {errors.features && (
-                <p className="text-red-500 text-sm">{errors.features}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Service Tasks */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <BriefcaseIcon className="w-5 h-5" />
-              Service Tasks
-            </h2>
-            
-            <div className="space-y-4">
-              {form.serviceTasks.map((task, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <input
-                    type="text"
-                    value={task}
-                    onChange={(e) => handleServiceTaskChange(index, e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder={`Task ${index + 1}`}
-                  />
-                  {form.serviceTasks.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeServiceTask(index)}
-                      className="p-2 text-red-400 hover:text-red-600 hover:bg-red-100 rounded-lg transition-colors"
-                    >
-                      Remove
-                    </button>
-                  )}
-                </div>
-              ))}
-              
-              <button
-                type="button"
-                onClick={addServiceTask}
-                className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
-              >
-                <BriefcaseIcon className="w-4 h-4" />
-                Add Service Task
-              </button>
-              
-              {errors.serviceTasks && (
-                <p className="text-red-500 text-sm">{errors.serviceTasks}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Status */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Status</h2>
-            
-            <div className="flex items-center gap-6">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  value="draft"
-                  checked={form.status === 'draft'}
-                  onChange={(e) => handleInputChange('status', e.target.value)}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="ml-2 text-sm text-gray-700">Draft</span>
-              </label>
-              
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  value="active"
-                  checked={form.status === 'active'}
-                  onChange={(e) => handleInputChange('status', e.target.value)}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="ml-2 text-sm text-gray-700">Active</span>
-              </label>
-              
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  value="inactive"
-                  checked={form.status === 'inactive'}
-                  onChange={(e) => handleInputChange('status', e.target.value)}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="ml-2 text-sm text-gray-700">Inactive</span>
-              </label>
-            </div>
+          <div className="mt-3">
+            <button
+              type="button"
+              onClick={handleAddDeliverable}
+              disabled={!newDeliverable.name.trim() || newDeliverable.price <= 0}
+              className="inline-flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <PlusIcon className="w-4 h-4 mr-2" />
+              Add Deliverable
+            </button>
           </div>
         </div>
 
-        {/* Form Actions */}
-        <div className="flex items-center justify-end gap-4 pt-8 border-t border-gray-200">
+        {/* Deliverables List */}
+        {formData.deliverables.length === 0 ? (
+          <div className="text-center py-8 text-gray-500 border-2 border-dashed border-gray-300 rounded-lg">
+            <ClockIcon className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+            <p>No deliverables added yet. Add deliverables to break down your service.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {formData.deliverables.map((deliverable) => (
+              <div key={deliverable.id} className="border border-gray-200 rounded-lg p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-gray-900">{deliverable.name}</h4>
+                    <p className="text-sm text-gray-600">
+                      {deliverable.estimated_time} hour{deliverable.estimated_time !== 1 ? 's' : ''} × {deliverable.quantity} = {deliverable.estimated_time * deliverable.quantity} total hours
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveDeliverable(deliverable.id)}
+                    className="text-red-600 hover:text-red-800"
+                  >
+                    <TrashIcon className="w-4 h-4" />
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Unit Price</label>
+                    <div className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-900 font-medium">
+                      ${deliverable.price.toLocaleString()}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Quantity</label>
+                    <div className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-900 font-medium">
+                      {deliverable.quantity}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Subtotal</label>
+                    <div className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-900 font-medium">
+                      ${deliverable.subtotal.toLocaleString()}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Deliverables Summary */}
+        {formData.deliverables.length > 0 && (
+          <div className="bg-blue-50 rounded-lg p-4">
+            <h4 className="text-md font-medium text-gray-900 mb-3">Deliverables Summary</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <span className="text-sm font-medium text-gray-700">Total Deliverables:</span>
+                <span className="ml-2 text-sm text-gray-900">{formData.deliverables.length}</span>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-gray-700">Total Time:</span>
+                <span className="ml-2 text-sm text-gray-900">{calculateTotalTime()} hours</span>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-gray-700">Total Price from Deliverables:</span>
+                <span className="ml-2 text-sm text-gray-900">${calculateTotalPrice().toLocaleString()}</span>
+              </div>
+              <div>
+                <span className="text-sm font-medium text-gray-700">Base Price:</span>
+                <span className="ml-2 text-sm text-gray-900">${formData.price.toLocaleString()}</span>
+              </div>
+            </div>
+            <div className="mt-3 pt-3 border-t border-blue-200">
+              <div className="flex justify-between">
+                <span className="text-lg font-semibold text-gray-900">Total Service Price:</span>
+                <span className="text-lg font-semibold text-blue-600">
+                  ${(formData.price + calculateTotalPrice()).toLocaleString()}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Tags */}
+            <div className="space-y-4">
+        <h3 className="text-lg font-medium text-gray-900">Tags</h3>
+        
+        <div className="flex gap-2">
+                  <input
+                    type="text"
+            value={newTag}
+            onChange={(e) => setNewTag(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Add a tag..."
+          />
+                    <button
+                      type="button"
+            onClick={handleAddTag}
+            className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                    >
+            <PlusIcon className="w-4 h-4" />
+                    </button>
+                </div>
+
+        {formData.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {formData.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+              >
+                {tag}
+              <button
+                type="button"
+                  onClick={() => handleRemoveTag(tag)}
+                  className="ml-1 text-blue-600 hover:text-blue-800"
+              >
+                  <XMarkIcon className="w-3 h-3" />
+              </button>
+              </span>
+            ))}
+          </div>
+        )}
+          </div>
+
+          {/* Status */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-medium text-gray-900">Status</h3>
+            
+        <div className="flex items-center">
+                <input
+            id="active"
+            type="checkbox"
+            checked={formData.is_active}
+            onChange={(e) => handleInputChange('is_active', e.target.checked)}
+            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          />
+          <label htmlFor="active" className="ml-3 block text-sm font-medium text-gray-700">
+            Active Service
+            <span className="text-gray-500 text-xs block">This service will be available for selection</span>
+              </label>
+          </div>
+        </div>
+
+      {/* Actions */}
+      <div className="flex items-center justify-end space-x-3 pt-6 border-t border-gray-200">
           <button
             type="button"
             onClick={onCancel}
-            className="px-6 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          disabled={!isFormValid}
+          className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {submitButtonText}
           </button>
         </div>
-      </form>
     </div>
   );
 }

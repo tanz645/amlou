@@ -78,10 +78,39 @@ const mockServices: Service[] = [
     id: 'ser_004',
     name: 'Website Maintenance',
     description: 'Comprehensive website maintenance and updates including security patches, content updates, performance optimization, and technical support.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop&crop=center',
     price: 500,
+    deliverables: [
+      {
+        id: 'deliverable_007',
+        name: 'Monthly Security Updates',
+        estimated_time: 4,
+        price: 100,
+        quantity: 1,
+        subtotal: 100
+      },
+      {
+        id: 'deliverable_008',
+        name: 'Performance Optimization Report',
+        estimated_time: 6,
+        price: 150,
+        quantity: 1,
+        subtotal: 150
+      },
+      {
+        id: 'deliverable_009',
+        name: 'Content Updates',
+        estimated_time: 8,
+        price: 75,
+        quantity: 1,
+        subtotal: 75
+      }
+    ],
     delivery_type: 'timebound',
-    delivery_duration: 14,
-    delivery_unit: 'days',
+    delivery_duration: 4,
+    delivery_unit: 'weeks',
+    minimum_duration: 3,
+    minimum_unit: 'weeks',
     category: 'maintenance',
     tags: ['maintenance', 'website', 'technical support'],
     is_active: true,
@@ -125,6 +154,44 @@ const mockServices: Service[] = [
     delivery_unit: 'days',
     category: 'marketing',
     tags: ['social media', 'package', 'marketing', 'complete solution'],
+    is_active: true,
+    created_at: '2024-01-01',
+    updated_at: '2024-01-01'
+  },
+  {
+    id: 'bundle_002',
+    name: 'Website Design & Development',
+    description: 'Complete website design and development package including branding and launch support.',
+    image: 'https://images.unsplash.com/photo-1527430253228-e93688616381?w=400&h=400&fit=crop&crop=center',
+    services: [
+      {
+        service_id: 'ser_005',
+        service_name: 'Logo Design',
+        service_price: 300,
+        quantity: 1,
+        subtotal: 300
+      },
+      {
+        service_id: 'ser_002',
+        service_name: 'Static Post Design',
+        service_price: 75,
+        quantity: 6,
+        subtotal: 450
+      },
+      {
+        service_id: 'ser_003',
+        service_name: '10 Second Animation',
+        service_price: 200,
+        quantity: 1,
+        subtotal: 200
+      }
+    ],
+    base_price: 1200,
+    discount_percentage: 10,
+    final_price: 1080,
+    delivery_type: 'single',
+    category: 'development',
+    tags: ['website', 'design', 'development'],
     is_active: true,
     created_at: '2024-01-01',
     updated_at: '2024-01-01'
@@ -266,8 +333,11 @@ export default function ServiceDetailsPage({ params }: { params: { id: string } 
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-medium text-gray-700">Delivery Type:</span>
                     <span className="text-lg text-gray-900">
-                      {service.delivery_type === 'single' ? 'One-time delivery' : 
-                       service.delivery_duration ? `${service.delivery_duration} ${service.delivery_unit}` : 'Ongoing service'}
+                      {service.delivery_type === 'single' ? 'One-time delivery' :
+                       service.delivery_type === 'timebound' ? 
+                         (service.minimum_duration ? `${service.minimum_duration} ${service.minimum_unit} minimum` : 
+                          service.delivery_duration ? `${service.delivery_duration} ${service.delivery_unit}` : 'Ongoing service') :
+                       'Ongoing service'}
                     </span>
                   </div>
                 </div>
@@ -292,8 +362,11 @@ export default function ServiceDetailsPage({ params }: { params: { id: string } 
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-medium text-gray-700">Delivery Type:</span>
                     <span className="text-lg text-gray-900">
-                      {service.delivery_type === 'single' ? 'One-time delivery' : 
-                       service.delivery_duration ? `${service.delivery_duration} ${service.delivery_unit}` : 'Ongoing service'}
+                      {service.delivery_type === 'single' ? 'One-time delivery' :
+                       service.delivery_type === 'timebound' ? 
+                         (service.minimum_duration ? `${service.minimum_duration} ${service.minimum_unit} minimum` : 
+                          service.delivery_duration ? `${service.delivery_duration} ${service.delivery_unit}` : 'Ongoing service') :
+                       'Ongoing service'}
                     </span>
                   </div>
                 </div>

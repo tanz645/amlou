@@ -20,6 +20,8 @@ export interface SingleService {
   delivery_type: DeliveryType;
   delivery_duration?: number; // in days, only for timebound services (optional)
   delivery_unit?: string; // 'days', 'weeks', 'months' (optional)
+  minimum_duration?: number; // minimum time commitment for timebound services
+  minimum_unit?: string; // 'days', 'weeks', 'months' for minimum duration
   category: string;
   tags: string[];
   is_active: boolean;
@@ -39,6 +41,8 @@ export interface BundleService {
   delivery_type: DeliveryType;
   delivery_duration?: number; // in days, only for timebound services (optional)
   delivery_unit?: string; // 'days', 'weeks', 'months' (optional)
+  minimum_duration?: number; // minimum time commitment for timebound services
+  minimum_unit?: string; // 'days', 'weeks', 'months' for minimum duration
   category: string;
   tags: string[];
   is_active: boolean;
@@ -72,6 +76,8 @@ export interface ServiceFormData {
   delivery_type: DeliveryType;
   delivery_duration?: number;
   delivery_unit?: string;
+  minimum_duration?: number;
+  minimum_unit?: string;
   category: string;
   tags: string[];
   is_active: boolean;
@@ -86,6 +92,8 @@ export interface BundleFormData {
   delivery_type: DeliveryType;
   delivery_duration?: number;
   delivery_unit?: string;
+  minimum_duration?: number;
+  minimum_unit?: string;
   category: string;
   tags: string[];
   is_active: boolean;

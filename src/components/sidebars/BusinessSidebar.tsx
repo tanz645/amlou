@@ -78,6 +78,14 @@ const menuGroups = [
     ]
   },
   {
+    name: 'Project Management',
+    icon: BriefcaseIcon,
+    items: [
+      { name: 'Projects', href: '/business/projects', icon: BriefcaseIcon },
+      { name: 'Create Project', href: '/business/projects/new', icon: PlusIcon, isAction: true },
+    ]
+  },
+  {
     name: 'Financial Management',
     icon: CurrencyDollarIcon,
     items: [
@@ -85,16 +93,6 @@ const menuGroups = [
       { name: 'Invoices', href: '/business/invoices', icon: DocumentTextIcon },
       { name: 'Payments', href: '/business/payments', icon: CreditCardIcon },
       { name: 'Financial Reports', href: '/business/financial-reports', icon: ChartBarIcon },
-    ]
-  },
-  {
-    name: 'Project Management',
-    icon: BriefcaseIcon,
-    items: [
-      { name: 'Projects', href: '/business/projects', icon: BriefcaseIcon },
-      { name: 'Project Timeline', href: '/business/project-timeline', icon: CalendarDaysIcon },
-      { name: 'Project Status', href: '/business/project-status', icon: CheckBadgeIcon },
-      { name: 'Create Project', href: '/business/projects/new', icon: PlusIcon, isAction: true },
     ]
   },
   {

@@ -114,11 +114,40 @@ const mockSingleServices: SingleService[] = [
   {
     id: 'ser_004',
     name: 'Website Maintenance',
-    description: 'Ongoing website maintenance and updates',
+    description: 'Ongoing website maintenance and updates with regular deliverables',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop&crop=center',
     price: 500,
+    deliverables: [
+      {
+        id: 'deliverable_007',
+        name: 'Monthly Security Updates',
+        estimated_time: 4,
+        price: 100,
+        quantity: 1,
+        subtotal: 100
+      },
+      {
+        id: 'deliverable_008',
+        name: 'Performance Optimization Report',
+        estimated_time: 6,
+        price: 150,
+        quantity: 1,
+        subtotal: 150
+      },
+      {
+        id: 'deliverable_009',
+        name: 'Content Updates',
+        estimated_time: 8,
+        price: 75,
+        quantity: 1,
+        subtotal: 75
+      }
+    ],
     delivery_type: 'timebound',
-    delivery_duration: 14,
-    delivery_unit: 'days',
+    delivery_duration: 4,
+    delivery_unit: 'weeks',
+    minimum_duration: 3,
+    minimum_unit: 'weeks',
     category: 'maintenance',
     tags: ['maintenance', 'website'],
     is_active: true,
@@ -431,10 +460,13 @@ export default function BusinessServicesPage() {
 
                     <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center text-sm text-gray-500">
-                        <ClockIcon className="w-4 h-4 mr-1" />
-                        {service.delivery_type === 'single' ? 'One-time' : 
-                         service.delivery_duration ? `${service.delivery_duration} ${service.delivery_unit}` : 'Ongoing'}
-                      </div>
+                      <ClockIcon className="w-4 h-4 mr-1" />
+                      {service.delivery_type === 'single' ? 'One-time' :
+                       service.delivery_type === 'timebound' ? 
+                         (service.minimum_duration ? `${service.minimum_duration} ${service.minimum_unit} min` : 
+                          service.delivery_duration ? `${service.delivery_duration} ${service.delivery_unit}` : 'Ongoing') :
+                       'Ongoing'}
+                    </div>
                       <div className="text-right">
                         <div className="text-lg font-semibold text-gray-900">
                           ${isSingleService(service) ? service.price.toLocaleString() : service.final_price.toLocaleString()}

@@ -1,6 +1,9 @@
+'use client'
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+  const router = useRouter();
   return (
     <div className="nt-component nt-login flex flex-col items-center justify-center min-h-screen bg-gray-50">
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
@@ -30,9 +33,16 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
           >
             Login
+          </button>
+          <button
+            type="button"
+            className='w-full border-1 border-solid border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100'
+            onClick={() => router.push('/signup')}
+          >
+            Signup
           </button>
         </form>
       </div>

@@ -51,6 +51,8 @@ export default function ServiceForm({
     delivery_type: 'single',
     delivery_duration: undefined,
     delivery_unit: 'days',
+    minimum_duration: undefined,
+    minimum_unit: 'weeks',
     category: 'design',
     tags: [],
     is_active: true,
@@ -154,7 +156,8 @@ export default function ServiceForm({
 
   const isFormValid = formData.name.trim() && 
                      formData.description.trim() && 
-                     (formData.price > 0 || formData.deliverables.length > 0);
+                     (formData.price > 0 || formData.deliverables.length > 0) &&
+                     (formData.delivery_type === 'single' || (formData.delivery_type === 'timebound' && formData.minimum_duration && formData.minimum_duration > 0));
 
   return (
     <div className="space-y-6">
@@ -268,31 +271,73 @@ export default function ServiceForm({
             </div>
 
         {formData.delivery_type === 'timebound' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Duration (Optional)</label>
-              <input
-                type="number"
-                value={formData.delivery_duration || ''}
-                onChange={(e) => handleInputChange('delivery_duration', parseInt(e.target.value) || undefined)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                min="1"
-                placeholder="e.g., 2 (optional)"
-              />
-            </div>
-          <div>
-              <label className="block text-sm font-medium text-gray-700">Unit (Optional)</label>
-              <select
-                value={formData.delivery_unit || 'days'}
-                onChange={(e) => handleInputChange('delivery_unit', e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                {deliveryUnits.map(unit => (
-                  <option key={unit.value} value={unit.value}>
-                    {unit.label}
-                  </option>
-                ))}
-              </select>
+          <div className="space-y-4 mt-4">
+            <div className="bg-blue-50 rounded-lg p-4">
+              <h4 className="text-sm font-medium text-blue-900 mb-2">Time-bound Service Configuration</h4>
+              <p className="text-sm text-blue-700 mb-4">
+                Set minimum time commitment and optional duration for this service.
+              </p>
+              
+              {/* Minimum Duration */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Minimum Duration (Required)</label>
+                  <input
+                    type="number"
+                    value={formData.minimum_duration || ''}
+                    onChange={(e) => handleInputChange('minimum_duration', parseInt(e.target.value) || undefined)}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    min="1"
+                    placeholder="e.g., 3"
+                    required
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Minimum time commitment required</p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Minimum Unit</label>
+                  <select
+                    value={formData.minimum_unit || 'weeks'}
+                    onChange={(e) => handleInputChange('minimum_unit', e.target.value)}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {deliveryUnits.map(unit => (
+                      <option key={unit.value} value={unit.value}>
+                        {unit.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Optional Duration */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                  <label className="block text-sm font-medium text-gray-700">Default Duration (Optional)</label>
+                  <input
+                    type="number"
+                    value={formData.delivery_duration || ''}
+                    onChange={(e) => handleInputChange('delivery_duration', parseInt(e.target.value) || undefined)}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    min="1"
+                    placeholder="e.g., 4 (optional)"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Default duration when service is booked</p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Default Unit (Optional)</label>
+                  <select
+                    value={formData.delivery_unit || 'weeks'}
+                    onChange={(e) => handleInputChange('delivery_unit', e.target.value)}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {deliveryUnits.map(unit => (
+                      <option key={unit.value} value={unit.value}>
+                        {unit.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -307,7 +352,7 @@ export default function ServiceForm({
         <div className="bg-gray-50 rounded-lg p-4">
           <h4 className="text-md font-medium text-gray-900 mb-3">Add New Deliverable</h4>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div>
+          <div>
               <label className="block text-sm font-medium text-gray-700">Deliverable Name</label>
               <input
                 type="text"
@@ -317,28 +362,28 @@ export default function ServiceForm({
                 placeholder="e.g., Logo Design, Website Mockup"
               />
             </div>
-            <div>
+              <div>
               <label className="block text-sm font-medium text-gray-700">Estimated Time (hours)</label>
-              <input
-                type="number"
+                <input
+                  type="number"
                 value={newDeliverable.estimated_time}
                 onChange={(e) => setNewDeliverable(prev => ({ ...prev, estimated_time: parseInt(e.target.value) || 1 }))}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 min="1"
               />
-            </div>
-            <div>
+              </div>
+              <div>
               <label className="block text-sm font-medium text-gray-700">Price ($)</label>
-              <input
-                type="number"
+                <input
+                  type="number"
                 value={newDeliverable.price}
                 onChange={(e) => setNewDeliverable(prev => ({ ...prev, price: parseFloat(e.target.value) || 0 }))}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                min="0"
-                step="0.01"
-              />
-            </div>
-            <div>
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+              <div>
               <label className="block text-sm font-medium text-gray-700">Quantity</label>
               <input
                 type="number"
@@ -350,17 +395,17 @@ export default function ServiceForm({
             </div>
           </div>
           <div className="mt-3">
-            <button
-              type="button"
+                    <button
+                      type="button"
               onClick={handleAddDeliverable}
               disabled={!newDeliverable.name.trim() || newDeliverable.price <= 0}
               className="inline-flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+                    >
               <PlusIcon className="w-4 h-4 mr-2" />
               Add Deliverable
-            </button>
+                    </button>
           </div>
-        </div>
+                </div>
 
         {/* Deliverables List */}
         {formData.deliverables.length === 0 ? (
@@ -379,13 +424,13 @@ export default function ServiceForm({
                       {deliverable.estimated_time} hour{deliverable.estimated_time !== 1 ? 's' : ''} × {deliverable.quantity} = {deliverable.estimated_time * deliverable.quantity} total hours
                     </p>
                   </div>
-                  <button
-                    type="button"
+              <button
+                type="button"
                     onClick={() => handleRemoveDeliverable(deliverable.id)}
                     className="text-red-600 hover:text-red-800"
-                  >
+              >
                     <TrashIcon className="w-4 h-4" />
-                  </button>
+              </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>

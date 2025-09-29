@@ -20,6 +20,7 @@ export interface StrategicPillar {
   subtitle: string;
   description: string;
   activities: string[];
+  relatedChallenges: string[];
 }
 
 export interface Phase {

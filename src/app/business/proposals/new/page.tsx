@@ -71,11 +71,30 @@ export default function NewProposalPage() {
               <h1 className="text-3xl font-bold text-gray-900">Create New Proposal</h1>
               <p className="text-gray-600 mt-1">
                 {leadData 
-                  ? `Create a proposal for ${leadData.name} from ${leadData.company}`
-                  : 'Create a new proposal for a client'
+                  ? `Create a comprehensive proposal for ${leadData.name} from ${leadData.company}`
+                  : 'Create a comprehensive proposal for a client'
                 }
               </p>
+              <p className="text-sm text-gray-500 mt-1">
+                Complete all sections: Basic Info, Challenges, Strategy, Execution, Phases, Gantt Chart, Deliverables, Services, and Terms
+              </p>
             </div>
+          </div>
+        </div>
+
+        {/* Progress Indicator */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+          <h3 className="text-sm font-medium text-gray-900 mb-3">Proposal Completion Progress</h3>
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-2 text-xs">
+            {[
+              'Basic Info', 'Challenges', 'Strategy', 'Execution', 'Phases',
+              'Gantt Chart', 'Deliverables', 'Services', 'Terms'
+            ].map((section, index) => (
+              <div key={section} className="flex items-center space-x-1">
+                <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                <span className="text-gray-600">{section}</span>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -9,6 +9,7 @@ import ExecutionApproachSection from './ExecutionApproachSection';
 import PhasesSection from './PhasesSection';
 import GanttChartSection from './GanttChartSection';
 import ServicesSection from './ServicesSection';
+import TermsSection from './TermsSection';
 
 interface ProposalFormProps {
   leadData?: LeadData;
@@ -37,7 +38,7 @@ export default function ProposalForm({
   leadData, 
   onSubmit, 
   onCancel, 
-  submitButtonText = "Create Proposal",
+  submitButtonText = "Save and send",
   showCancelButton = true 
 }: ProposalFormProps) {
   // Form data state
@@ -382,6 +383,21 @@ export default function ProposalForm({
     setShowCustomService(false);
   };
 
+  // Terms handlers
+  const handleAddTerm = () => {
+    setTerms([...terms, '']);
+  };
+
+  const handleUpdateTerm = (index: number, value: string) => {
+    const updated = [...terms];
+    updated[index] = value;
+    setTerms(updated);
+  };
+
+  const handleRemoveTerm = (index: number) => {
+    setTerms(terms.filter((_, i) => i !== index));
+  };
+
   // Submit handler
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -502,6 +518,13 @@ export default function ProposalForm({
         onUpdateCustomService={handleUpdateCustomService}
         onAddCustomService={handleAddCustomService}
         onCloseCustomService={handleCloseCustomService}
+      />
+
+      <TermsSection
+        terms={terms}
+        onAddTerm={handleAddTerm}
+        onUpdateTerm={handleUpdateTerm}
+        onRemoveTerm={handleRemoveTerm}
       />
 
       {/* Submit Section */}

@@ -11,8 +11,6 @@ import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
   PencilIcon,
-  PrinterIcon,
-  ShareIcon,
   PaperAirplaneIcon,
   XCircleIcon,
   PlusIcon,
@@ -369,13 +367,15 @@ export default function BusinessProposalDetailsPage({ params }: { params: Promis
     alert('Create agreement from proposal (not implemented)');
   };
 
-  const handlePrint = () => {
-    window.print();
+
+  const handleDownload = () => {
+    // TODO: Implement download functionality
+    alert('Download proposal (not implemented)');
   };
 
-  const handleShare = () => {
-    // TODO: Implement share functionality
-    alert('Share proposal (not implemented)');
+  const handleSave = () => {
+    // TODO: Implement save functionality
+    alert('Save proposal (not implemented)');
   };
 
   const daysUntilExpiry = getDaysUntilExpiry();
@@ -426,44 +426,26 @@ export default function BusinessProposalDetailsPage({ params }: { params: Promis
             </div>
             
             <div className="flex space-x-3">
-              {proposal.status === 'draft' && (
-                <button
-                  onClick={handleSend}
-                  className="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
-                >
-                  <PaperAirplaneIcon className="w-4 h-4 mr-2" />
-                  Send Proposal
-                </button>
-              )}
-              {proposal.status === 'accepted' && (
-                <button
-                  onClick={handleCreateAgreement}
-                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-                >
-                  <PlusIcon className="w-4 h-4 mr-2" />
-                  Create Agreement
-                </button>
-              )}
               <button
-                onClick={handleEdit}
-                className="inline-flex items-center px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+                onClick={handleDownload}
+                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >
-                <PencilIcon className="w-4 h-4 mr-2" />
-                Edit
+                <DocumentTextIcon className="w-4 h-4 mr-2" />
+                Download Proposal
               </button>
               <button
-                onClick={handlePrint}
+                onClick={handleSave}
                 className="inline-flex items-center px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
               >
-                <PrinterIcon className="w-4 h-4 mr-2" />
-                Print
+                <CheckCircleIcon className="w-4 h-4 mr-2" />
+                Save Proposal
               </button>
               <button
-                onClick={handleShare}
+                onClick={handleSend}
                 className="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
               >
-                <ShareIcon className="w-4 h-4 mr-2" />
-                Share
+                <PaperAirplaneIcon className="w-4 h-4 mr-2" />
+                Send Proposal
               </button>
             </div>
           </div>

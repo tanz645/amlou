@@ -104,7 +104,7 @@ export default function NewProposalPage() {
             leadData={leadData}
             onSubmit={handleSubmit}
             onCancel={handleCancel}
-            submitButtonText={isSubmitting ? "Creating Proposal..." : "Create Proposal"}
+            submitButtonText={isSubmitting ? "Sending proposal..." : "Save and send"}
             showCancelButton={true}
           />
         </div>

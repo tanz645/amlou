@@ -42,7 +42,7 @@ export default function ProposalModal({ isOpen, onClose, leadData, onSubmit }: P
             leadData={leadData}
             onSubmit={handleSubmit}
             onCancel={onClose}
-            submitButtonText="Create Proposal"
+            submitButtonText="Save and send"
             showCancelButton={true}
           />
         </div>

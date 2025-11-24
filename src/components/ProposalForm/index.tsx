@@ -145,14 +145,14 @@ export default function ProposalForm({
   ]);
 
   // Event handlers
-  const handleFormDataUpdate = (field: string, value: any) => {
+  const handleFormDataUpdate = (field: string, value: string | number | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   // Challenge handlers
   const handleAddChallenge = () => {
     const newChallenge: Challenge = {
-      id: `challenge_${Date.now()}`,
+      id: `challenge_${Math.random().toString(36).substr(2, 9)}`,
       title: '',
       description: '',
       points: ['']
@@ -191,7 +191,7 @@ export default function ProposalForm({
   // Strategic pillar handlers
   const handleAddStrategicPillar = () => {
     const newPillar: StrategicPillar = {
-      id: `pillar_${Date.now()}`,
+      id: `pillar_${Math.random().toString(36).substr(2, 9)}`,
       title: '',
       subtitle: '',
       description: '',
@@ -238,7 +238,7 @@ export default function ProposalForm({
   // Phase handlers
   const handleAddPhase = () => {
     const newPhase: Phase = {
-      id: `phase_${Date.now()}`,
+      id: `phase_${Math.random().toString(36).substr(2, 9)}`,
       title: '',
       duration: '4 weeks',
       goals: [''],
@@ -296,7 +296,7 @@ export default function ProposalForm({
   // Execution approach handlers
   const handleAddExecutionItem = () => {
     const newItem = {
-      id: `exec_${Date.now()}`,
+      id: `exec_${Math.random().toString(36).substr(2, 9)}`,
       title: '',
       description: '',
       subItems: [''],
@@ -361,7 +361,7 @@ export default function ProposalForm({
   const handleAddCustomService = () => {
     if (customService.name && customService.description && customService.unit_price > 0) {
       const newService: Service = {
-        service_id: `custom_${Date.now()}`,
+        service_id: `custom_${Math.random().toString(36).substr(2, 9)}`,
         name: customService.name,
         description: customService.description,
         unit_price: customService.unit_price,
@@ -374,7 +374,7 @@ export default function ProposalForm({
     }
   };
 
-  const handleUpdateCustomService = (field: string, value: any) => {
+  const handleUpdateCustomService = (field: string, value: string | number) => {
     setCustomService(prev => ({ ...prev, [field]: value }));
   };
 
@@ -407,7 +407,7 @@ export default function ProposalForm({
     const finalCost = totalCost;
 
     const proposalData: ProposalData = {
-      proposal_id: `prop_${Date.now()}`,
+      proposal_id: `prop_${Math.random().toString(36).substr(2, 9)}`,
       lead_id: formData.selected_lead_id ? parseInt(formData.selected_lead_id) : null,
       client_id: leadData?.id?.toString() || '',
       client_name: leadData?.name || '',

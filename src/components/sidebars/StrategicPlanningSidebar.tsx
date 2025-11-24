@@ -153,7 +153,7 @@ export default function StrategicPlanningSidebar({ collapsed, setCollapsed }: St
       <div className={`p-4 flex items-center ${collapsed ? 'justify-center' : 'justify-between'}`}>
         {!collapsed && (
             <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{background: 'linear-gradient(135deg, #9333ea 0%, #7c3aed 100%)'}} suppressHydrationWarning>
                     <LightBulbIcon className="w-5 h-5 text-white" />
                 </div>
                 <h1 className="text-xl font-bold text-gray-800">Strategic</h1>

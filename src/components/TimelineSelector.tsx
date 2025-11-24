@@ -25,7 +25,7 @@ const TimelineSelector: React.FC<TimelineSelectorProps> = ({
   selectedAssignees,
   onAssigneeChange,
 }) => {
-  const [contextMonth, setContextMonth] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), 1));
+  const [contextMonth, setContextMonth] = useState(() => new Date(currentDate.getFullYear(), currentDate.getMonth(), 1));
   const [selectedWeek, setSelectedWeek] = useState(1);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
@@ -40,12 +40,12 @@ const TimelineSelector: React.FC<TimelineSelectorProps> = ({
   };
   
   useEffect(() => {
-    const today = new Date();
-    const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    // Use the currentDate prop instead of creating a new Date() to avoid hydration mismatches
+    const currentMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     setContextMonth(currentMonth);
-    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const dayOfWeek = (firstDay.getDay() + 6) % 7;
-    const weekNumber = Math.ceil((today.getDate() + dayOfWeek) / 7);
+    const weekNumber = Math.ceil((currentDate.getDate() + dayOfWeek) / 7);
     setSelectedWeek(weekNumber);
     onDateChange(getStartDateForView(view, currentMonth, weekNumber));
     

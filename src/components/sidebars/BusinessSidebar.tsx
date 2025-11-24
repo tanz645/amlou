@@ -180,7 +180,7 @@ export default function BusinessSidebar({ collapsed, setCollapsed }: BusinessSid
       <div className={`p-4 flex items-center ${collapsed ? 'justify-center' : 'justify-between'}`}>
         {!collapsed && (
             <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)'}} suppressHydrationWarning>
                     <BriefcaseIcon className="w-5 h-5 text-white" />
                 </div>
                 <h1 className="text-xl font-bold text-gray-800">Business</h1>

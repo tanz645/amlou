@@ -1,5 +1,6 @@
 import { BellIcon, Bars3Icon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import OffCanvasMenu from '../OffCanvasMenu';
+import GradientLogo from '../ui/GradientLogo';
 
 export default function TopbarRight({ isUserMenuOpen, setIsUserMenuOpen, isOffCanvasOpen, setIsOffCanvasOpen, handleLogout }: {
   isUserMenuOpen: boolean,
@@ -28,9 +29,7 @@ export default function TopbarRight({ isUserMenuOpen, setIsUserMenuOpen, isOffCa
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
           className="flex items-center space-x-2 p-1.5 hover:bg-gray-100 rounded-md transition-colors focus:outline-none"
         >
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
-            <span className="text-white font-medium text-xs">SW</span>
-          </div>
+          <GradientLogo size="sm" text="SW" className="rounded-full" />
           <div className="hidden sm:block text-left">
             <p className="text-xs font-medium text-gray-900">Shane Wazal</p>
             <p className="text-xs text-gray-500">Admin</p>

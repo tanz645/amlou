@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDownIcon, HomeIcon, CircleStackIcon, UserGroupIcon, BeakerIcon } from '@heroicons/react/24/outline';
+import GradientLogo from '../ui/GradientLogo';
 
 const navigation = {
   main: [
@@ -22,9 +23,7 @@ export default function TopbarLeft({ isAlhisabMenuOpen, setIsAlhisabMenuOpen }: 
     <div className="flex items-center space-x-4">
       {/* Logo */}
       <Link href="/dashboard" className="flex items-center space-x-2">
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-          <span className="text-white font-bold text-sm">A</span>
-        </div>
+        <GradientLogo size="md" text="A" />
         <span className="text-lg font-bold text-gray-900 hidden sm:block">Alhisab</span>
       </Link>
       {/* Alhisab Menu Dropdown */}

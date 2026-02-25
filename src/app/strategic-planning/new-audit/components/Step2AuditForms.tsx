@@ -9,6 +9,7 @@ import MobileTab from '../tabs/MobileTab';
 import ContentTab from '../tabs/ContentTab';
 import CampaignsTab from '../tabs/CampaignsTab';
 import InternalTab from '../tabs/InternalTab';
+import PPCTab from '../tabs/PPCTab';
 import { useAuditData } from '../AuditDataContext';
 
 interface Step2AuditFormsProps {
@@ -36,6 +37,7 @@ export default function Step2AuditForms({
 
   const auditTypes = [
     { id: "comprehensive", name: "Comprehensive Audit" },
+    { id: "ppc", name: "PPC Audit" },
     { id: "seo", name: "SEO Audit" },
     { id: "social", name: "Social Media Audit" },
     { id: "email", name: "Email Marketing Audit" },
@@ -53,6 +55,8 @@ export default function Step2AuditForms({
     switch (auditTypeId) {
       case 'comprehensive':
         return <ComprehensiveTab data={currentData} onDataUpdate={handleDataUpdate} />;
+      case 'ppc':
+        return <PPCTab data={currentData} onDataUpdate={handleDataUpdate} />;
       case 'seo':
         return <SEOTab data={currentData} onDataUpdate={handleDataUpdate} />;
       case 'social':

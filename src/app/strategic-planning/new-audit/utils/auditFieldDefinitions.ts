@@ -98,7 +98,7 @@ export const AUDIT_FIELD_DEFINITIONS: Record<string, AuditTypeDefinition> = {
       {
         name: 'Technical SEO',
         fields: [
-          { id: 'websiteSpeed', label: 'Website Speed', type: 'text' },
+          { id: 'websiteUrl', label: 'Website URL', type: 'text' },
           { id: 'mobileResponsiveness', label: 'Mobile Responsiveness', type: 'select', options: ['Excellent', 'Good', 'Average', 'Poor'] },
           { id: 'sslCertificate', label: 'SSL Certificate', type: 'select', options: ['Active', 'Expired', 'Missing'] },
         ],
@@ -123,6 +123,61 @@ export const AUDIT_FIELD_DEFINITIONS: Record<string, AuditTypeDefinition> = {
         fields: [
           { id: 'technicalImprovements', label: 'Technical Improvements', type: 'textarea' },
           { id: 'contentStrategy', label: 'Content Strategy', type: 'textarea' },
+        ],
+      },
+    ],
+  },
+  ppc: {
+    id: 'ppc',
+    name: 'PPC Audit',
+    sections: [
+      {
+        name: 'Account Structure & Settings',
+        fields: [
+          { id: 'accountName', label: 'Account Name', type: 'text' },
+          { id: 'platform', label: 'Platform', type: 'select', options: ['Google Ads', 'Microsoft (Bing) Ads', 'Meta Ads', 'LinkedIn Ads', 'Twitter Ads'] },
+          { id: 'campaignStructure', label: 'Campaign Structure Type', type: 'select', options: ['Alpha/Beta', 'Hagakure', 'SKAGs', 'Hybrid', 'Other'] },
+          { id: 'biddingStrategies', label: 'Bidding Strategies Used', type: 'text' },
+          { id: 'budgetManagement', label: 'Budget Management Style', type: 'select', options: ['Aggressive', 'Balanced', 'Conservative'] },
+        ],
+      },
+      {
+        name: 'Keywords & Targeting',
+        fields: [
+          { id: 'matchTypeDistribution', label: 'Match Type Distribution', type: 'text' },
+          { id: 'negativeKeywordsQuality', label: 'Negative Keyword List Quality', type: 'select', options: ['Excellent', 'Good', 'Needs Work', 'Missing'] },
+          { id: 'searchTermsReview', label: 'Search Terms Review Frequency', type: 'text' },
+          { id: 'audienceTargeting', label: 'Audience Targeting Used', type: 'textarea' },
+          { id: 'locationTargeting', label: 'Location Targeting Accuracy', type: 'select', options: ['Accurate', 'Loose', 'Incorrect'] },
+        ],
+      },
+      {
+        name: 'Ad Creatives & Messaging',
+        fields: [
+          { id: 'avgAdStrength', label: 'Average Ad Strength', type: 'select', options: ['Excellent', 'Good', 'Average', 'Poor'] },
+          { id: 'valuePropClarity', label: 'Value Proposition Clarity', type: 'select', options: ['Clear', 'Somewhat Clear', 'Vague'] },
+          { id: 'ctaEffectiveness', label: 'CTA Effectiveness', type: 'text' },
+          { id: 'adExtensionUsage', label: 'Ad Extension Usage', type: 'textarea' },
+          { id: 'abTesting', label: 'A/B Testing Frequency', type: 'text' },
+        ],
+      },
+      {
+        name: 'Tracking & Conversion',
+        fields: [
+          { id: 'conversionTrackingStatus', label: 'Conversion Tracking Status', type: 'select', options: ['Fully Functional', 'Partial Issues', 'Broken', 'Not Set'] },
+          { id: 'gtmIntegration', label: 'GTM Integration', type: 'select', options: ['Yes', 'No'] },
+          { id: 'attributionModel', label: 'Attribution Model', type: 'text' },
+          { id: 'leadQuality', label: 'Lead/Sale Quality Observation', type: 'textarea' },
+        ],
+      },
+      {
+        name: 'Performance Metrics',
+        fields: [
+          { id: 'avgCtr', label: 'Avg. CTR %', type: 'number' },
+          { id: 'avgCpc', label: 'Avg. CPC', type: 'number' },
+          { id: 'conversionRate', label: 'Conversion Rate %', type: 'number' },
+          { id: 'roasCpa', label: 'ROAS / CPA Performance', type: 'text' },
+          { id: 'impressionShareLost', label: 'Impression Share Lost (Budget/Rank)', type: 'text' },
         ],
       },
     ],

@@ -37,7 +37,9 @@ import {
   DocumentArrowUpIcon,
   DocumentArrowDownIcon,
   PlusIcon,
-  MinusIcon
+  MinusIcon,
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon
 } from '@heroicons/react/24/outline';
 
 const menuGroups = [

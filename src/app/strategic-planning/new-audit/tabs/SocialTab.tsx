@@ -43,14 +43,28 @@ export default function SocialTab({ data, onDataUpdate }: SocialTabProps) {
       <div className="bg-white border border-gray-200 rounded-lg p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">General Social Media Audit</h3>
         <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Total Followers Across All Platforms</label>
-            <input
-              type="number"
-              className="w-full border rounded p-2"
-              value={data.general?.totalFollowers || ''}
-              onChange={e => handleInputChange('general', 'totalFollowers', e.target.value)}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Total Followers Across All Platforms</label>
+              <input
+                type="number"
+                className="w-full border rounded p-2"
+                value={data.general?.totalFollowers || ''}
+                onChange={e => handleInputChange('general', 'totalFollowers', e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Real Followers Percentage (%)</label>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                placeholder="e.g. 85"
+                className="w-full border rounded p-2"
+                value={data.general?.realFollowersPercentage || ''}
+                onChange={e => handleInputChange('general', 'realFollowersPercentage', e.target.value)}
+              />
+            </div>
           </div>
           {/* ...repeat for all other fields and platforms... */}
         </div>

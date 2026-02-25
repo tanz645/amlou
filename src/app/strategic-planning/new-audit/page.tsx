@@ -10,6 +10,8 @@ import Step3AuditDetails from './components/Step3AuditDetails';
 import { AuditDataProvider, useAuditData } from './AuditDataContext';
 import AuditHeader from './components/AuditHeader';
 
+import { AUDIT_FIELD_DEFINITIONS } from "./utils/auditFieldDefinitions";
+
 export default function NewAuditPage() {
   return (
     <AuditDataProvider>
@@ -21,7 +23,7 @@ export default function NewAuditPage() {
 function NewAuditPageContent() {
   const [selectedAuditTypes, setSelectedAuditTypes] = useState<string[]>([]);
   const [step, setStep] = useState(1);
-  const { clientId, setClientId, projectId, setProjectId, auditNumber, setAuditNumber, setAuditData } = useAuditData();
+  const { clientId, setClientId, projectId, setProjectId, auditNumber, setAuditNumber, setAuditData, auditData } = useAuditData();
   const [clients, setClients] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
 
@@ -54,49 +56,70 @@ function NewAuditPageContent() {
   const selectedClient = clients.find((c) => c.id === clientId);
   const clientProjects = selectedClient?.projects || [];
 
+
   // Returns an object with all fields for a given audit type, all set to null
   const getDefaultAuditData = (auditTypeId: string): Record<string, unknown> => {
-    // Define all fields for each audit type (add more as needed)
-    const fieldDefinitions: { [key: string]: string[] } = {
-      media_buying: [
-        'marketingGoals',
-        'notesGaps',
-        'campaignAudits',
-        'adSetAudits',
-        'adLevelAudits',
-        'pixelSdkSetup',
-        'eventTracking',
-        'utmTracking',
-        'attributionModel',
-        'adDisapprovals',
-        'policyViolations',
-        'notesRecommendationsTracking',
-        'channelBreakdown',
-        'budgetDistribution',
-        'performanceByChannel',
-        'opportunitiesToReallocate',
-        'lowPerformingSegments',
-        'highFrequencyIssues',
-        'underperformingCreatives',
-        'notesActionPoints',
-        'keyStrengths',
-        'keyWeaknesses',
-        'topPriorityFixes',
-        'quickWins',
-        'longTermOpportunities',
-        'ownerDeadline',
-        'auditConductedBy',
-        'dateOfAudit',
-        'signatureReviewer',
-      ],
-      ppc: [
-        // Add PPC fields here as needed
-        'platform', 'campaigns', 'budget', 'kpis', 'notes'
-      ],
-      // Add other audit types as needed
-    };
-    const fields = fieldDefinitions[auditTypeId] || [];
-    return Object.fromEntries(fields.map(field => [field, null]));
+    const def = AUDIT_FIELD_DEFINITIONS[auditTypeId];
+    if (!def) return {};
+
+    const data: Record<string, any> = {};
+    
+    // Special handling for social (nested platforms)
+    if (auditTypeId === 'social') {
+      def.sections?.forEach(section => {
+        const platformId = section.name.split(' ')[0].toLowerCase(); // e.g., 'facebook', 'instagram', 'general'
+        data[platformId] = {};
+        section.fields.forEach(field => {
+          data[platformId][field.id] = null;
+        });
+      });
+    } else {
+      def.sections?.forEach(section => {
+        section.fields.forEach(field => {
+          data[field.id] = null;
+        });
+      });
+      def.fields?.forEach(field => {
+        data[field.id] = null;
+      });
+    }
+
+    // Media buying still needs its specialized structure
+    if (auditTypeId === 'media_buying') {
+      return {
+        marketingGoals: null,
+        notesGaps: null,
+        campaignAudits: [],
+        adSetAudits: [],
+        adLevelAudits: [],
+        pixelSdkSetup: null,
+        eventTracking: null,
+        utmTracking: null,
+        attributionModel: null,
+        adDisapprovals: null,
+        policyViolations: null,
+        notesRecommendationsTracking: null,
+        channelBreakdown: null,
+        budgetDistribution: null,
+        performanceByChannel: null,
+        opportunitiesToReallocate: null,
+        lowPerformingSegments: null,
+        highFrequencyIssues: null,
+        underperformingCreatives: null,
+        notesActionPoints: null,
+        keyStrengths: null,
+        keyWeaknesses: null,
+        topPriorityFixes: null,
+        quickWins: null,
+        longTermOpportunities: null,
+        ownerDeadline: null,
+        auditConductedBy: null,
+        dateOfAudit: null,
+        signatureReviewer: null,
+      };
+    }
+
+    return data;
   };
 
   const handleAuditTypeToggle = (auditTypeId: string) => {
@@ -131,9 +154,24 @@ function NewAuditPageContent() {
     window.location.href = "/strategic-planning";
   };
 
-  const handleDownload = () => {
-    // Placeholder for download logic
-    alert('Download functionality coming soon!');
+  const handleDownload = async () => {
+    try {
+      const { generateAuditPDF } = await import('./utils/pdfGenerator');
+      
+      const selectedClient = clients.find((c) => c.id === clientId);
+      const selectedProject = projects.find((p) => p.id === projectId);
+      
+      await generateAuditPDF({
+        auditData,
+        selectedAuditTypes,
+        clientName: selectedClient?.client_name || 'N/A',
+        projectName: selectedProject?.name || 'N/A',
+        auditNumber,
+      });
+    } catch (error) {
+      console.error('Error in handleDownload:', error);
+      alert('Failed to generate PDF. Please try again.');
+    }
   };
 
   const renderStepContent = () => {

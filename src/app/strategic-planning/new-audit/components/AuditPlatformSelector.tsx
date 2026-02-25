@@ -8,18 +8,20 @@ interface Platform {
 
 interface AuditPlatformSelectorProps {
   platforms: Platform[];
+  selectedPlatforms?: string[];
   onChange: (selectedPlatforms: string[]) => void;
 }
 
-export default function AuditPlatformSelector({ platforms, onChange }: AuditPlatformSelectorProps) {
-  const [selectedPlatforms, setSelectedPlatforms] = React.useState<string[]>([]);
-
+export default function AuditPlatformSelector({ 
+  platforms, 
+  selectedPlatforms = [], 
+  onChange 
+}: AuditPlatformSelectorProps) {
   const handlePlatformToggle = (platformId: string) => {
     const newSelected = selectedPlatforms.includes(platformId)
       ? selectedPlatforms.filter(id => id !== platformId)
       : [...selectedPlatforms, platformId];
     
-    setSelectedPlatforms(newSelected);
     onChange(newSelected);
   };
 

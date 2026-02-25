@@ -75,7 +75,10 @@ const Step3AuditDetails: React.FC<Step3AuditDetailsProps> = ({ selectedAuditType
         return (
           <div key={type} className="bg-white border border-blue-200 rounded-xl shadow p-6">
             <h2 className="text-xl font-semibold text-blue-700 mb-4">{title}</h2>
-            <GenericAuditResult data={auditData[type] as Record<string, any> || {}} />
+            <GenericAuditResult 
+              data={auditData[type] as Record<string, any> || {}} 
+              auditTypeId={type}
+            />
           </div>
         );
       })}

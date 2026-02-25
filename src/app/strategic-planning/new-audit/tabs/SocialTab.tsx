@@ -21,12 +21,19 @@ const socialPlatforms = [
 ];
 
 interface SocialTabProps {
-  data: Record<string, Record<string, string>>;
-  onDataUpdate: (data: Record<string, Record<string, string>>) => void;
+  data: Record<string, any>;
+  onDataUpdate: (data: Record<string, any>) => void;
 }
 
 export default function SocialTab({ data, onDataUpdate }: SocialTabProps) {
-  const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
+  const selectedPlatforms = (data.selectedPlatforms as string[]) || [];
+
+  const handlePlatformChange = (platforms: string[]) => {
+    onDataUpdate({
+      ...data,
+      selectedPlatforms: platforms
+    });
+  };
 
   const handleInputChange = (platform: string, field: string, value: string) => {
     onDataUpdate({
@@ -46,7 +53,8 @@ export default function SocialTab({ data, onDataUpdate }: SocialTabProps) {
     <div className="space-y-6">
       <AuditPlatformSelector 
         platforms={socialPlatforms} 
-        onChange={setSelectedPlatforms} 
+        selectedPlatforms={selectedPlatforms}
+        onChange={handlePlatformChange} 
       />
       
       {selectedPlatforms.includes('general') && (
@@ -61,28 +69,150 @@ export default function SocialTab({ data, onDataUpdate }: SocialTabProps) {
             <ChevronDownIcon className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200" />
           </summary>
           <div className="p-6 pt-4 border-t border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-8">
+              {/* Audience & Reach */}
               <div>
-                <label className={labelClasses}>Total Followers Across All Platforms</label>
-                <input
-                  type="number"
-                  placeholder="e.g. 15000"
-                  className={inputClasses}
-                  value={data.general?.totalFollowers || ''}
-                  onChange={e => handleInputChange('general', 'totalFollowers', e.target.value)}
-                />
+                <h4 className="font-medium text-gray-800 mb-4 pb-2 border-b border-gray-100">Audience & Reach</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className={labelClasses}>Total Followers Across All Platforms</label>
+                    <input
+                      type="number"
+                      placeholder="e.g. 15000"
+                      className={inputClasses}
+                      value={data.general?.totalFollowers || ''}
+                      onChange={e => handleInputChange('general', 'totalFollowers', e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Real Followers Percentage (%)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      placeholder="e.g. 85"
+                      className={inputClasses}
+                      value={data.general?.realFollowersPercentage || ''}
+                      onChange={e => handleInputChange('general', 'realFollowersPercentage', e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Primary Target Audience</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. B2B, Gen Z tech enthusiasts"
+                      className={inputClasses}
+                      value={data.general?.primaryAudience || ''}
+                      onChange={e => handleInputChange('general', 'primaryAudience', e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Average Overall Engagement Rate (%)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 3.2"
+                      className={inputClasses}
+                      value={data.general?.overallEngagementRate || ''}
+                      onChange={e => handleInputChange('general', 'overallEngagementRate', e.target.value)}
+                    />
+                  </div>
+                </div>
               </div>
+
+              {/* Brand & Strategy */}
               <div>
-                <label className={labelClasses}>Real Followers Percentage (%)</label>
-                <input
-                  type="number"
-                  min="0"
-                  max="100"
-                  placeholder="e.g. 85"
-                  className={inputClasses}
-                  value={data.general?.realFollowersPercentage || ''}
-                  onChange={e => handleInputChange('general', 'realFollowersPercentage', e.target.value)}
-                />
+                <h4 className="font-medium text-gray-800 mb-4 pb-2 border-b border-gray-100">Brand & Strategy</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className={labelClasses}>Brand Voice & Tone</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Professional, authoritative yet approachable"
+                      className={inputClasses}
+                      value={data.general?.brandVoice || ''}
+                      onChange={e => handleInputChange('general', 'brandVoice', e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Cross-Platform Consistency</label>
+                    <select
+                      className={inputClasses}
+                      value={data.general?.crossPlatformConsistency || ''}
+                      onChange={e => handleInputChange('general', 'crossPlatformConsistency', e.target.value)}
+                    >
+                      <option value="">Select status...</option>
+                      <option value="highly_consistent">Highly Consistent (Visuals & Messaging)</option>
+                      <option value="somewhat_consistent">Somewhat Consistent</option>
+                      <option value="inconsistent">Inconsistent / Fractured</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Primary Marketing Objective</label>
+                    <select
+                      className={inputClasses}
+                      value={data.general?.primaryObjective || ''}
+                      onChange={e => handleInputChange('general', 'primaryObjective', e.target.value)}
+                    >
+                      <option value="">Select objective...</option>
+                      <option value="brand_awareness">Brand Awareness</option>
+                      <option value="lead_generation">Lead Generation</option>
+                      <option value="community_building">Community Building</option>
+                      <option value="sales">Direct Sales / E-commerce</option>
+                      <option value="customer_support">Customer Support</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Overall Content Strategy</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. 60% Educational, 30% Entertaining, 10% Promo"
+                      className={inputClasses}
+                      value={data.general?.overallContentStrategy || ''}
+                      onChange={e => handleInputChange('general', 'overallContentStrategy', e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Operations & Technology */}
+              <div>
+                <h4 className="font-medium text-gray-800 mb-4 pb-2 border-b border-gray-100">Operations & Technology</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className={labelClasses}>Social Media Management Tools Used</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Hootsuite, Sprout Social, Buffer"
+                      className={inputClasses}
+                      value={data.general?.managementTools || ''}
+                      onChange={e => handleInputChange('general', 'managementTools', e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Social Search Engine Appearance</label>
+                    <select
+                      className={inputClasses}
+                      value={data.general?.socialSearchAppearance || ''}
+                      onChange={e => handleInputChange('general', 'socialSearchAppearance', e.target.value)}
+                    >
+                      <option value="">Select status...</option>
+                      <option value="excellent">Excellent (Profiles rank high for brand name)</option>
+                      <option value="needs_improvement">Needs Improvement</option>
+                      <option value="poor">Poor (Profiles difficult to find)</option>
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className={labelClasses}>General Observations & Biggest Opportunity</label>
+                    <textarea
+                      placeholder="Summary of the overall social presence and the #1 area for growth..."
+                      className={`${inputClasses} min-h-[80px]`}
+                      value={data.general?.generalObservations || ''}
+                      onChange={e => handleInputChange('general', 'generalObservations', e.target.value)}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -607,6 +737,319 @@ export default function SocialTab({ data, onDataUpdate }: SocialTabProps) {
                           className={inputClasses}
                           value={data.facebook?.leadQuality || ''}
                           onChange={e => handleInputChange('facebook', 'leadQuality', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : platformId === 'instagram' ? (
+                <div className="space-y-10">
+                  {/* 1. Profile & Bio Optimization */}
+                  <div className="bg-gray-50/30 rounded-lg border border-gray-100 p-5">
+                    <h4 className={sectionHeaderClasses}>
+                      <span className="bg-gray-900 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">1</span>
+                      Profile & Bio Optimization
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className={labelClasses}>Profile Picture / Avatar</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.profilePicture || ''}
+                          onChange={e => handleInputChange('instagram', 'profilePicture', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="optimized">Clear, recognizable, branded</option>
+                          <option value="needs_improvement">Blurry, hard to read, unbranded</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Name Field SEO</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Uses keywords instead of just brand name"
+                          className={inputClasses}
+                          value={data.instagram?.nameFieldSeo || ''}
+                          onChange={e => handleInputChange('instagram', 'nameFieldSeo', e.target.value)}
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className={labelClasses}>Bio Formatting & Value Prop</label>
+                        <textarea
+                          placeholder="e.g. Clear bullet points, strong hook, obvious value..."
+                          className={`${inputClasses} min-h-[60px]`}
+                          value={data.instagram?.bioFormatting || ''}
+                          onChange={e => handleInputChange('instagram', 'bioFormatting', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Link-in-Bio Tool</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.linkInBio || ''}
+                          onChange={e => handleInputChange('instagram', 'linkInBio', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="optimized">Using Linktree/StanStore with clear CTAs</option>
+                          <option value="single_link">Just a single unoptimized website link</option>
+                          <option value="missing">No link provided</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Story Highlights Cohesion</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.highlightsCohesion || ''}
+                          onChange={e => handleInputChange('instagram', 'highlightsCohesion', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="branded">Custom covers, well-organized</option>
+                          <option value="messy">Random covers, cluttered</option>
+                          <option value="missing">No highlights used</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 2. Visual Grid & Aesthetics */}
+                  <div className="bg-gray-50/30 rounded-lg border border-gray-100 p-5">
+                    <h4 className={sectionHeaderClasses}>
+                      <span className="bg-gray-900 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">2</span>
+                      Visual Grid & Aesthetics
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className={labelClasses}>Visual Identity / Brand Colors</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.visualIdentity || ''}
+                          onChange={e => handleInputChange('instagram', 'visualIdentity', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="cohesive">Highly cohesive & recognizable</option>
+                          <option value="inconsistent">Inconsistent, changing filters/colors</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className={labelClasses}>&quot;First 9 Squares&quot; Impression</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Instantly tells me what they do"
+                          className={inputClasses}
+                          value={data.instagram?.firstNineImpression || ''}
+                          onChange={e => handleInputChange('instagram', 'firstNineImpression', e.target.value)}
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className={labelClasses}>Text-to-Image Ratio</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Too many text graphics, needs more human faces"
+                          className={inputClasses}
+                          value={data.instagram?.textToImageRatio || ''}
+                          onChange={e => handleInputChange('instagram', 'textToImageRatio', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 3. Content Strategy & Formats */}
+                  <div className="bg-gray-50/30 rounded-lg border border-gray-100 p-5">
+                    <h4 className={sectionHeaderClasses}>
+                      <span className="bg-gray-900 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">3</span>
+                      Content Strategy & Formats
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div className="md:col-span-2 border-l-2 border-blue-200 pl-4 py-1 mt-2 mb-2">
+                        <span className="text-sm font-semibold text-gray-700 block mb-3">Format Distribution (Last 30 Days)</span>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          <div>
+                            <label className="block text-xs text-gray-500 mb-1 font-medium">Reels %</label>
+                            <input
+                              type="number" min="0" max="100" className={inputClasses} placeholder="0"
+                              value={data.instagram?.reelsPercent || ''}
+                              onChange={e => handleInputChange('instagram', 'reelsPercent', e.target.value)}
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs text-gray-500 mb-1 font-medium">Carousels %</label>
+                            <input
+                              type="number" min="0" max="100" className={inputClasses} placeholder="0"
+                              value={data.instagram?.carouselsPercent || ''}
+                              onChange={e => handleInputChange('instagram', 'carouselsPercent', e.target.value)}
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs text-gray-500 mb-1 font-medium">Single Images %</label>
+                            <input
+                              type="number" min="0" max="100" className={inputClasses} placeholder="0"
+                              value={data.instagram?.imagesPercent || ''}
+                              onChange={e => handleInputChange('instagram', 'imagesPercent', e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Carousel Depth & Value</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.carouselDepth || ''}
+                          onChange={e => handleInputChange('instagram', 'carouselDepth', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="high">Educational, highly savable</option>
+                          <option value="low">Superficial, low value</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Reels Hook & Pacing</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Strong 3s hooks, good editing"
+                          className={inputClasses}
+                          value={data.instagram?.reelsPacing || ''}
+                          onChange={e => handleInputChange('instagram', 'reelsPacing', e.target.value)}
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className={labelClasses}>Stories Strategy (Daily Usage)</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.storiesStrategy || ''}
+                          onChange={e => handleInputChange('instagram', 'storiesStrategy', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="active">Daily, uses polls/stickers, builds connection</option>
+                          <option value="inconsistent">Inconsistent, just reposts feed</option>
+                          <option value="absent">Rarely uses Stories</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 4. Engagement & Community */}
+                  <div className="bg-gray-50/30 rounded-lg border border-gray-100 p-5">
+                    <h4 className={sectionHeaderClasses}>
+                      <span className="bg-gray-900 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">4</span>
+                      Engagement & Community
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className={labelClasses}>Comment Response Rate</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.commentResponse || ''}
+                          onChange={e => handleInputChange('instagram', 'commentResponse', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="excellent">Replies to almost everything</option>
+                          <option value="poor">Ignores comments</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Proactive Outbound Engagement</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.outboundEngagement || ''}
+                          onChange={e => handleInputChange('instagram', 'outboundEngagement', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="active">Commenting on Ideal Client/Peer posts</option>
+                          <option value="inactive">Post & Ghost behavior</option>
+                        </select>
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className={labelClasses}>DM Automation (ManyChat) Usage</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Using 'Comment X for Link' workflow"
+                          className={inputClasses}
+                          value={data.instagram?.dmAutomation || ''}
+                          onChange={e => handleInputChange('instagram', 'dmAutomation', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 5. Hashtag & Discoverability */}
+                  <div className="bg-gray-50/30 rounded-lg border border-gray-100 p-5">
+                    <h4 className={sectionHeaderClasses}>
+                      <span className="bg-gray-900 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">5</span>
+                      Hashtag & Discoverability
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className={labelClasses}>SEO Keyword Usage in Captions</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Good native SEO vs just emojis"
+                          className={inputClasses}
+                          value={data.instagram?.seoKeywords || ''}
+                          onChange={e => handleInputChange('instagram', 'seoKeywords', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Location Tagging</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.locationTagging || ''}
+                          onChange={e => handleInputChange('instagram', 'locationTagging', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="consistent">Consistently tags relevant locations</option>
+                          <option value="inconsistent">Missed opportunity</option>
+                        </select>
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className={labelClasses}>Hashtag Strategy (Relevance & Volume)</label>
+                        <textarea
+                          placeholder="e.g. Using 3-5 hyper-relevant tags vs 30 spammy tags..."
+                          className={`${inputClasses} min-h-[60px]`}
+                          value={data.instagram?.hashtagStrategy || ''}
+                          onChange={e => handleInputChange('instagram', 'hashtagStrategy', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 6. Growth & Analytics */}
+                  <div className="bg-gray-50/30 rounded-lg border border-gray-100 p-5">
+                    <h4 className={sectionHeaderClasses}>
+                      <span className="bg-gray-900 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">6</span>
+                      Growth & Analytics
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className={labelClasses}>Reach vs Engagement Ratio</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. High reach via Reels, low core engagement"
+                          className={inputClasses}
+                          value={data.instagram?.reachVsEngagement || ''}
+                          onChange={e => handleInputChange('instagram', 'reachVsEngagement', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Follower Growth Velocity</label>
+                        <select
+                          className={inputClasses}
+                          value={data.instagram?.growthVelocity || ''}
+                          onChange={e => handleInputChange('instagram', 'growthVelocity', e.target.value)}
+                        >
+                          <option value="">Select status...</option>
+                          <option value="growing">Positive upward trend</option>
+                          <option value="stagnant">Stagnant / Plateau</option>
+                          <option value="declining">Losing followers</option>
+                        </select>
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className={labelClasses}>Conversion / Traffic Generation</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Is the audience actually clicking the link in bio?"
+                          className={inputClasses}
+                          value={data.instagram?.trafficGeneration || ''}
+                          onChange={e => handleInputChange('instagram', 'trafficGeneration', e.target.value)}
                         />
                       </div>
                     </div>

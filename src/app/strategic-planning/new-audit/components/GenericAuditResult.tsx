@@ -1,7 +1,8 @@
-import React from 'react';
+import { AUDIT_FIELD_DEFINITIONS, AuditTypeDefinition } from '../utils/auditFieldDefinitions';
 
 interface GenericAuditResultProps {
   data: Record<string, any>;
+  auditTypeId?: string;
 }
 
 // Helper to format camelCase or snake_case to Title Case
@@ -15,88 +16,85 @@ const prettifyLabel = (label: string) => {
 
 const renderValue = (value: any): React.ReactNode => {
   if (value === null || value === undefined || value === '') {
-    return <span className="text-gray-400 italic">Not provided</span>;
+    return <span className="text-gray-400 italic">N/A</span>;
   }
   if (typeof value === 'boolean') {
     return <span className="text-gray-800">{value ? 'Yes' : 'No'}</span>;
   }
   if (typeof value === 'string' || typeof value === 'number') {
-    // Check if it's an array represented as a CSV string (sometimes happens with multi-selects)
     return <span className="text-gray-800 break-words">{value.toString()}</span>;
   }
   if (Array.isArray(value)) {
     if (value.length === 0) return <span className="text-gray-400 italic">None</span>;
     return <span className="text-gray-800">{value.join(', ')}</span>;
   }
-  if (typeof value === 'object') {
-    // Nested object
-    return (
-      <div className="mt-2 space-y-3 pl-4 border-l-2 border-blue-100">
-        {Object.entries(value).map(([subKey, subVal]) => (
-          <div key={subKey} className="text-sm">
-            <span className="font-medium text-gray-700 block mb-1">{prettifyLabel(subKey)}</span>
-            {renderValue(subVal)}
-          </div>
-        ))}
-      </div>
-    );
-  }
   return <span className="text-gray-400 italic">Unsupported format</span>;
 };
 
-const GenericAuditResult: React.FC<GenericAuditResultProps> = ({ data }) => {
-  if (!data || Object.keys(data).length === 0) {
-    return <div className="text-gray-500 italic">No data provided for this audit type.</div>;
-  }
+const GenericAuditResult: React.FC<GenericAuditResultProps> = ({ data, auditTypeId }) => {
+  const definition: AuditTypeDefinition | undefined = auditTypeId ? AUDIT_FIELD_DEFINITIONS[auditTypeId] : undefined;
 
-  // Separate top-level primitives from top-level objects (subsections)
-  const primitives: Record<string, any> = {};
-  const subsections: Record<string, any> = {};
-
-  Object.entries(data).forEach(([key, value]) => {
-    if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
-      subsections[key] = value;
-    } else {
-      primitives[key] = value;
+  if (!definition) {
+    if (!data || Object.keys(data).length === 0) {
+      return <div className="text-gray-500 italic">No data provided for this audit type.</div>;
     }
-  });
-
-  return (
-    <div className="space-y-6">
-      {/* Render top-level primitive fields */}
-      {Object.keys(primitives).length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Object.entries(primitives).map(([key, value]) => (
+    // Fallback to old dynamic behavior
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(data).map(([key, value]) => {
+          if (key === 'selectedPlatforms') return null;
+          return (
             <div key={key} className="bg-gray-50 p-4 rounded-lg border border-gray-100">
               <span className="block text-sm font-semibold text-gray-600 mb-1">{prettifyLabel(key)}</span>
               <div className="text-base">{renderValue(value)}</div>
             </div>
-          ))}
-        </div>
-      )}
+          );
+        })}
+      </div>
+    );
+  }
 
-      {/* Render subsections (nested objects, like 'facebook' or 'general' in Social) */}
-      {Object.keys(subsections).length > 0 && (
-        <div className="space-y-6 mt-6">
-          {Object.entries(subsections).map(([sectionKey, sectionData]) => (
-            <div key={sectionKey} className="border border-blue-100 rounded-xl overflow-hidden shadow-sm">
+  // Use definition for rendering
+  const sectionsToRender = auditTypeId === 'social' && data.selectedPlatforms
+    ? definition.sections?.filter(section => {
+        const platformId = section.name.split(' ')[0].toLowerCase();
+        return (data.selectedPlatforms as string[]).includes(platformId);
+      })
+    : definition.sections;
+
+  return (
+    <div className="space-y-8">
+      {sectionsToRender ? (
+        sectionsToRender.map((section, sIdx) => {
+          // Special handling for social platform nesting
+          const sectionData = auditTypeId === 'social' 
+            ? data[section.name.split(' ')[0].toLowerCase()] || {} 
+            : data;
+
+          return (
+            <div key={sIdx} className="border border-blue-100 rounded-xl overflow-hidden shadow-sm">
               <div className="bg-blue-50/50 px-5 py-3 border-b border-blue-100">
-                <h3 className="text-lg font-semibold text-blue-800">{prettifyLabel(sectionKey)}</h3>
+                <h3 className="text-lg font-semibold text-blue-800">{section.name}</h3>
               </div>
               <div className="p-5 bg-white">
-                {Object.keys(sectionData || {}).length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {Object.entries(sectionData).map(([key, value]) => (
-                      <div key={key}>
-                        <span className="block text-sm font-medium text-gray-500 mb-1">{prettifyLabel(key)}</span>
-                        <div className="text-sm">{renderValue(value)}</div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-gray-400 italic text-sm">No data provided.</div>
-                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {section.fields.map(field => (
+                    <div key={field.id} className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                      <span className="block text-sm font-semibold text-gray-600 mb-1">{field.label}</span>
+                      <div className="text-base">{renderValue(sectionData[field.id])}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
+            </div>
+          );
+        })
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {definition.fields?.map(field => (
+            <div key={field.id} className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+              <span className="block text-sm font-semibold text-gray-600 mb-1">{field.label}</span>
+              <div className="text-base">{renderValue(data[field.id])}</div>
             </div>
           ))}
         </div>

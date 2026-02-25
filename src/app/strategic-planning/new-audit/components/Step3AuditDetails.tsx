@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuditData } from '../AuditDataContext';
 import MediaBuyingAuditResult from './MediaBuyingAuditResult';
-
+import GenericAuditResult from './GenericAuditResult';
 interface Step3AuditDetailsProps {
   selectedAuditTypes: string[];
 }
@@ -59,13 +59,26 @@ const Step3AuditDetails: React.FC<Step3AuditDetailsProps> = ({ selectedAuditType
         </div>
       </div>
 
-      {/* Render Media Buying Audit Result if selected */}
-      {selectedAuditTypes.includes('media_buying') && (
-        <div className="bg-white border border-blue-200 rounded-xl shadow p-6">
-          <h2 className="text-xl font-semibold text-blue-700 mb-4">Media Buying Audit Results</h2>
-          <MediaBuyingAuditResult data={auditData['media_buying'] || {}} />
-        </div>
-      )}
+      {/* Render Audit Results */}
+      {selectedAuditTypes.map(type => {
+        if (type === 'media_buying') {
+          return (
+            <div key={type} className="bg-white border border-blue-200 rounded-xl shadow p-6">
+              <h2 className="text-xl font-semibold text-blue-700 mb-4">Media Buying Audit Results</h2>
+              <MediaBuyingAuditResult data={auditData['media_buying'] as Record<string, any> || {}} />
+            </div>
+          );
+        }
+
+        // Use generic result for all others
+        const title = prettifyLabel(type) + " Audit Results";
+        return (
+          <div key={type} className="bg-white border border-blue-200 rounded-xl shadow p-6">
+            <h2 className="text-xl font-semibold text-blue-700 mb-4">{title}</h2>
+            <GenericAuditResult data={auditData[type] as Record<string, any> || {}} />
+          </div>
+        );
+      })}
     </div>
   );
 };

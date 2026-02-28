@@ -251,17 +251,28 @@ const renderGenericAuditTable = (doc: jsPDF, data: any, startY: number, margin: 
 const renderMediaBuyingTables = (doc: jsPDF, data: any, startY: number, margin: number) => {
   let currentY = startY;
 
-  // 1. Marketing Goals
+  const sectionHeader = (title: string, y: number) => {
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 64, 175); // blue-700
+    doc.text(title, margin + 5, y);
+    doc.setTextColor(0, 0, 0);
+    return y + 6;
+  };
+
+  // 1. Overall Marketing Goals
+  currentY = sectionHeader('1. Overall Marketing Goals', currentY);
   const marketingData = [
     ['Marketing Goals', formatValue(data.marketingGoals)],
+    ['Marketing Platforms', formatValue(data.marketingPlatforms)],
     ['Notes & Gaps', formatValue(data.notesGaps)]
   ];
 
   autoTable(doc, {
     startY: currentY,
-    head: [['Section', 'Value']],
     body: marketingData,
-    theme: 'plain',
+    theme: 'grid',
+    styles: { fontSize: 9 },
     columnStyles: { 0: { fontStyle: 'bold', cellWidth: 50 } },
     margin: { left: margin + 5 }
   });
@@ -269,45 +280,153 @@ const renderMediaBuyingTables = (doc: jsPDF, data: any, startY: number, margin: 
 
   // 2. Campaigns
   if (Array.isArray(data.campaignAudits) && data.campaignAudits.length > 0) {
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Campaign Level Audit', margin + 5, currentY);
-    currentY += 5;
-
+    currentY = sectionHeader('2. Campaign Level Audit', currentY);
     const campaignRows = data.campaignAudits.map((c: any) => [
       c.campaignName || 'N/A',
       formatValue(c.marketingGoalsSupported),
+      c.objectiveSetCorrectly || 'N/A',
+      c.scalingPotential || 'N/A',
       c.performanceKPIs || 'N/A'
     ]);
 
     autoTable(doc, {
       startY: currentY,
-      head: [['Campaign Name', 'Goals Supported', 'KPIs']],
+      head: [['Campaign Name', 'Goals Supported', 'Objective', 'Scaling', 'KPIs']],
       body: campaignRows,
+      theme: 'striped',
+      styles: { fontSize: 8 },
       margin: { left: margin + 5 }
     });
     currentY = (doc as any).lastAutoTable.finalY + 10;
   }
 
-  // 3. Tracking & Compliance
+  // 3. Ad Sets
+  if (Array.isArray(data.adSetAudits) && data.adSetAudits.length > 0) {
+    if (currentY > 250) { doc.addPage(); currentY = 20; }
+    currentY = sectionHeader('3. Ad Set Level Audit', currentY);
+    const adSetRows = data.adSetAudits.map((a: any) => [
+      a.adSetName || 'N/A',
+      a.audienceSize || 'N/A',
+      a.placements || 'N/A',
+      a.frequency || 'N/A',
+      a.performanceKPIs || 'N/A'
+    ]);
+
+    autoTable(doc, {
+      startY: currentY,
+      head: [['Ad Set Name', 'Audience Size', 'Placements', 'Freq', 'KPIs']],
+      body: adSetRows,
+      theme: 'striped',
+      styles: { fontSize: 8 },
+      margin: { left: margin + 5 }
+    });
+    currentY = (doc as any).lastAutoTable.finalY + 10;
+  }
+
+  // 4. Ads
+  if (Array.isArray(data.adLevelAudits) && data.adLevelAudits.length > 0) {
+    if (currentY > 250) { doc.addPage(); currentY = 20; }
+    currentY = sectionHeader('4. Ad Level Audit', currentY);
+    const adRows = data.adLevelAudits.map((ad: any) => [
+      ad.adNameId || 'N/A',
+      ad.creativeFormat || 'N/A',
+      ad.hookStrength || 'N/A',
+      ad.performanceKPIsAd || 'N/A'
+    ]);
+
+    autoTable(doc, {
+      startY: currentY,
+      head: [['Ad Name/ID', 'Format', 'Hook Strength', 'KPIs']],
+      body: adRows,
+      theme: 'striped',
+      styles: { fontSize: 8 },
+      margin: { left: margin + 5 }
+    });
+    currentY = (doc as any).lastAutoTable.finalY + 10;
+  }
+
+  // 5. Tracking & Compliance
+  if (currentY > 250) { doc.addPage(); currentY = 20; }
+  currentY = sectionHeader('5. Tracking, Attribution & Compliance', currentY);
   const trackingFields = [
     ['Pixel/SDK Setup', formatValue(data.pixelSdkSetup)],
     ['Event Tracking', formatValue(data.eventTracking)],
     ['UTM Tracking', formatValue(data.utmTracking)],
+    ['Attribution Model', formatValue(data.attributionModel)],
     ['Policy Violations', formatValue(data.policyViolations)],
   ];
-
-  doc.setFontSize(11);
-  doc.setFont('helvetica', 'bold');
-  doc.text('Tracking & Compliance', margin + 5, currentY);
-  currentY += 5;
 
   autoTable(doc, {
     startY: currentY,
     body: trackingFields,
+    theme: 'grid',
+    styles: { fontSize: 9 },
+    columnStyles: { 0: { fontStyle: 'bold', cellWidth: 50 } },
     margin: { left: margin + 5 }
   });
   currentY = (doc as any).lastAutoTable.finalY + 10;
 
-  return currentY;
+  // 6. Media Mix
+  if (currentY > 250) { doc.addPage(); currentY = 20; }
+  currentY = sectionHeader('6. Media Mix & Channel Analysis', currentY);
+  const mediaMixData = [
+    ['Channel Breakdown', formatValue(data.channelBreakdown)],
+    ['Budget Distribution', formatValue(data.budgetDistribution)],
+    ['ROI by Channel', formatValue(data.performanceByChannel)],
+  ];
+
+  autoTable(doc, {
+    startY: currentY,
+    body: mediaMixData,
+    theme: 'grid',
+    styles: { fontSize: 9 },
+    columnStyles: { 0: { fontStyle: 'bold', cellWidth: 50 } },
+    margin: { left: margin + 5 }
+  });
+  currentY = (doc as any).lastAutoTable.finalY + 10;
+
+  // 7. Waste & Efficiency
+  if (currentY > 250) { doc.addPage(); currentY = 20; }
+  currentY = sectionHeader('7. Waste & Efficiency', currentY);
+  const wasteData = [
+    ['Low Performing Segments', formatValue(data.lowPerformingSegments)],
+    ['Ad Fatigue / Frequency', formatValue(data.highFrequencyIssues)],
+    ['Underperforming Creatives', formatValue(data.underperformingCreatives)],
+  ];
+
+  autoTable(doc, {
+    startY: currentY,
+    body: wasteData,
+    theme: 'grid',
+    styles: { fontSize: 9 },
+    columnStyles: { 0: { fontStyle: 'bold', cellWidth: 50 } },
+    margin: { left: margin + 5 }
+  });
+  currentY = (doc as any).lastAutoTable.finalY + 10;
+
+  // 8. Summary & Footer
+  if (currentY > 240) { doc.addPage(); currentY = 20; }
+  currentY = sectionHeader('8. Summary & Action Plan', currentY);
+  const summaryData = [
+    ['Key Strengths', formatValue(data.keyStrengths)],
+    ['Key Weaknesses', formatValue(data.keyWeaknesses)],
+    ['Top Priority Fixes', formatValue(data.topPriorityFixes)],
+    ['Quick Wins', formatValue(data.quickWins)],
+  ];
+
+  autoTable(doc, {
+    startY: currentY,
+    body: summaryData,
+    theme: 'grid',
+    styles: { fontSize: 9 },
+    columnStyles: { 0: { fontStyle: 'bold', cellWidth: 50 } },
+    margin: { left: margin + 5 }
+  });
+  currentY = (doc as any).lastAutoTable.finalY + 10;
+
+  doc.setFontSize(8);
+  doc.setTextColor(100);
+  doc.text(`Audit Conducted By: ${data.auditConductedBy || 'N/A'} | Date: ${data.dateOfAudit || 'N/A'}`, margin + 5, currentY);
+
+  return currentY + 10;
 };

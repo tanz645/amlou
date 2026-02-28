@@ -28,6 +28,7 @@ const sectionBox = (title: string, children: React.ReactNode) => (
 const MediaBuyingAuditResult: React.FC<MediaBuyingAuditResultProps> = ({ data }) => {
   // 1. Overall Marketing Goals
   const marketingGoals = data.marketingGoals as string[] | undefined;
+  const marketingPlatforms = data.marketingPlatforms as string[] | undefined;
   const notesGaps = data.notesGaps;
 
   // 2. Campaign Level Audit
@@ -100,6 +101,10 @@ const MediaBuyingAuditResult: React.FC<MediaBuyingAuditResultProps> = ({ data })
             {renderList(marketingGoals)}
           </div>
           <div>
+            <span className="font-medium">Marketing Platforms: </span>
+            {renderList(marketingPlatforms)}
+          </div>
+          <div>
             <span className="font-medium">Notes & Gaps: </span>
             {renderValue(notesGaps)}
           </div>
@@ -121,6 +126,7 @@ const MediaBuyingAuditResult: React.FC<MediaBuyingAuditResultProps> = ({ data })
                   <div><span className="font-medium">Buying Type: </span>{renderValue(c.buyingType)}</div>
                   <div><span className="font-medium">Budget Allocation: </span>{renderValue(c.budgetAllocationCampaign)}</div>
                   <div><span className="font-medium">Optimization Strategy: </span>{renderValue(c.optimizationStrategy)}</div>
+                  <div><span className="font-medium">Scaling Potential: </span>{renderValue(c.scalingPotential)}</div>
                   <div><span className="font-medium">Performance KPIs: </span>{renderValue(c.performanceKPIs)}</div>
                   <div><span className="font-medium">Date Range: </span>{renderValue(c.dateRange)}</div>
                   <div><span className="font-medium">Compliance Check: </span>{renderValue(c.complianceCheck)}</div>
@@ -146,6 +152,7 @@ const MediaBuyingAuditResult: React.FC<MediaBuyingAuditResultProps> = ({ data })
                   <div><span className="font-medium">Interests: </span>{renderList(a.interests)}</div>
                   <div><span className="font-medium">Behaviors: </span>{renderList(a.behaviors)}</div>
                   <div><span className="font-medium">Lookalikes: </span>{renderValue(a.lookalikes)}</div>
+                  <div><span className="font-medium">Estimated Audience Size: </span>{renderValue(a.audienceSize)}</div>
                   <div><span className="font-medium">Audience Overlap: </span>{renderValue(a.audienceOverlap)}</div>
                   <div><span className="font-medium">Placements: </span>{renderValue(a.placements)}</div>
                   <div><span className="font-medium">Budget Type: </span>{renderValue(a.budgetType)}</div>
@@ -172,6 +179,7 @@ const MediaBuyingAuditResult: React.FC<MediaBuyingAuditResultProps> = ({ data })
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div><span className="font-medium">Ad Name / ID: </span>{renderValue(ad.adNameId)}</div>
                   <div><span className="font-medium">Creative Format: </span>{renderValue(ad.creativeFormat)}</div>
+                  <div><span className="font-medium">Hook Strength: </span>{renderValue(ad.hookStrength)}</div>
                   <div><span className="font-medium">Creative Relevance: </span>{renderValue(ad.creativeRelevance)}</div>
                   <div><span className="font-medium">CTA Effectiveness: </span>{renderValue(ad.ctaEffectiveness)}</div>
                   <div><span className="font-medium">Ad Copy Compliance: </span>{renderValue(ad.adCopyCompliance)}</div>

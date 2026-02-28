@@ -30,6 +30,7 @@ export default function MediaBuyingTab() {
     performanceKPIs?: string;
     dateRange?: string;
     complianceCheck?: string;
+    scalingPotential?: string;
     notesRecommendationsCampaign?: string;
     marketingGoalsSupported?: string[];
   };
@@ -44,6 +45,7 @@ export default function MediaBuyingTab() {
     interests?: string[];
     behaviors?: string[];
     lookalikes?: string;
+    audienceSize?: string;
     audienceOverlap?: string;
     placements?: string;
     budgetType?: string;
@@ -61,6 +63,7 @@ export default function MediaBuyingTab() {
   type AdLevelAudit = {
     adNameId?: string;
     creativeFormat?: string;
+    hookStrength?: string;
     creativeRelevance?: string;
     ctaEffectiveness?: string;
     adCopyCompliance?: string;
@@ -150,11 +153,11 @@ export default function MediaBuyingTab() {
             />
           </div>
           <div className="md:col-span-2 space-y-2">
-            <label className="block font-medium mb-1">Marketing Platforms(s)</label>
+            <label className="block font-medium mb-1">Marketing Platform(s)</label>
             <TagInput
-              value={marketingGoals}
-              onChange={tags => handleInputChange('marketingGoals', tags)}
-              placeholder="Type a goal and press comma or Enter"
+              value={marketingPlatforms}
+              onChange={tags => handleInputChange('marketingPlatforms', tags)}
+              placeholder="Type a platform and press comma or Enter"
             />
           </div>
           <div className="md:col-span-2">
@@ -229,6 +232,16 @@ export default function MediaBuyingTab() {
                 </select>
               </div>
               <div>
+                <label className="block font-medium mb-1">Scaling Potential</label>
+                <select className="w-full border rounded-lg px-3 py-2" value={campaign.scalingPotential || ''} onChange={e => handleCampaignChange(idx, 'scalingPotential', e.target.value)}>
+                  <option value="">Select</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                  <option value="None">None</option>
+                </select>
+              </div>
+              <div>
                 <label className="block font-medium mb-1">Performance KPIs</label>
                 <input type="text" className="w-full border rounded-lg px-3 py-2" value={campaign.performanceKPIs || ''} onChange={e => handleCampaignChange(idx, 'performanceKPIs', e.target.value)} placeholder="CPM, CTR, CPA, ROAS" />
               </div>
@@ -291,6 +304,10 @@ export default function MediaBuyingTab() {
               <div>
                 <label className="block font-medium mb-1">Lookalikes</label>
                 <input type="text" className="w-full border rounded-lg px-3 py-2" value={adSet.lookalikes || ''} onChange={e => handleAdSetChange(idx, 'lookalikes', e.target.value)} placeholder="Describe lookalike audiences" />
+              </div>
+              <div>
+                <label className="block font-medium mb-1">Estimated Audience Size</label>
+                <input type="text" className="w-full border rounded-lg px-3 py-2" value={adSet.audienceSize || ''} onChange={e => handleAdSetChange(idx, 'audienceSize', e.target.value)} placeholder="e.g., 1M - 5M" />
               </div>
               <div>
                 <label className="block font-medium mb-1">Audience Overlap?</label>
@@ -375,6 +392,15 @@ export default function MediaBuyingTab() {
                   <option value="Carousel">Carousel</option>
                   <option value="Collection">Collection</option>
                   <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-medium mb-1">Hook Strength (Scroll Stop)</label>
+                <select className="w-full border rounded-lg px-3 py-2" value={ad.hookStrength || ''} onChange={e => handleAdLevelChange(idx, 'hookStrength', e.target.value)}>
+                  <option value="">Select</option>
+                  <option value="Strong">Strong</option>
+                  <option value="Average">Average</option>
+                  <option value="Weak">Weak</option>
                 </select>
               </div>
               <div>

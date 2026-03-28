@@ -39,7 +39,8 @@ import {
   PlusIcon,
   MinusIcon,
   ArrowLeftOnRectangleIcon,
-  ArrowRightOnRectangleIcon
+  ArrowRightOnRectangleIcon,
+  BriefcaseIcon
 } from '@heroicons/react/24/outline';
 
 const menuGroups = [
@@ -49,6 +50,7 @@ const menuGroups = [
     items: [
       { name: 'Overview', href: '/accounting', icon: HomeIcon },
       { name: 'Dashboard', href: '/accounting/dashboard', icon: ChartBarIcon },
+      { name: 'Clients', href: '/accounting/clients', icon: BriefcaseIcon },
     ]
   },
   {
@@ -57,9 +59,8 @@ const menuGroups = [
     items: [
       { name: 'Invoices', href: '/accounting/invoices', icon: DocumentTextIcon },
       { name: 'Sales Orders', href: '/accounting/sales-orders', icon: ClipboardDocumentListIcon },
-      { name: 'Customer Payments', href: '/accounting/customer-payments', icon: BanknotesIcon2 },
+      { name: 'Payments history', href: '/accounting/payments-history', icon: BanknotesIcon2 },
       { name: 'Credit Notes', href: '/accounting/credit-notes', icon: DocumentArrowDownIcon },
-      { name: 'Sales Returns', href: '/accounting/sales-returns', icon: ArchiveBoxXMarkIcon },
     ]
   },
   {

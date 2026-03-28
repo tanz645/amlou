@@ -32,7 +32,6 @@ import {
   ScaleIcon,
   ShieldCheckIcon,
   CogIcon,
-  ArchiveBoxXMarkIcon,
   BanknotesIcon as BanknotesIcon2,
   DocumentArrowUpIcon,
   DocumentArrowDownIcon,
@@ -71,7 +70,6 @@ const menuGroups = [
       { name: 'Purchase Orders', href: '/accounting/purchase-orders', icon: ClipboardDocumentListIcon },
       { name: 'Vendor Payments', href: '/accounting/vendor-payments', icon: BanknotesIcon2 },
       { name: 'Expense Claims', href: '/accounting/expense-claims', icon: DocumentArrowUpIcon },
-      { name: 'Purchase Returns', href: '/accounting/purchase-returns', icon: ArchiveBoxXMarkIcon },
     ]
   },
   {

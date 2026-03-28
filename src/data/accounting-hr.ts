@@ -15,9 +15,15 @@ export type HREmployee = {
   status: EmploymentStatus;
   payBasis: PayBasis;
   payFrequency: PayFrequency;
-  /** Annual cash compensation (salary, or hourly × 2080 for FT equivalent). */
-  annualCompensation: number;
+  /** Fixed annual salary (salaried employees only). */
+  annualSalary?: number;
+  /** Billable rate for hourly staff (annualized comp uses FT hours). */
   hourlyRate?: number;
+  /**
+   * Annual cash compensation used for pay-period math: salary, or hourly × FT hours.
+   * Bonuses and variable pay are handled in payroll runs, not here.
+   */
+  annualCompensation: number;
 };
 
 export const HOURS_PER_YEAR_FT = 2080;
@@ -49,6 +55,7 @@ export const hrEmployees: HREmployee[] = [
     status: "Active",
     payBasis: "Salary",
     payFrequency: "Bi-weekly",
+    annualSalary: 118_000,
     annualCompensation: 118_000,
   },
   {
@@ -64,6 +71,7 @@ export const hrEmployees: HREmployee[] = [
     status: "Active",
     payBasis: "Salary",
     payFrequency: "Bi-weekly",
+    annualSalary: 168_000,
     annualCompensation: 168_000,
   },
   {
@@ -79,6 +87,7 @@ export const hrEmployees: HREmployee[] = [
     status: "Active",
     payBasis: "Salary",
     payFrequency: "Bi-weekly",
+    annualSalary: 96_000,
     annualCompensation: 96_000,
   },
   {
@@ -94,6 +103,7 @@ export const hrEmployees: HREmployee[] = [
     status: "On leave",
     payBasis: "Salary",
     payFrequency: "Semi-monthly",
+    annualSalary: 104_000,
     annualCompensation: 104_000,
   },
   {

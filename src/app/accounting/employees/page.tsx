@@ -61,12 +61,20 @@ export default function EmployeesPage() {
     [filtered]
   );
 
-  const annualCompFiltered = useMemo(
-    () =>
-      filtered
-        .filter((r) => r.status !== "Terminated")
-        .reduce((s, r) => s + r.annualCompensation, 0),
+  const eligible = useMemo(
+    () => filtered.filter((r) => r.status !== "Terminated"),
     [filtered]
+  );
+
+  const totalAnnualSalaries = useMemo(
+    () =>
+      eligible.reduce((s, r) => s + (r.annualSalary ?? 0), 0),
+    [eligible]
+  );
+
+  const hourlyCount = useMemo(
+    () => eligible.filter((r) => r.payBasis === "Hourly").length,
+    [eligible]
   );
 
   return (
@@ -75,7 +83,8 @@ export default function EmployeesPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Employee records</h1>
           <p className="text-gray-600 mt-2">
-            Directory, compensation, pay frequency, and employment status
+            Authoritative salary and wage rates for payroll. Variable pay (bonuses, commissions) is
+            applied when you run payroll, not stored here.
           </p>
         </div>
         <button
@@ -104,23 +113,26 @@ export default function EmployeesPage() {
           <p className="text-2xl font-bold text-emerald-700 mt-1">{activeCount}</p>
         </div>
         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-          <p className="text-sm font-medium text-gray-600">Departments in view</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">
-            {new Set(filtered.map((r) => r.department)).size}
-          </p>
-        </div>
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-sm font-medium text-gray-600">Annual cash comp (excl. terminated)</p>
+              <p className="text-sm font-medium text-gray-600">Total annual salaries</p>
               <p className="text-2xl font-bold text-gray-900 mt-1">
-                ${annualCompFiltered.toLocaleString()}
+                ${totalAnnualSalaries.toLocaleString()}
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                Salaried only (excl. terminated){hourlyCount ? ` · ${hourlyCount} hourly` : ""}
               </p>
             </div>
             <div className="p-3 rounded-lg bg-green-100">
               <CurrencyDollarIcon className="w-6 h-6 text-green-600" />
             </div>
           </div>
+        </div>
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+          <p className="text-sm font-medium text-gray-600">Departments in view</p>
+          <p className="text-2xl font-bold text-gray-900 mt-1">
+            {new Set(filtered.map((r) => r.department)).size}
+          </p>
         </div>
       </div>
 
@@ -175,14 +187,17 @@ export default function EmployeesPage() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Department / Title
                 </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Annual salary
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Hourly wage
+                </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Pay
+                  Schedule
                 </th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Annual
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Est. gross / pay
+                  Base gross / pay
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Contact
@@ -216,6 +231,20 @@ export default function EmployeesPage() {
                     <div className="text-sm text-gray-900">{row.department}</div>
                     <div className="text-sm text-gray-500">{row.jobTitle}</div>
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-right text-gray-900">
+                    {row.annualSalary != null ? (
+                      `$${row.annualSalary.toLocaleString()}`
+                    ) : (
+                      <span className="text-gray-400 font-normal">—</span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-right">
+                    {row.hourlyRate != null ? (
+                      <span className="font-medium text-gray-900">${row.hourlyRate.toFixed(2)}</span>
+                    ) : (
+                      <span className="text-gray-400">—</span>
+                    )}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
                       className={`inline-flex px-2 py-0.5 text-xs font-medium rounded-full border ${payBasisBadge(
@@ -224,19 +253,11 @@ export default function EmployeesPage() {
                     >
                       {row.payBasis}
                     </span>
-                    <div className="text-xs text-gray-500 mt-1">{row.payFrequency}</div>
-                    {row.payBasis === "Hourly" && row.hourlyRate != null && (
-                      <div className="text-xs text-gray-600 mt-0.5">${row.hourlyRate.toFixed(2)}/hr</div>
-                    )}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-right text-gray-900">
-                    ${row.annualCompensation.toLocaleString()}
-                    {row.payBasis === "Hourly" && (
-                      <span className="block text-xs font-normal text-gray-500">FT equiv.</span>
-                    )}
+                    <div className="text-xs text-gray-600 mt-1">{row.payFrequency}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium text-emerald-800">
                     ${Math.round(estimatedGrossPerPay(row)).toLocaleString()}
+                    <span className="block text-[11px] font-normal text-gray-500">excl. bonus</span>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-1.5 text-sm text-gray-600">

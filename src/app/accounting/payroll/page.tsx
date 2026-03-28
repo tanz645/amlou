@@ -1,40 +1,51 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import Link from "next/link";
 import {
   CurrencyDollarIcon,
   MagnifyingGlassIcon,
   CalendarDaysIcon,
   BanknotesIcon,
-  UserGroupIcon,
+  CalculatorIcon,
+  ArrowPathIcon,
+  DocumentCheckIcon,
+  PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
-import {
-  hrEmployees,
-  estimatedGrossPerPay,
-  HOURS_PER_YEAR_FT,
-} from "@/data/accounting-hr";
 
 type RunStatus = "Draft" | "Approved" | "Paid" | "Processing";
 
-type Row = {
+type PayRunRow = {
   id: string;
   period: string;
   payDate: string;
   employeesPaid: number;
+  salaryEarnings: number;
+  wageEarnings: number;
+  bonusEarnings: number;
   grossPay: number;
-  taxesWithheld: number;
+  federalWithholding: number;
+  stateWithholding: number;
+  ficaEmployee: number;
+  otherDeductions: number;
   netPay: number;
   status: RunStatus;
 };
 
-const data: Row[] = [
+const payRuns: PayRunRow[] = [
   {
     id: "pr-1",
     period: "2025-12",
     payDate: "2025-12-15",
     employeesPaid: 48,
+    salaryEarnings: 258_000,
+    wageEarnings: 18_500,
+    bonusEarnings: 8_000,
     grossPay: 284_500,
-    taxesWithheld: 71_200,
+    federalWithholding: 40_200,
+    stateWithholding: 12_500,
+    ficaEmployee: 18_500,
+    otherDeductions: 0,
     netPay: 213_300,
     status: "Paid",
   },
@@ -43,8 +54,14 @@ const data: Row[] = [
     period: "2026-01",
     payDate: "2026-01-15",
     employeesPaid: 49,
+    salaryEarnings: 265_000,
+    wageEarnings: 15_200,
+    bonusEarnings: 11_000,
     grossPay: 291_200,
-    taxesWithheld: 72_800,
+    federalWithholding: 41_000,
+    stateWithholding: 12_800,
+    ficaEmployee: 19_000,
+    otherDeductions: 0,
     netPay: 218_400,
     status: "Approved",
   },
@@ -53,8 +70,14 @@ const data: Row[] = [
     period: "2025-11",
     payDate: "2025-11-15",
     employeesPaid: 47,
+    salaryEarnings: 252_000,
+    wageEarnings: 16_900,
+    bonusEarnings: 10_000,
     grossPay: 278_900,
-    taxesWithheld: 69_700,
+    federalWithholding: 39_800,
+    stateWithholding: 12_400,
+    ficaEmployee: 17_500,
+    otherDeductions: 0,
     netPay: 209_200,
     status: "Paid",
   },
@@ -63,8 +86,14 @@ const data: Row[] = [
     period: "2026-02",
     payDate: "2026-02-15",
     employeesPaid: 0,
+    salaryEarnings: 0,
+    wageEarnings: 0,
+    bonusEarnings: 0,
     grossPay: 0,
-    taxesWithheld: 0,
+    federalWithholding: 0,
+    stateWithholding: 0,
+    ficaEmployee: 0,
+    otherDeductions: 0,
     netPay: 0,
     status: "Draft",
   },
@@ -84,19 +113,32 @@ function statusStyles(s: RunStatus) {
   }
 }
 
+function totalTaxes(r: PayRunRow) {
+  return r.federalWithholding + r.stateWithholding + r.ficaEmployee;
+}
+
+function totalDeductions(r: PayRunRow) {
+  return totalTaxes(r) + r.otherDeductions;
+}
+
 export default function PayrollPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
-  const [compSearch, setCompSearch] = useState("");
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return data.filter((row) => {
+    return payRuns.filter((row) => {
       const ok = !q || row.period.toLowerCase().includes(q);
       const okS = statusFilter === "All" || row.status === statusFilter;
       return ok && okS;
     });
   }, [search, statusFilter]);
+
+  const spotlight = useMemo(() => {
+    const withData = payRuns.filter((r) => r.grossPay > 0);
+    const preferred = withData.find((r) => r.period === "2026-01") ?? withData[0];
+    return preferred ?? null;
+  }, []);
 
   const latestPaidNet = useMemo(() => {
     const paid = filtered.filter((r) => r.status === "Paid" && r.netPay > 0);
@@ -107,51 +149,169 @@ export default function PayrollPage() {
     return sorted[0].netPay;
   }, [filtered]);
 
-  const payrollEligible = useMemo(
-    () => hrEmployees.filter((e) => e.status === "Active" || e.status === "On leave"),
-    []
-  );
-
-  const annualCashComp = useMemo(
-    () => payrollEligible.reduce((s, e) => s + e.annualCompensation, 0),
-    [payrollEligible]
-  );
-
-  const biweeklyEquivalent = useMemo(
-    () => payrollEligible.reduce((s, e) => s + estimatedGrossPerPay(e), 0),
-    [payrollEligible]
-  );
-
-  const compFiltered = useMemo(() => {
-    const q = compSearch.trim().toLowerCase();
-    return payrollEligible.filter(
-      (e) =>
-        !q ||
-        e.name.toLowerCase().includes(q) ||
-        e.employeeId.toLowerCase().includes(q) ||
-        e.department.toLowerCase().includes(q)
-    );
-  }, [payrollEligible, compSearch]);
-
   return (
     <div className="min-h-screen">
-      <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div className="max-w-3xl">
           <h1 className="text-3xl font-bold text-gray-900">Payroll</h1>
-          <p className="text-gray-600 mt-2">
-            Pay runs and salary register — linked to employee compensation
+          <p className="text-gray-600 mt-3 leading-relaxed">
+            Payroll is the process of{" "}
+            <strong className="font-semibold text-gray-800">calculating and distributing pay</strong>{" "}
+            to employees. Each run combines <strong className="font-semibold text-gray-800">earnings</strong>{" "}
+            — salaries, wages, and bonuses — then subtracts{" "}
+            <strong className="font-semibold text-gray-800">deductions</strong> such as federal and state
+            income tax, FICA, and other withholdings (benefits, garnishments) to arrive at{" "}
+            <strong className="font-semibold text-gray-800">net pay</strong> paid to staff.
+          </p>
+          <p className="text-sm text-gray-500 mt-2">
+            Fixed <Link href="/accounting/employees" className="text-blue-600 font-medium hover:underline">annual salaries and wage rates</Link>{" "}
+            live on Employee records; payroll adds hours, bonuses, and all deductions for each period.
           </p>
         </div>
         <button
           type="button"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors shrink-0"
         >
           <BanknotesIcon className="w-5 h-5" />
           Run payroll
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="bg-gradient-to-br from-slate-50 to-blue-50/40 rounded-2xl border border-gray-200/80 p-6 mb-8">
+        <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
+          Typical payroll run flow
+        </h2>
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            {
+              step: "1",
+              title: "Collect inputs",
+              body: "Pull salaries from HR, time worked for wages, and approved bonuses.",
+              Icon: CalculatorIcon,
+            },
+            {
+              step: "2",
+              title: "Calculate gross",
+              body: "Sum salary + wages + bonuses (and other earnings) into gross pay per person.",
+              Icon: BanknotesIcon,
+            },
+            {
+              step: "3",
+              title: "Apply deductions",
+              body: "Withhold taxes (federal, state, FICA) and other deductions from gross.",
+              Icon: DocumentCheckIcon,
+            },
+            {
+              step: "4",
+              title: "Distribute pay",
+              body: "Pay net amounts via direct deposit or check; post liabilities and expenses.",
+              Icon: PaperAirplaneIcon,
+            },
+          ].map(({ step, title, body, Icon }) => (
+            <li
+              key={step}
+              className="bg-white/90 rounded-xl p-4 border border-gray-200/80 shadow-sm flex gap-3"
+            >
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-800">
+                {step}
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 text-gray-500" />
+                  <span className="font-semibold text-gray-900">{title}</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-1 leading-snug">{body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {spotlight && spotlight.grossPay > 0 && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+          <div className="flex items-center gap-2 mb-4">
+            <ArrowPathIcon className="w-5 h-5 text-blue-600" />
+            <h2 className="text-lg font-semibold text-gray-900">
+              Calculation snapshot — period {spotlight.period}
+            </h2>
+            <span
+              className={`ml-2 inline-flex px-2 py-0.5 text-xs font-medium rounded-full border ${statusStyles(
+                spotlight.status
+              )}`}
+            >
+              {spotlight.status}
+            </span>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-5">
+              <h3 className="text-sm font-semibold text-emerald-900 mb-3">Earnings (gross build-up)</h3>
+              <ul className="space-y-2 text-sm">
+                <li className="flex justify-between text-gray-700">
+                  <span>Salary (fixed pay)</span>
+                  <span className="font-medium tabular-nums">${spotlight.salaryEarnings.toLocaleString()}</span>
+                </li>
+                <li className="flex justify-between text-gray-700">
+                  <span>Wages (hours × rates)</span>
+                  <span className="font-medium tabular-nums">${spotlight.wageEarnings.toLocaleString()}</span>
+                </li>
+                <li className="flex justify-between text-gray-700">
+                  <span>Bonuses &amp; variable</span>
+                  <span className="font-medium tabular-nums">${spotlight.bonusEarnings.toLocaleString()}</span>
+                </li>
+                <li className="flex justify-between pt-2 border-t border-emerald-200 font-semibold text-emerald-900">
+                  <span>Gross pay</span>
+                  <span className="tabular-nums">${spotlight.grossPay.toLocaleString()}</span>
+                </li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-red-100 bg-red-50/30 p-5">
+              <h3 className="text-sm font-semibold text-red-900 mb-3">Deductions &amp; net pay</h3>
+              <ul className="space-y-2 text-sm">
+                <li className="flex justify-between text-gray-700">
+                  <span>Federal income tax</span>
+                  <span className="font-medium tabular-nums text-red-800">
+                    −${spotlight.federalWithholding.toLocaleString()}
+                  </span>
+                </li>
+                <li className="flex justify-between text-gray-700">
+                  <span>State / local income tax</span>
+                  <span className="font-medium tabular-nums text-red-800">
+                    −${spotlight.stateWithholding.toLocaleString()}
+                  </span>
+                </li>
+                <li className="flex justify-between text-gray-700">
+                  <span>FICA (employee share)</span>
+                  <span className="font-medium tabular-nums text-red-800">
+                    −${spotlight.ficaEmployee.toLocaleString()}
+                  </span>
+                </li>
+                <li className="flex justify-between text-gray-700">
+                  <span>Other (benefits, garnishments, etc.)</span>
+                  <span className="font-medium tabular-nums text-red-800">
+                    −${spotlight.otherDeductions.toLocaleString()}
+                  </span>
+                </li>
+                <li className="flex justify-between pt-2 border-t border-red-200 text-gray-800">
+                  <span>Total deductions</span>
+                  <span className="font-semibold tabular-nums">
+                    −${totalDeductions(spotlight).toLocaleString()}
+                  </span>
+                </li>
+                <li className="flex justify-between pt-2 text-base font-bold text-emerald-800">
+                  <span>Net pay distributed</span>
+                  <span className="tabular-nums">${spotlight.netPay.toLocaleString()}</span>
+                </li>
+              </ul>
+              <p className="text-xs text-gray-500 mt-3">
+                Gross − all deductions = net. Employer-side taxes and benefits expense are recorded
+                separately from this employee net view.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
           <div className="flex justify-between items-center">
             <div>
@@ -170,101 +330,19 @@ export default function PayrollPage() {
         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-sm font-medium text-gray-600">Annual cash comp (HR roster)</p>
-              <p className="text-2xl font-bold text-gray-900">${annualCashComp.toLocaleString()}</p>
-              <p className="text-xs text-gray-500 mt-1">Active + on leave</p>
+              <p className="text-sm font-medium text-gray-600">Net pay (filtered sum)</p>
+              <p className="text-2xl font-bold text-emerald-700">
+                ${filtered.reduce((s, r) => s + r.netPay, 0).toLocaleString()}
+              </p>
             </div>
             <div className="p-3 rounded-lg bg-green-100">
               <CurrencyDollarIcon className="w-6 h-6 text-green-600" />
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Est. gross / cycle (sum)</p>
-              <p className="text-2xl font-bold text-emerald-800">
-                ${Math.round(biweeklyEquivalent).toLocaleString()}
-              </p>
-              <p className="text-xs text-gray-500 mt-1">Each emp. ÷ pay periods (mixed freq.)</p>
-            </div>
-            <div className="p-3 rounded-lg bg-emerald-100">
-              <UserGroupIcon className="w-6 h-6 text-emerald-700" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Salary &amp; wages register</h2>
-        <p className="text-sm text-gray-600 mb-4">
-          Source: employee records. Hourly uses {HOURS_PER_YEAR_FT} hrs for full-time annual equivalent.
-        </p>
-        <div className="relative max-w-md mb-4">
-          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input
-            type="search"
-            placeholder="Search register by name, ID, department…"
-            value={compSearch}
-            onChange={(e) => setCompSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Employee
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Department
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Basis / frequency
-                </th>
-                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Annual
-                </th>
-                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Est. gross / pay
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 bg-white">
-              {compFiltered.map((e) => (
-                <tr key={e.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{e.name}</div>
-                    <div className="text-xs font-mono text-gray-500">{e.employeeId}</div>
-                  </td>
-                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700">{e.department}</td>
-                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">
-                    <span className="font-medium text-gray-800">{e.payBasis}</span>
-                    <span className="text-gray-400 mx-1">·</span>
-                    {e.payFrequency}
-                    {e.payBasis === "Hourly" && e.hourlyRate != null && (
-                      <span className="block text-xs text-gray-500">${e.hourlyRate.toFixed(2)}/hr</span>
-                    )}
-                  </td>
-                  <td className="px-4 py-3 whitespace-nowrap text-sm font-semibold text-right text-gray-900">
-                    ${e.annualCompensation.toLocaleString()}
-                  </td>
-                  <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-right text-emerald-800">
-                    ${Math.round(estimatedGrossPerPay(e)).toLocaleString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {compFiltered.length === 0 && (
-          <p className="text-center py-8 text-gray-500 text-sm">No rows match your search.</p>
-        )}
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Pay runs</h2>
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1 relative">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -293,29 +371,47 @@ export default function PayrollPage() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        <div className="px-6 py-3 border-b border-gray-100 bg-gray-50/80">
+          <p className="text-xs text-gray-500">
+            Each row is one company pay run. Salary vs wage vs bonus split illustrates how gross is built
+            before taxes and other deductions.
+          </p>
+        </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Period
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Pay date
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Employees
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Emp.
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Salary
+                </th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Wages
+                </th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Bonus
+                </th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Gross
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Taxes
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Other ded.
+                </th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Net pay
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
               </tr>
@@ -323,27 +419,39 @@ export default function PayrollPage() {
             <tbody className="divide-y divide-gray-200">
               {filtered.map((row) => (
                 <tr key={row.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-mono font-semibold text-gray-900">
+                  <td className="px-4 py-3 whitespace-nowrap text-sm font-mono font-semibold text-gray-900">
                     {row.period}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">
                     {row.employeesPaid === 0 && row.status === "Draft"
                       ? "—"
                       : new Date(row.payDate).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-right text-gray-900">
                     {row.employeesPaid || "—"}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-right">
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-right text-gray-800">
+                    {row.salaryEarnings ? `$${row.salaryEarnings.toLocaleString()}` : "—"}
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-right text-gray-800">
+                    {row.wageEarnings ? `$${row.wageEarnings.toLocaleString()}` : "—"}
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-right text-gray-800">
+                    {row.bonusEarnings ? `$${row.bonusEarnings.toLocaleString()}` : "—"}
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm font-semibold text-right text-gray-900">
                     {row.grossPay ? `$${row.grossPay.toLocaleString()}` : "—"}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-600">
-                    {row.taxesWithheld ? `$${row.taxesWithheld.toLocaleString()}` : "—"}
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-right text-red-700">
+                    {row.grossPay ? `$${totalTaxes(row).toLocaleString()}` : "—"}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-right text-emerald-700">
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-right text-gray-600">
+                    {row.otherDeductions ? `$${row.otherDeductions.toLocaleString()}` : "—"}
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm font-semibold text-right text-emerald-700">
                     {row.netPay ? `$${row.netPay.toLocaleString()}` : "—"}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-3 whitespace-nowrap">
                     <span
                       className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${statusStyles(
                         row.status
